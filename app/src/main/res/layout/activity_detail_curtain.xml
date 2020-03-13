@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/root">
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -99,12 +98,6 @@
                             android:id="@+id/signalPosition"
                             android:padding="@dimen/stdetail_wifi_padding"
                             android:src="@drawable/s0"
-                            android:layout_width="@dimen/stdetail_wifi_width"
-                            android:layout_height="@dimen/stdetail_wifi_width" />
-                        <ImageView
-                            android:id="@+id/battery"
-                            android:padding="@dimen/stdetail_wifi_padding"
-                            android:src="@drawable/q0"
                             android:layout_width="@dimen/stdetail_wifi_width"
                             android:layout_height="@dimen/stdetail_wifi_width" />
                     </LinearLayout>

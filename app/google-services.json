@@ -1,39 +1,37 @@
 {
   "project_info": {
-    "project_number": "889949974516",
-    "firebase_url": "https://familywell-97155.firebaseio.com",
-    "project_id": "familywell-97155",
-    "storage_bucket": "familywell-97155.appspot.com"
+    "project_number": "953574457483",
+    "firebase_url": "https://housegard-9750f.firebaseio.com",
+    "project_id": "housegard-9750f",
+    "storage_bucket": "housegard-9750f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:889949974516:android:41370635cd65fc65",
+        "mobilesdk_app_id": "1:953574457483:android:e82e7487356eddac",
         "android_client_info": {
-          "package_name": "com.siterwell.familywell"
+          "package_name": "com.siterwell.housegard"
         }
       },
       "oauth_client": [
         {
-          "client_id": "889949974516-6lof0lpelur71d9k3g0rtgtr0g457par.apps.googleusercontent.com",
+          "client_id": "953574457483-3ddfg57imupl411dsubdj2t2p7vlkn65.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyApRAS8LPtQ7A5AYeE5I-GYNfEfO7Un-Pc"
+          "current_key": "AIzaSyD08feo1RVKChsAG8brFYKh4b4DrEI13e8"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953574457483-3ddfg57imupl411dsubdj2t2p7vlkn65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

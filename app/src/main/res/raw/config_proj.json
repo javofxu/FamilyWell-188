@@ -2,52 +2,34 @@
   "instruction": {
     "show":true,
     "url": {
-      "default":"http://en.china-siter.com/company_detail.html?introId=17",
-      "zh": "http://www.china-siter.cn/company_detail.html?introId=17",
-      "en": "http://en.china-siter.com/company_detail.html?introId=17",
-      "fr": "http://en.china-siter.com/company_detail.html?introId=17",
-      "de": "http://en.china-siter.com/company_detail.html?introId=17",
-      "es": "http://en.china-siter.com/company_detail.html?introId=17",
-      "fi": "http://en.china-siter.com/company_detail.html?introId=17",
-      "cs": "http://en.china-siter.com/company_detail.html?introId=17",
-      "it": "http://en.china-siter.com/company_detail.html?introId=17",
-      "nl": "http://en.china-siter.com/company_detail.html?introId=17",
-      "sl": "http://en.china-siter.com/company_detail.html?introId=17",
-      "da": "http://en.china-siter.com/company_detail.html?introId=17",
-      "nb": "http://en.china-siter.com/company_detail.html?introId=17",
-      "sv": "http://en.china-siter.com/company_detail.html?introId=17",
-      "ja": "http://en.china-siter.com/company_detail.html?introId=17"
+      "default":"http://www.housegard.se/manualer/housegard-note-system.pdf",
+      "en": "http://www.housegard.se/manualer/housegard-note-system.pdf",
+      "fi": "http://www.housegard.se/manualer/housegard-note-system.pdf",
+      "nb": "http://www.housegard.se/manualer/housegard-note-system.pdf",
+      "da": "http://www.housegard.se/manualer/housegard-note-system.pdf",
+      "sv": "http://www.housegard.se/manualer/housegard-note-system.pdf"
     }
   },
   "offical_web": {
     "show":true,
     "url": {
-      "default":"http://www.china-siter.com/",
-      "zh": "http://www.china-siter.cn/",
-      "en": "http://www.china-siter.com/",
-      "fr": "http://www.china-siter.com/",
-      "de": "http://www.china-siter.com/",
-      "es": "http://www.china-siter.com/",
-      "fi": "http://www.china-siter.com/",
-      "cs": "http://www.china-siter.com/",
-      "it": "http://www.china-siter.com/",
-      "nl": "http://www.china-siter.com/",
-      "sl": "http://www.china-siter.com/",
-      "da": "http://www.china-siter.com/",
-      "nb": "http://www.china-siter.com/",
-      "sv": "http://www.china-siter.com/",
-      "ja": "http://www.china-siter.com/"
+      "default":"http://www.housegard.se/",
+      "en": "http://www.housegard.se/",
+      "fi": "http://www.housegard.se/",
+      "nb": "http://www.housegard.se/",
+      "da": "http://www.housegard.se/",
+      "sv": "http://www.housegard.se/"
     }
   },
-  "app_upgrade_url":"http://61.164.94.198:1415/point/app/SiterAction!getAppUpdate.action",
-  "app_download_url":"Siterwell_GS188X_Series.apk",
+  "app_upgrade_url":"http://61.164.94.198:1415/point/app/SiterAction!getAppUpdateHousegard.action",
+  "app_download_url":"Housegard.apk",
   "mi_config":{
-    "appid":"2882303761517677475",
-    "appkey":"5411767797475"
+    "appid":"2882303761518032529",
+    "appkey":"5391803232529"
   },
-  "udp_config":"site05",
-  "encode":"GBK",
-  "update_auto":"1"
+  "udp_config":"site05EN",
+  "encode":"ISO-8859-1",
+  "update_auto":"0"
 }
 
 

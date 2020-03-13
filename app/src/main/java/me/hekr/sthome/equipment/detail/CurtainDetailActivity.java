@@ -56,7 +56,7 @@ public class CurtainDetailActivity extends AppCompatActivity {
     private LinearLayout drawBack;
     private ImageView deviceLogo,up1,down1,stop;
     private TextView emergencyCall,showStatus;
-    private ImageView signal,battery;
+    private ImageView signal;
     private String status2="",eqid="";
     private EquipmentBean device;
     private SendEquipmentData sd;
@@ -222,7 +222,6 @@ public class CurtainDetailActivity extends AppCompatActivity {
             }
         });
         eq_name = (TextView)findViewById(R.id.eq_name);
-        battery = (ImageView)findViewById(R.id.battery);
         eq_name.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         eq_name.setSelected(true);
         eq_name.setFocusable(true);
@@ -317,7 +316,6 @@ public class CurtainDetailActivity extends AppCompatActivity {
             if(signal1 != null){
 
                 signal.setImageResource(ShowBascInfor.choseSPic(signal1));
-                battery.setImageResource(ShowBascInfor.choseQPic(Integer.parseInt(quantity1,16)));
             }
             if(socketStatus != null ){
                 drawBack.setBackgroundResource(R.drawable.green);
