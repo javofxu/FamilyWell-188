@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        multiDexEnabled true
+        ndk {
+            abiFilters  "arm64-v8a","armeabi"
+        }
+
+        applicationId "com.siterwell.familywell"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 2672
+        versionName "2.672"
+
+        manifestPlaceholders = [
+                GETUI_APP_ID : "iohOusgIfuA57fOVfndY39",
+                GETUI_APP_KEY : "sHJQ7JmNYoAopfRTrwPu2A",
+                GETUI_APP_SECRET : "YbY7j0nDX58m2kkoG8CMB8"
+        ]
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias '123456'
+            keyPassword '123456'
+            storeFile file('../keystore/xjjsiterwell.jks')
+            storePassword '123456'
+        }
+        release {
+            keyAlias '123456'
+            keyPassword '123456'
+            storeFile file('../keystore/xjjsiterwell.jks')
+            storePassword '123456'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+        }
+    }
+
+}
+
+repositories {
+    flatDir { dirs 'libs' }
+    google()
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'me.hekr.sdk:core:2.0.0_beta8'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'org.jetbrains:annotations-java5:15.0'
+    compile 'com.zhy:base-adapter:2.0.0'
+    compile 'com.google.firebase:firebase-core:10.2.6'
+    compile 'com.google.firebase:firebase-messaging:10.2.6'
+    compile 'com.firebase:firebase-jobdispatcher:0.6.0'
+    compile(name: 'libxmfunsdk-release', ext: 'aar')
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+}
+apply plugin: 'com.google.gms.google-services'

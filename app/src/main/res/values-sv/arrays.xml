@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="thtrigger_method">
+        <item>Temperatur</item>
+        <item>Luftfuktighet</item>
+    </array>
+    <array name="thtrigger_style">
+        <item>&lt;=</item>
+        <item>>=</item>
+    </array>
+    <string-array name="week">
+        <item>Måndag</item>
+        <item>Tisdag</item>
+        <item>Onsdag</item>
+        <item>Torsdag</item>
+        <item>Fredag</item>
+        <item>Lördag</item>
+        <item>Söndag</item>
+    </string-array>
+    <string-array name="week2">
+        <item>Måndag</item>
+        <item>Tisdag</item>
+        <item>Onsdag</item>
+        <item>Torsdag</item>
+        <item>Fredag</item>
+        <item>Lördag</item>
+        <item>Söndag</item>
+    </string-array>
+    <string-array name="week3">
+        <item>Söndag</item>
+        <item>Måndag</item>
+        <item>Tisdag</item>
+        <item>Onsdag</item>
+        <item>Torsdag</item>
+        <item>Fredag</item>
+        <item>Lördag</item>
+    </string-array>
+    <string-array name="socket_actions">
+        <item>Strömmen är på</item>
+        <item>Strömmen är av</item>
+        <item>Växla status</item>
+    </string-array>
+    <string-array name="valve_actions">
+        <item>Positive rotation</item>
+        <item>Reversal rotation</item>
+        <item>Stop</item>
+    </string-array>
+    <string-array name="door_actions">
+        <item>Dörr öppen</item>
+        <item>Dörr stängd</item>
+        <item>Dörr vänta</item>
+    </string-array>
+    <string-array name="sos_signs">
+        <item>Hjälp</item>
+        <item>Normal</item>
+        <item>Offline</item>
+    </string-array>
+    <string-array name="pir_signs">
+        <item>Någon är där</item>
+        <item>Normal</item>
+        <item>Offline</item>
+    </string-array>
+    <string-array name="gateway_actions">
+        <item>Inbrottslarm</item>
+        <item>Larm varna</item>
+        <item>Tyst</item>
+        <item>Dörrklocka larm</item>
+    </string-array>
+    <string-array name="guard_actions">
+        <item>Öppen</item>
+        <item>Stängd</item>
+    </string-array>
+    <string-array name="cx_alert_actions">
+        <item>Brandvarnare</item>
+        <item>Testlarm</item>
+        <item>Normal</item>
+    </string-array>
+    <string-array name="lamp_actions">
+        <item>Röd</item>
+        <item>Grön</item>
+        <item>Blå</item>
+        <item>Rödgrön</item>
+        <item>Rödblå</item>
+        <item>Grönblå</item>
+        <item>Öppen</item>
+        <item>Stängd</item>
+        <item>Larm</item>
+        <item>Färgrik</item>
+    </string-array>
+    <string-array name="mode_button_signs">
+        <item>Hjälp</item>
+        <item>Normal</item>
+        <item>Offline</item>
+    </string-array>
+    <string-array name="DeivceOperation">
+        <item>Byt enhet</item>
+        <item>Radera enhet</item>
+        <item>Ändra namn</item>
+    </string-array>
+    <string-array name="device_setup_alarm_level">
+        <item>Låg</item>
+        <item>Medel</item>
+        <item>Hög</item>
+    </string-array>
+    <string-array name="device_setup_camera_definition_values">
+        <item>Bästa</item>
+        <item>Mycket bra</item>
+        <item>Bra</item>
+        <item>Medel</item>
+        <item>Ganska dåligt</item>
+        <item>Mycket dåligt</item>
+    </string-array>
+    <string-array name="device_setup_camera_noise_reduction_values">
+        <item>Av</item>
+        <item>Låg</item>
+        <item>Hög</item>
+    </string-array>
+    <string-array name="device_setup_camera_metering_values">
+        <item>Mätning allt</item>
+        <item>Mätning center</item>
+        <item>Mätning punkt </item>
+    </string-array>
+    <string-array name="device_setup_record_mode_values">
+        <item>Kontinuerlig inspelning</item>
+        <item>Spara aldrig</item>
+        <item>Ansluten till lagring</item>
+    </string-array>
+    <string-array name="device_setup_exposure_time_values">
+        <item>Auto</item>
+        <item>1/50</item>
+        <item>1/120</item>
+        <item>1/250</item>
+        <item>1/500</item>
+        <item>1/1000</item>
+        <item>1/2000</item>
+        <item>1/4000</item>
+        <item>1/10000</item>
+    </string-array>
+    <string-array name="device_setup_scene_mode_values">
+        <item>Auto</item>
+        <item>Inomhus</item>
+        <item>Utomhus</item>
+    </string-array>
+    <string-array name="device_setup_electronic_slow_shutter_values">
+        <item>Av</item>
+        <item>Låg</item>
+        <item>Hög</item>
+    </string-array>
+    <string-array name="device_setup_color_mode_values">
+        <item>Färgrik</item>
+        <item>Svartvit</item>
+    </string-array>
+    <string-array name="pic_type">
+        <item>Alla</item>
+        <item>Larm</item>
+        <item>Detektion</item>
+        <item>Normal</item>
+        <item>Fjärr</item>
+        <item>Key</item>
+        <item>Time-lapse</item>
+        <item>Kontinuerlig</item>
+    </string-array>
+    <string-array name="record_type">
+        <item>All Video</item>
+        <item>Varna video</item>
+        <item>Detektion video</item>
+        <item>Normal video</item>
+        <item>Manuel video</item>
+        <item>Fjärr video</item>
+    </string-array>
+    <string-array name="gatewaycolor">
+        <item>Mörkgrön</item>
+        <item>Himmelsblå</item>
+        <item>Djuplila</item>
+        <item>Rosa</item>
+        <item>Ljusgrön</item>
+        <item>Gräsgrön</item>
+        <item>Orange</item>
+        <item>Marinblå</item>
+        <item>Ingen färg</item>
+    </string-array>
+    <string-array name="check_pics">
+        <item>Se bilder över nätet</item>
+        <item>Se lokala skärmdumpar</item>
+    </string-array>
+    <string-array name="check_videos">
+        <item>Se video över nätet</item>
+        <item>Se video lokalt</item>
+    </string-array>
+    <array name="lianxi">
+        <item>+46 (0)31-799 16 00</item>
+        <item>support@housegard.se</item>
+    </array>
+    <array name="lock_input">
+        <item>Öppna låset</item>
+        <item>Lås upp med lösenord</item>
+        <item>Lås upp med kort</item>
+        <item>Lås upp med ett fingeravtryck</item>
+        <item>Ogiltig operation</item>
+        <item>Demonteringsalarm</item>
+        <item>Paniklarm</item>
+    </array>
+    <array name="socket_channel">
+        <item>Kanal1</item>
+        <item>Kanal2</item>
+    </array>
+    <array name="dimming_modlue_action">
+        <item>Stäng</item>
+        <item>Sätt på</item>
+    </array>
+    <array name="gs361_action">
+        <item>Stäng</item>
+        <item>Sätt på</item>
+    </array>
+    <array name="question">
+        <item>Fel WIFI-lösenord</item>
+        <item>Blankteckenfel</item>
+        <item>2.4GHZ-WiFi</item>
+    </array>
+    <array name="question_detail">
+        <item>WIFI-lösenordet du fyllde i kan vara fel</item>
+        <item>SSID eller lösenord för din router kan innehålla mellanslag.</item>
+        <item>Denna produkt stöder endast 2,4 GHz frekvens WIFI och stöder inte 5GHz. Se till att routern är korrekt inställd.</item>
+    </array>
+    <array name="outdoor_siren_action">
+        <item>Tyst</item>
+        <item>Larm</item>
+    </array>
+    <array name="testMode">
+        <item>Test En</item>
+        <item>Test Alla</item>
+    </array>
+</resources>

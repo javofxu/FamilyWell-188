@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "889949974516",
+    "firebase_url": "https://familywell-97155.firebaseio.com",
+    "project_id": "familywell-97155",
+    "storage_bucket": "familywell-97155.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889949974516:android:41370635cd65fc65",
+        "android_client_info": {
+          "package_name": "com.siterwell.familywell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889949974516-6lof0lpelur71d9k3g0rtgtr0g457par.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApRAS8LPtQ7A5AYeE5I-GYNfEfO7Un-Pc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

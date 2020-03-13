@@ -1,0 +1,53 @@
+{
+  "instruction": {
+    "show":true,
+    "url": {
+      "default":"http://en.china-siter.com/company_detail.html?introId=17",
+      "zh": "http://www.china-siter.cn/company_detail.html?introId=17",
+      "en": "http://en.china-siter.com/company_detail.html?introId=17",
+      "fr": "http://en.china-siter.com/company_detail.html?introId=17",
+      "de": "http://en.china-siter.com/company_detail.html?introId=17",
+      "es": "http://en.china-siter.com/company_detail.html?introId=17",
+      "fi": "http://en.china-siter.com/company_detail.html?introId=17",
+      "cs": "http://en.china-siter.com/company_detail.html?introId=17",
+      "it": "http://en.china-siter.com/company_detail.html?introId=17",
+      "nl": "http://en.china-siter.com/company_detail.html?introId=17",
+      "sl": "http://en.china-siter.com/company_detail.html?introId=17",
+      "da": "http://en.china-siter.com/company_detail.html?introId=17",
+      "nb": "http://en.china-siter.com/company_detail.html?introId=17",
+      "sv": "http://en.china-siter.com/company_detail.html?introId=17",
+      "ja": "http://en.china-siter.com/company_detail.html?introId=17"
+    }
+  },
+  "offical_web": {
+    "show":true,
+    "url": {
+      "default":"http://www.china-siter.com/",
+      "zh": "http://www.china-siter.cn/",
+      "en": "http://www.china-siter.com/",
+      "fr": "http://www.china-siter.com/",
+      "de": "http://www.china-siter.com/",
+      "es": "http://www.china-siter.com/",
+      "fi": "http://www.china-siter.com/",
+      "cs": "http://www.china-siter.com/",
+      "it": "http://www.china-siter.com/",
+      "nl": "http://www.china-siter.com/",
+      "sl": "http://www.china-siter.com/",
+      "da": "http://www.china-siter.com/",
+      "nb": "http://www.china-siter.com/",
+      "sv": "http://www.china-siter.com/",
+      "ja": "http://www.china-siter.com/"
+    }
+  },
+  "app_upgrade_url":"http://61.164.94.198:1415/point/app/SiterAction!getAppUpdate.action",
+  "app_download_url":"Siterwell_GS188X_Series.apk",
+  "mi_config":{
+    "appid":"2882303761517677475",
+    "appkey":"5411767797475"
+  },
+  "udp_config":"site05",
+  "encode":"GBK",
+  "update_auto":"1"
+}
+
+

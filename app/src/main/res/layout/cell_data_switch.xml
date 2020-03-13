@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@drawable/list_item_normal"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/SmallPadding"
+    >
+
+     <LinearLayout
+         android:layout_width="@dimen/modle_item_ico_width"
+         android:layout_height="@dimen/modle_item_ico_height"
+         android:layout_alignParentLeft="true"
+         android:id="@+id/ddd">
+         <ImageView
+             android:id="@+id/cellScenceImage"
+             android:layout_width="@dimen/modle_item_cellScenceImage_width"
+             android:layout_height="@dimen/modle_item_cellScenceImage_height"
+             android:layout_gravity="center"
+             android:src="@drawable/e1"
+             android:gravity="center" />
+     </LinearLayout>
+
+
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:background="@drawable/arrow"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/arrow"/>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ddd"
+        android:layout_toLeftOf="@id/arrow"
+        android:minHeight="@dimen/SmallListHeight"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/index"
+            style="@style/CCPFontPreferenceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
+        <TextView
+            android:id="@+id/cellScenceName"
+            style="@style/CCPFontPreferenceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/toast_text_content"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
