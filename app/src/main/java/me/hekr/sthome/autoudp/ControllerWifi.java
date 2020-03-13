@@ -7,7 +7,6 @@ import java.net.InetAddress;
  * Created by jishu0001 on 2016/12/20.
  */
 public class ControllerWifi {
-    public boolean test4;
     public boolean test;
     public boolean wifiTag;
     public InetAddress targetip;

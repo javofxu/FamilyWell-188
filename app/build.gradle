@@ -10,16 +10,16 @@ android {
             abiFilters  "arm64-v8a","armeabi"
         }
 
-        applicationId "com.siterwell.housegard"
         minSdkVersion 21
+        applicationId "com.siterwell.iwell"
         targetSdkVersion 28
-        versionCode 1040
-        versionName "1.040"
+        versionCode 1010
+        versionName "1.010"
 
         manifestPlaceholders = [
-                GETUI_APP_ID : "zFyE9LJ2yu6aExwbXmzDU2",
-                GETUI_APP_KEY : "VZXJ6cCIWM66OvXYLmUbE6",
-                GETUI_APP_SECRET : "0caXSxDenk7bBw36IvkGJ6"
+                GETUI_APP_ID : "Q5K0egWhlA7wpeNSlrZzS6",
+                GETUI_APP_KEY : "5NPSjpFE1V8hDOXQMEwtb9",
+                GETUI_APP_SECRET : "SeHk5f7Z9u87BypJKRD9o4"
         ]
     }
 
@@ -52,7 +52,6 @@ repositories {
     google()
 }
 
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -66,5 +65,6 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.firebase:firebase-jobdispatcher:0.6.0'
     compile(name: 'libxmfunsdk-release', ext: 'aar')
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }
 apply plugin: 'com.google.gms.google-services'

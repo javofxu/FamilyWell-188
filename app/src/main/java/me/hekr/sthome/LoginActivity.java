@@ -475,7 +475,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void tcpGetDomain(){
 
-        Constants.setOnlineSite("hekreu.me");
+        String domain = getdomain();
+        Log.i(TAG,"设置本地domain:"+domain);
+        Constants.setOnlineSite(domain);
 
         new Thread(){
             @Override

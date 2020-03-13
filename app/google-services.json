@@ -1,37 +1,39 @@
 {
   "project_info": {
-    "project_number": "953574457483",
-    "firebase_url": "https://housegard-9750f.firebaseio.com",
-    "project_id": "housegard-9750f",
-    "storage_bucket": "housegard-9750f.appspot.com"
+    "project_number": "660302158203",
+    "firebase_url": "https://iwell-90f04.firebaseio.com",
+    "project_id": "iwell-90f04",
+    "storage_bucket": "iwell-90f04.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:953574457483:android:e82e7487356eddac",
+        "mobilesdk_app_id": "1:660302158203:android:a8735c16288f9cd1",
         "android_client_info": {
-          "package_name": "com.siterwell.housegard"
+          "package_name": "com.siterwell.iwell"
         }
       },
       "oauth_client": [
         {
-          "client_id": "953574457483-3ddfg57imupl411dsubdj2t2p7vlkn65.apps.googleusercontent.com",
+          "client_id": "660302158203-2vere6qq5ud6qu6ktelot4434lrmn7st.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD08feo1RVKChsAG8brFYKh4b4DrEI13e8"
+          "current_key": "AIzaSyAq6yQmOwU14ldAY3-qalL9aSo1jXhOExk"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 1
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "953574457483-3ddfg57imupl411dsubdj2t2p7vlkn65.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
         }
       }
     }
