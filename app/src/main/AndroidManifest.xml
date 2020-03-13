@@ -41,10 +41,10 @@
 
     <!-- the following 2 com.xiaomi.mipushdemo should be changed to your package name -->
     <permission
-        android:name="com.siterwell.familywell.permission.MIPUSH_RECEIVE"
+        android:name="com.siterwell.lifebox.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.siterwell.familywell.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.siterwell.lifebox.permission.MIPUSH_RECEIVE" />
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -426,77 +426,77 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <!-- push service -->
-        <meta-data
-            android:name="PUSH_APPID"
-            android:value="${GETUI_APP_ID}" />
-        <meta-data
-            android:name="PUSH_APPKEY"
-            android:value="${GETUI_APP_KEY}" />
-        <meta-data
-            android:name="PUSH_APPSECRET"
-            android:value="${GETUI_APP_SECRET}" />
+        <!--<meta-data-->
+            <!--android:name="PUSH_APPID"-->
+            <!--android:value="${GETUI_APP_ID}" />-->
+        <!--<meta-data-->
+            <!--android:name="PUSH_APPKEY"-->
+            <!--android:value="${GETUI_APP_KEY}" />-->
+        <!--<meta-data-->
+            <!--android:name="PUSH_APPSECRET"-->
+            <!--android:value="${GETUI_APP_SECRET}" />-->
 
-        <!-- 配置SDK核心服务 -->
-        <service
-            android:name="com.igexin.sdk.PushService"
-            android:exported="true"
-            android:label="NotificationCenter"
-            android:process=":sitewell">
-            <intent-filter>
-                <action android:name="com.igexin.sdk.action.service.message" />
-            </intent-filter>
-        </service>
+        <!--&lt;!&ndash; 配置SDK核心服务 &ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="com.igexin.sdk.PushService"-->
+            <!--android:exported="true"-->
+            <!--android:label="NotificationCenter"-->
+            <!--android:process=":sitewell">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.igexin.sdk.action.service.message" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
 
-        <receiver android:name="com.igexin.sdk.PushReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="com.igexin.sdk.action.refreshls" />
-                <!-- 以下三项为可选的action声明，可大大提高service存活率和消息到达速度 -->
-                <action android:name="android.intent.action.MEDIA_MOUNTED" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-            </intent-filter>
-        </receiver>
+        <!--<receiver android:name="com.igexin.sdk.PushReceiver">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
+                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+                <!--<action android:name="android.intent.action.USER_PRESENT" />-->
+                <!--<action android:name="com.igexin.sdk.action.refreshls" />-->
+                <!--&lt;!&ndash; 以下三项为可选的action声明，可大大提高service存活率和消息到达速度 &ndash;&gt;-->
+                <!--<action android:name="android.intent.action.MEDIA_MOUNTED" />-->
+                <!--<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />-->
+                <!--<action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
 
-        <activity
-            android:name="com.igexin.sdk.PushActivity"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:process=":sitewell"
-            android:taskAffinity="com.igexin.sdk.PushActivityTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <!--<activity-->
+            <!--android:name="com.igexin.sdk.PushActivity"-->
+            <!--android:excludeFromRecents="true"-->
+            <!--android:exported="false"-->
+            <!--android:process=":sitewell"-->
+            <!--android:taskAffinity="com.igexin.sdk.PushActivityTask"-->
+            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>-->
 
-        <service
-            android:name="com.igexin.download.DownloadService"
-            android:process=":sitewell" />
+        <!--<service-->
+            <!--android:name="com.igexin.download.DownloadService"-->
+            <!--android:process=":sitewell" />-->
 
-        <receiver android:name="com.igexin.download.DownloadReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
+        <!--<receiver android:name="com.igexin.download.DownloadReceiver">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
 
-        <provider
-            android:name="com.igexin.download.DownloadProvider"
-            android:authorities="downloads.${applicationId}"
-            android:exported="true"
-            android:process=":sitewell" />
+        <!--<provider-->
+            <!--android:name="com.igexin.download.DownloadProvider"-->
+            <!--android:authorities="downloads.${applicationId}"-->
+            <!--android:exported="true"-->
+            <!--android:process=":sitewell" />-->
 
-        <activity
-            android:name="com.igexin.sdk.GActivity"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:process=":sitewell"
-            android:taskAffinity="com.igexin.sdk.PushActivityTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--<activity-->
+            <!--android:name="com.igexin.sdk.GActivity"-->
+            <!--android:excludeFromRecents="true"-->
+            <!--android:exported="true"-->
+            <!--android:process=":sitewell"-->
+            <!--android:taskAffinity="com.igexin.sdk.PushActivityTask"-->
+            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
 
-        <service
-            android:name=".push.GTPushService"
-            android:exported="true"
-            android:label="PushService"
-            android:process=":sitewell"></service>
+        <!--<service-->
+            <!--android:name=".push.GTPushService"-->
+            <!--android:exported="true"-->
+            <!--android:label="PushService"-->
+            <!--android:process=":sitewell"></service>-->
 
         <!-- [START firebase_service] -->
         <service
@@ -521,11 +521,11 @@
             </intent-filter>
         </service>
 
-        <service
-            android:name=".updateApp.UpdateService"
-            android:exported="true"
-            android:label="UpdateService"></service>
-        <service android:name=".push.RGTIntentService" />
+        <!--<service-->
+            <!--android:name=".updateApp.UpdateService"-->
+            <!--android:exported="true"-->
+            <!--android:label="UpdateService"></service>-->
+        <!--<service android:name=".push.RGTIntentService" />-->
 
         <service
             android:name=".service.SiterService"
@@ -565,7 +565,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <data android:scheme="com.siterwell.familywell" />
+                <data android:scheme="com.siterwell.lifebox" />
             </intent-filter>
         </receiver>
         <receiver
@@ -639,7 +639,7 @@
         </receiver>
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.siterwell.familywell.fileprovider"
+            android:authorities="com.siterwell.lifebox.fileprovider"
             android:grantUriPermissions="true"
             android:exported="false"
             >

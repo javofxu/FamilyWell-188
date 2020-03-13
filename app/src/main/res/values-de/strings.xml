@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <string name="app_name">FamilyWell</string>
+   <string name="app_name">Lifebox Smart</string>
    <string name="btnConfirmTitle">Verbinden</string>
    <string name="config_instruction">5 sekunden nach dem Einstecken des Gateways, drücken und halten Sie den Knopf während 3 sekunden</string>
    <string name="how_to_config">Sobald die LED blau blinkt,drücken Sie bitte WEITER.</string>
@@ -385,10 +385,10 @@
    <string name="gateway_empty">Connectorliste ist leer</string>
    <string name="equipment_list_empty">Geräteliste ist leer\n Bitte drücken Sie die Hinzufügtaste in der oberen rechten Ecke um hinzuzufügen</string>
    <string name="timer_list_empty">Timerliste ist leer\n Bitte drücken Sie die Hinzufügtaste in der oberen rechten Ecke um hinzuzufügen</string>
-   <string name="video_common">Letztes Video</string>
-   <string name="video_alarm">Ereignis Video</string>
+   <string name="video_common">allgemeine Einstellungen</string>
+   <string name="video_alarm">Alarm</string>
    <string name="video_time">Zeit</string>
-   <string name="add_camera">Kamera hinzufÜgen</string>
+   <string name="add_camera">IPC hinzufügen</string>
    <string name="scan">Code scannen</string>
    <string name="camera_empety_sn">Bitte geben Sie die Seriennummer ein </string>
    <string name="camera_empety_name">Bitte geben Sie den Kameranamen ein</string>
@@ -397,7 +397,7 @@
    <string name="temp_or_hum">Temperaturauslöser oder Feuchtigkeitsauslöser</string>
    <string name="trigger_style">Auslöserart</string>
    <string name="server_intro">1, die Bestätigung und Annahme der Nutzungsbedingungen \n Die Inhalte dieser Website und APP sind Eigentum von Cosa Connects BV. Benutzer müssen die Bedingungen sorgfältig lesen, bevor sie diesen Service akzeptieren. Benutzer, die den Dienst nutzen, oder Personen, die den Registrierungsprozess abgeschlossen haben, akzeptieren alle Nutzungsbedingungen. \n2, der Benutzer stimmt zu: \n (1) liefert detaillierte und genaue persönliche Informationen. \n (2) die Anforderungen. \n Falls die vom Benutzer angegebenen Informationen ungenau sind, hat diese Website das Recht, den Dienst zu beenden. \n Diese Website und APP werden den Namen, die Adresse, die E-Mail-Adresse, die Kontonummer und die Telefonnummer des Kontos nicht offen legen. Informationen (siehe Datenschutzklausel). \n Benutzer dieser Website und jedes Verhalten von APP müssen folgen: \n (1) die Übermittlung von Daten muss EU-Vorschriften entsprechen. \n (2) die Nutzung von Informationsdiensten ist nicht illegal und unmoralisch Handlungen. \n (3) nicht in die Netzwerkdienste eingreifen. \n (4) alle Netzwerkprotokolle, -regeln, -verfahren und -praktiken für die Nutzung von Diensten einhalten. Der Benutzer-Verhaltenskodex basiert auf Internet-Richtlinien, Richtlinien, Verfahren und Praktiken. \n3, ändern Sie die Nutzungsbedingungen \n Diese Website und APP haben das Recht, die Bedingungen gegebenenfalls zu ändern, die auf der Seite veröffentlicht werden. \n Wenn Sie die Änderungen nicht akzeptieren, kann der Benutzer die Initiative ergreifen, um seine Mitgliedschaft zu kündigen. Wenn Sie Ihre Mitgliedschaft nicht kündigen, stimmen Sie jeder Änderung der Nutzungsbedingungen zu. \n4, die Benutzerkontonummer, das Passwort und die Sicherheit \n Sobald Sie erfolgreich als Mitglied registriert wurden, haben Sie ein Passwort und einen Benutzernamen.</string>
-   <string name="about_app">Das FamilyWell Connects-System besteht aus zwei Hauptteilen: dem Verbinder und intelligenten Geräten. Der Verbinder ist eine Schlüsselkomponente des Systems und kommuniziert mit intelligenten Geräten über die HF-Kommunikationstechnologie und stellt eine Verbindung zu einem Wi-Fi-Heimnetzwerk her, um über das mobile Internet durch einen Cloud-Server mit Ihrer Smartphone-App zu kommunizieren. Auf diese Weise ermöglicht das System die Verwendung Ihres Smartphones als Befehlszentrale zur Ergänzung verschiedener Vorgänge, einschließlich der Erstellung von Regeln, Hinzufügen und Löschen von Komponenten, Scharfschalten und Unscharfschalten, Empfangen von Push-Benachrichtigungen beim Auslösen des Alarms und anderen benutzerdefinierten Vorgängen. Zu den intelligenten Geräten im System gehören folgende Geräte, die je nach Bedarf ausgewählt werden können: Rauchmelder, Gasalarm, CO-Detektor, Wassermelder, Türsensoren, passiver Infrarotsensor, Notruftaste, Smart-Buchse, Temperatur- und Feuchtigkeitsmessgerät und so weiter. Die Liste der Geräte in Connects wird ständig aktualisiert. Netzwerk-Kamera, Türschloss, Schalttafel, Steckdosenleiste, intelligente Luftreinigung, elektromagnetische Wasserventil und andere kommen bald!</string>
+   <string name="about_app">Das Lifebox Smart Connects-System besteht aus zwei Hauptteilen: dem Verbinder und intelligenten Geräten. Der Verbinder ist eine Schlüsselkomponente des Systems und kommuniziert mit intelligenten Geräten über die HF-Kommunikationstechnologie und stellt eine Verbindung zu einem Wi-Fi-Heimnetzwerk her, um über das mobile Internet durch einen Cloud-Server mit Ihrer Smartphone-App zu kommunizieren. Auf diese Weise ermöglicht das System die Verwendung Ihres Smartphones als Befehlszentrale zur Ergänzung verschiedener Vorgänge, einschließlich der Erstellung von Regeln, Hinzufügen und Löschen von Komponenten, Scharfschalten und Unscharfschalten, Empfangen von Push-Benachrichtigungen beim Auslösen des Alarms und anderen benutzerdefinierten Vorgängen. Zu den intelligenten Geräten im System gehören folgende Geräte, die je nach Bedarf ausgewählt werden können: Rauchmelder, Gasalarm, CO-Detektor, Wassermelder, Türsensoren, passiver Infrarotsensor, Notruftaste, Smart-Buchse, Temperatur- und Feuchtigkeitsmessgerät und so weiter. Die Liste der Geräte in Lifebox Smart Connects wird ständig aktualisiert. Netzwerk-Kamera, Türschloss, Schalttafel, Steckdosenleiste, intelligente Luftreinigung, elektromagnetische Wasserventil und andere kommen bald!</string>
    <string name="modebutton_ins">Szenen-Shortcut-Taste</string>
    <string name="input_exist">Eingabegerät kann nicht wiederholt werden</string>
    <string name="output_exist">Benachbarte Ausgabegeräte können nicht wiederholt werden</string>
@@ -423,21 +423,21 @@
    <string name="gateway_alert">Connector Alarm</string>
    <string name="choose_gateway_type">Connector-Typ</string>
    <string name="trigger">Auslösen</string>
-   <string name="ipc_tip">Bei Problemen drücken Sie bitte den RESET-Knopf auf der Rückseite des Gerätes und versuchen es erneut</string>
-   <string name="add_my_ipc">FÜgen Sie ein neues Gerät hinzu</string>
-   <string name="add_share_ipc">Bereits verbundenes Gerät hinzufügen</string>
-   <string name="add_localnet_ipc">Weiteres Gerät zum Router hinzufügen</string>
-   <string name="ipc_in_localnet">Lan Kamera</string>
+   <string name="ipc_tip">Wenn Geräte immer noch Lange auf den router, bitte auf der rückseite des geräts die set - Taste (Oder Unten), die wiederherstellung der Fabrik</string>
+   <string name="add_my_ipc">Fügen sie meine IPC</string>
+   <string name="add_share_ipc">Die IPC noch teilen</string>
+   <string name="add_localnet_ipc">Die IPC MIT Einem router hinzugefügt</string>
+   <string name="ipc_in_localnet">Lan - IPC</string>
    <string name="guide_message_error_call">- ruf wieder fehler, bitte</string>
-   <string name="is_head_yuyin">IhrGerätspricht \"WartenSiefür die konfuguration\",</string>
-   <string name="if_ok_click_next">danndrückenSie \"WEITER\"</string>
-   <string name="some_device_kuaishan">Das Gerät funktioniert nur mit 2.4 GHz Wifi-Band, </string>
-   <string name="no_support_fiveg_wifi">aber nicht mit 5GHz</string>
-   <string name="see_some_scene_above_click">Wenn die Stimme ertönt ist, klicken Sie bitter hier.</string>
-   <string name="ipc_tip_1">1.	Bitte Schliessen Sie das Gerät mit dem kabel an die Stromversorgung an</string>
-   <string name="ipc_tip_2">2.	Für die ersteVerbindungsaufnahme stellen Sie bittesicher, dass die Kamera, Ihr Handy und der Router nahe(1m) beieinander sind</string>
-   <string name="ipc_tip_3">3.	Wenn das Gerätspricht \"WartenSie für die Konfiguration\"dann drücken Sie \"WEITER\"</string>
-   <string name="ipc_tip_4">4.	WennkeineStimmeertönt, drückenSiebitte den RESET-Knopf auf der Rückseite der Kamera</string>
+   <string name="is_head_yuyin">PROMPT, ob Geräte \"begann Schnell zu hören -\" und \"warten auf die Verbindung von\"</string>
+   <string name="if_ok_click_next">Wenn bestätigt, klicken sie in \"Der nächste Schritt\"</string>
+   <string name="some_device_kuaishan">Manche Geräte für lampen - Flash - ohne stimme</string>
+   <string name="no_support_fiveg_wifi">(Nicht für die WiFi - 5 - GHz - band)</string>
+   <string name="see_some_scene_above_click">Wenn beobachtet, bitte klicken sie auf</string>
+   <string name="ipc_tip_1">1. Bitte eingesteckt Strom - und datenleitungen Laden und haben dafür sorgen, dass die Geräte funktionieren.</string>
+   <string name="ipc_tip_2">2. Zum ersten mal wird die konfiguration, bitte Geräte, handys und router in 1 Meter Breit, um sicherzustellen, dass die signale, die erfolgreich.</string>
+   <string name="ipc_tip_3">3. ALS sie hörte, dass sie \"-\" Oder \"warten auf link\" stimme für sie zu konfigurieren</string>
+   <string name="ipc_tip_4">4. Wenn sie nicht beobachtet SET/RESRET, Lange auf die wiederherstellung der FABRIK - Taste, die Geräte wieder.</string>
    <string name="no_wifi">kein WiFi</string>
    <string name="click_to_scan_qcode">Klicken sie auf den scan code</string>
    <string name="reset_to_default_set">Fabrikeinstellungen wiederherstellen</string>
@@ -479,7 +479,7 @@
    <string name="dimming_module">Dimmen modul</string>
    <string name="open_or_close">OFFEN/GESCHLOSSEN</string>
    <string name="brightness">Helligkeit</string>
-   <string name="alert_delete_all_history_log">Wollen Sie wirklich alle Alarm-Meldungen Iöschen?</string>
+   <string name="alert_delete_all_history_log">Sicher, löschen sie alle historischen ALARM - rekord?</string>
    <string name="tip_video_days">Der rote Punkt dieser Tage im video</string>
    <string name="cold_mode">- ein Muster</string>
    <string name="auto_mode">Der auto - modus</string>
@@ -499,7 +499,7 @@
    <string name="open">Offen</string>
    <string name="close">AB</string>
    <string name="param_setting">Parameter</string>
-   <string name="data_syncing">In der Daten...</string>
+   <string name="data_syncing">In der Daten - synchronisation wird abgeschlossen...</string>
    <string name="success_send_email">Die kartenprüfnummer Hat e - mail geschickt, öffnen sie bitte die e - mail - view</string>
    <string name="dev_type_idr">Die klingel - Kamera</string>
    <string name="gprs_hint">Ob die derzeit Traffic - Muster, öffnet das video?</string>
@@ -516,7 +516,7 @@
    <string name="alert_elder_care">Betreuung für ältere Menschen</string>
    <string name="gs361_install_construction">Bitte DAS thermostat zu installieren, dann wieder drücken sie den Knopf installieren.</string>
    <string name="default_scene">Die standard situationen</string>
-   <string name="config_fail_reason">Gründe für das Scheitern</string>
+   <string name="config_fail_reason">Die gründe für das scheitern</string>
    <string name="log">Records</string>
    <string name="is_upgrading">Eskaliert..</string>
    <string name="success_upgrade">Firmware Update erfolgreich</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">Datei existiert bereits</string>
    <string name="look">Siehe</string>
    <string name="success_download">Herunterladen erfolgreich</string>
-   <string name="network_hz">Das Gerät unterstützt nur 2,4GHz WLAN.</string>
 </resources>

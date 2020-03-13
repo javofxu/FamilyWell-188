@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "889949974516",
-    "firebase_url": "https://familywell-97155.firebaseio.com",
-    "project_id": "familywell-97155",
-    "storage_bucket": "familywell-97155.appspot.com"
+    "project_number": "267654901797",
+    "firebase_url": "https://lifeboxsmart.firebaseio.com",
+    "project_id": "lifeboxsmart",
+    "storage_bucket": "lifeboxsmart.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:889949974516:android:41370635cd65fc65",
+        "mobilesdk_app_id": "1:267654901797:android:17e7d538b14bac13",
         "android_client_info": {
-          "package_name": "com.siterwell.familywell"
+          "package_name": "com.siterwell.lifebox"
         }
       },
       "oauth_client": [
         {
-          "client_id": "889949974516-6lof0lpelur71d9k3g0rtgtr0g457par.apps.googleusercontent.com",
+          "client_id": "267654901797-89kneg15g9qv80ttv2te8o1tirb61b5u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyApRAS8LPtQ7A5AYeE5I-GYNfEfO7Un-Pc"
+          "current_key": "AIzaSyCYws09PSmuEtdf6392ApL43egIFMmFThc"
         }
       ],
       "services": {

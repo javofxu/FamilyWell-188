@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <string name="app_name">FamilyWell</string>
+   <string name="app_name">Lifebox Smart</string>
    <string name="btnConfirmTitle">Conectar</string>
    <string name="config_instruction">cinco segundos despues de insertar el enrutador, pulse i mantega apretado el pulsador de modo red.</string>
    <string name="how_to_config">Por favor, asegúrese de que el conector de la luz azul de los flashes y luego presione "siguiente paso".</string>
@@ -397,7 +397,7 @@
    <string name="temp_or_hum">dispato de temperatura o disparo de humedad</string>
    <string name="trigger_style"> modo de disparo</string>
    <string name="server_intro">1, la confirmación y aceptación de los términos de servicio \nEl contenido de este sitio web y la aplicación son propiedad de Cosa Connects BV. Los usuarios deben leer detenidamente los términos y condiciones antes de aceptar este servicio.</string>
-   <string name="about_app">El sistema FamilyWell Connects consta de dos partes principales: el conector y los dispositivos inteligentes. El Connector, un componente clave del sistema, se comunica con dispositivos inteligentes que usan tecnología de comunicación RF y! </string>
+   <string name="about_app">El sistema Lifebox Smart Connects consta de dos partes principales: el conector y los dispositivos inteligentes. El Connector, un componente clave del sistema, se comunica con dispositivos inteligentes que usan tecnología de comunicación RF y! </string>
    <string name="modebutton_ins">Botón de acceso directo a la escena</string>
    <string name="input_exist">El dispositivo de entrada no puede repetirse</string>
    <string name="output_exist">Los dispositivos de salida adyacentes no pueden repetirse</string>
@@ -499,7 +499,7 @@
    <string name="open">La apertura de</string>
    <string name="close">Cierra</string>
    <string name="param_setting">De los parámetros</string>
-   <string name="data_syncing">La configuración y..</string>
+   <string name="data_syncing">La configuración y sincronización de los datos..</string>
    <string name="success_send_email">El Código de verificación ha sido enviado al buzón de correo, abrir el buzón de correo por favor ver</string>
    <string name="dev_type_idr">El timbre de la puerta de la Cámara</string>
    <string name="gprs_hint">¿En la actualidad en un patrón de tráfico, si abre el video?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">Archivo existente</string>
    <string name="look">Ver</string>
    <string name="success_download">Descarga exitosa</string>
-   <string name="network_hz">El dispositivo sólo permite Wi-Fi en frecuencias de 2,4 GHz.</string>
 </resources>

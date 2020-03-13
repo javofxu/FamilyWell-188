@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <string name="app_name">FamilyWell</string>
+   <string name="app_name">Lifebox Smart</string>
    <string name="btnConfirmTitle">CONNECT</string>
    <string name="config_instruction">Wait for 5 seconds after the gateway is powered on then press the gateway button for at least 3 seconds.</string>
    <string name="how_to_config">Please make sure the blue light of the connector flashes and then press "next step".</string>
@@ -397,8 +397,8 @@
    <string name="temp_or_hum">Temp Trigger Or Humidity Trigger</string>
    <string name="trigger_style">Trigger Style</string>
    <string name="server_intro">1, The confirmation and acceptance of the terms of service\nThe contents of this website and APP are owned by Cosa Connects BV. Users must carefully read the terms and conditions before accepting this service. Users using the service, or people that completed the registration process, accept all the terms of service.\n2, User’s agree:\n(1) Provide detailed and accurate personal information.\n(2) Continuously update the registration information and meet the requirements.\nIf the information provided by the user is inaccurate, this website has the right to end the service.\nThis website and APP will not disclose the users name, address, e-mail address, account number and phone number and other information (see privacy protection clause).\nUsers of this site and any behavior of APP must follow:\n(1) Transmission of data must comply with EU regulations.\n(2) The use of information services is not illegal and immoral acts.\n(3) Do not interfere with the network services.\n(4) Comply with all network protocols, rules, procedures and practices for the use of services. The user code of conduct is based on Internet regulations, policies, procedures and practices.\n3, Modify the terms of service\nThis website and APP have the right to amend the terms if necessary that will be published on the page.\nIf you do not accept the changes, the user can take the initiative to cancel their membership. If you do not cancel your membership, iyou agree to every change in the terms of service.\n4, The user account number, password and security\nOnce successfully registered as a member, you will have a password and user name.</string>
-   <string name="about_app">The FamilyWell Connects system consists of two main parts: The Connector and smart devices. The Connector, a key component of the system, communicates with smart devices using RF communication technology and connects to home Wi-Fi network to communicate with a Cloud Server to your smartphone app via mobile internet. In this way the system allows you to use your smart phone as a command center to complement various operations, including creating rules, adding and deleting components, arming and disarming, receiving push notifications when alarms are triggered and other customized operations. Smart devices in the system includes following devices that are selectable based on your needs: smoke alarm, gas alarm, CO detector, water detector, door sensor, passive infrared sensor, emergency button, smart socket, temperature and humidity device and so on. The list of devices in Connects are continuously updated; network camera, door lock, switch panel, socket panel, smart air purification, electromagnetic water valve and others are coming soon! </string>
-   <string name="modebutton_ins">Scene shortcut  button</string>
+   <string name="about_app">The Lifebox Smart Connects system consists of two main parts: The Connector and smart devices. The Connector, a key component of the system, communicates with smart devices using RF communication technology and connects to home Wi-Fi network to communicate with a Cloud Server to your smartphone app via mobile internet. In this way the system allows you to use your smart phone as a command center to complement various operations, including creating rules, adding and deleting components, arming and disarming, receiving push notifications when alarms are triggered and other customized operations. Smart devices in the system includes following devices that are selectable based on your needs: smoke alarm, gas alarm, CO detector, water detector, door sensor, passive infrared sensor, emergency button, smart socket, temperature and humidity device and so on. The list of devices in Lifebox Smart Connects are continuously updated; network camera, door lock, switch panel, socket panel, smart air purification, electromagnetic water valve and others are coming soon! </string>
+   <string name="modebutton_ins">Scene shortcutBean button</string>
    <string name="input_exist">Input device can not be repeated</string>
    <string name="output_exist">Adjacent output devices can not be repeated</string>
    <string name="click_exist">Click action added</string>
@@ -499,7 +499,7 @@
    <string name="open">Open</string>
    <string name="close">Close</string>
    <string name="param_setting">Param Setting</string>
-   <string name="data_syncing">Set up Ok..</string>
+   <string name="data_syncing">Set up, data synchronization..</string>
    <string name="success_send_email">Success Send email,Please check in your Emailbox.</string>
    <string name="dev_type_idr">Door bell</string>
    <string name="gprs_hint">Currently in traffic mode, do you open video?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">File already exist</string>
    <string name="look">See</string>
    <string name="success_download">Download Successful</string>
-   <string name="network_hz">This device only supports 2.4GHZ frequency Wi-Fi.</string>
 </resources>

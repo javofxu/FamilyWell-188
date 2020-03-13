@@ -24,8 +24,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.igexin.sdk.PushManager;
-import com.igexin.sdk.Tag;
 import com.litesuits.android.log.Log;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
@@ -42,7 +40,6 @@ import java.util.List;
 
 import me.hekr.sdk.Constants;
 import me.hekr.sdk.Hekr;
-import me.hekr.sdk.HekrSDK;
 import me.hekr.sdk.inter.HekrCallback;
 import me.hekr.sdk.inter.HekrMsgCallback;
 import me.hekr.sdk.utils.CacheUtil;
@@ -155,50 +152,17 @@ public class MainActivity extends AppCompatActivity implements DeviceFragment.Se
     private void initGTService() {
 
 
-        /**
-         * tag setting
-         */
-        if (!TextUtils.isEmpty(HekrSDK.getPid())) {
-            String[] tags = new String[]{HekrSDK.getPid()};
-            Tag[] tagParam = new Tag[tags.length];
-            for (int i = 0; i < tags.length; i++) {
-                Tag t = new Tag();
-                t.setName(tags[i]);
-                tagParam[i] = t;
-            }
-            PushManager.getInstance().setTag(this, tagParam, "100861");
-        }
-        /**
-         * alias setting
-         */
-        if(!TextUtils.isEmpty(CCPAppManager.getUserId())){
-            boolean t = PushManager.getInstance().bindAlias(this, CCPAppManager.getUserId());
-            String abc = t? "设置成功" : "设置失败";
-            Log.i(TAG,abc+"set alias uid =" + CCPAppManager.getUserId());
-        }
 
 
 
 
-                String fcmclientid = FirebaseInstanceId.getInstance().getToken();
+                String fcmclientid = FirebaseInstanceId.getInstance().getToken();//
                 if(!TextUtils.isEmpty(fcmclientid)){
                     Log.i(TAG,"FCM平台CLIENTID："+fcmclientid);
                     STEvent stEvent = new STEvent();
                     stEvent.setRefreshevent(9);
                     stEvent.setFcm_token(fcmclientid);
                     EventBus.getDefault().post(stEvent);
-
-                        HekrUserAction.getInstance(this).unPushTagBind(PushManager.getInstance().getClientid(this), 0, new HekrUser.UnPushTagBindListener() {
-                            @Override
-                            public void unPushTagBindSuccess() {
-                                Log.i(TAG,"FCM绑定的同时解绑个推成功");
-                            }
-
-                            @Override
-                            public void unPushTagBindFail(int errorCode) {
-                                Log.i(TAG,"FCM绑定的同时解绑个推失败");
-                            }
-                        });
                     com.huawei.android.pushagent.api.PushManager.requestToken(this);
 
 
@@ -220,19 +184,6 @@ public class MainActivity extends AppCompatActivity implements DeviceFragment.Se
                             Log.i(TAG, "小米平台CLIENTID为空");
                         }
                     }
-                    else{
-
-                        String cid = PushManager.getInstance().getClientid(this);
-                        if(!TextUtils.isEmpty(cid)) {
-                            Log.i(TAG, "个推client id =" + cid);
-                            STEvent stEvent = new STEvent();
-                            stEvent.setRefreshevent(11);
-                            stEvent.setFcm_token(cid);
-                            EventBus.getDefault().post(stEvent);
-                        }else{
-                            Log.i(TAG, "个推client id为空");
-                        }
-                }
             }
 
 

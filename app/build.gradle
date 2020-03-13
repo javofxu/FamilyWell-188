@@ -10,16 +10,16 @@ android {
             abiFilters  "arm64-v8a","armeabi"
         }
 
-        applicationId "com.siterwell.familywell"
         minSdkVersion 21
+        applicationId "com.siterwell.lifebox"
         targetSdkVersion 28
-        versionCode 2672
-        versionName "2.672"
+        versionCode 1172
+        versionName "1.172"
 
         manifestPlaceholders = [
-                GETUI_APP_ID : "iohOusgIfuA57fOVfndY39",
-                GETUI_APP_KEY : "sHJQ7JmNYoAopfRTrwPu2A",
-                GETUI_APP_SECRET : "YbY7j0nDX58m2kkoG8CMB8"
+                GETUI_APP_ID : "ZhOR178fAO9CtR196PubM7",
+                GETUI_APP_KEY : "EKZF6bdAWFA3lpuYV2u0y8",
+                GETUI_APP_SECRET : "4j9ibBc3UuAlwTWKcqpV92"
         ]
     }
 
