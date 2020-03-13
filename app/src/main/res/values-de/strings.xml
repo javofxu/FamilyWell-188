@@ -499,7 +499,7 @@
    <string name="open">Offen</string>
    <string name="close">AB</string>
    <string name="param_setting">Parameter</string>
-   <string name="data_syncing">In der Daten...</string>
+   <string name="data_syncing">In der Daten - synchronisation wird abgeschlossen...</string>
    <string name="success_send_email">Die kartenprüfnummer Hat e - mail geschickt, öffnen sie bitte die e - mail - view</string>
    <string name="dev_type_idr">Die klingel - Kamera</string>
    <string name="gprs_hint">Ob die derzeit Traffic - Muster, öffnet das video?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">Datei existiert bereits</string>
    <string name="look">Siehe</string>
    <string name="success_download">Herunterladen erfolgreich</string>
-   <string name="network_hz">Das Gerät unterstützt nur 2,4GHz WLAN.</string>
 </resources>

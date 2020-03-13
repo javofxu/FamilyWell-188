@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.igexin.sdk.PushManager;
 import com.litesuits.android.log.Log;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
@@ -117,19 +116,19 @@ public class ChangePasswordActivity extends TopbarSuperActivity {
                                         Log.i(TAG, "小米平台CLIENTID为空");
                                     }
                                 }
-                                else{
-
-                                    String cid = PushManager.getInstance().getClientid(ChangePasswordActivity.this);
-                                    if(!TextUtils.isEmpty(cid)) {
-                                        Log.i(TAG, "个推client id =" + cid);
-                                        STEvent stEvent = new STEvent();
-                                        stEvent.setRefreshevent(11);
-                                        stEvent.setFcm_token(cid);
-                                        EventBus.getDefault().post(stEvent);
-                                    }else{
-                                        Log.i(TAG, "个推client id为空");
-                                    }
-                                }
+//                                else{
+//
+//                                    String cid = PushManager.getInstance().getClientid(ChangePasswordActivity.this);
+//                                    if(!TextUtils.isEmpty(cid)) {
+//                                        Log.i(TAG, "个推client id =" + cid);
+//                                        STEvent stEvent = new STEvent();
+//                                        stEvent.setRefreshevent(11);
+//                                        stEvent.setFcm_token(cid);
+//                                        EventBus.getDefault().post(stEvent);
+//                                    }else{
+//                                        Log.i(TAG, "个推client id为空");
+//                                    }
+//                                }
                             }
 
                             hideProgressDialog();

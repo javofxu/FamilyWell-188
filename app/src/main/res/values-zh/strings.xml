@@ -499,7 +499,7 @@
    <string name="open">开</string>
    <string name="close">关</string>
    <string name="param_setting">参数设置</string>
-   <string name="data_syncing">设置完成</string>
+   <string name="data_syncing">设置完成,数据同步中..</string>
    <string name="success_send_email">验证码已发送至邮箱，请打开邮箱查看。</string>
    <string name="dev_type_idr">门铃摄像头</string>
    <string name="gprs_hint">当前处于流量模式，是否开启视频?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">文件已存在</string>
    <string name="look">查看</string>
    <string name="success_download">下载成功</string>
-   <string name="network_hz">该设备只支持2.4GHz频率的Wi-Fi</string>
 </resources>

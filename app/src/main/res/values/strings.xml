@@ -499,7 +499,7 @@
    <string name="open">Open</string>
    <string name="close">Close</string>
    <string name="param_setting">Param Setting</string>
-   <string name="data_syncing">Set up Ok..</string>
+   <string name="data_syncing">Set up, data synchronization..</string>
    <string name="success_send_email">Success Send email,Please check in your Emailbox.</string>
    <string name="dev_type_idr">Door bell</string>
    <string name="gprs_hint">Currently in traffic mode, do you open video?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">File already exist</string>
    <string name="look">See</string>
    <string name="success_download">Download Successful</string>
-   <string name="network_hz">This device only supports 2.4GHZ frequency Wi-Fi.</string>
 </resources>

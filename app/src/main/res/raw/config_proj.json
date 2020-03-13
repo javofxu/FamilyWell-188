@@ -47,7 +47,7 @@
   },
   "udp_config":"site05",
   "encode":"GBK",
-  "update_auto":"1"
+  "update_auto":"0"
 }
 
 

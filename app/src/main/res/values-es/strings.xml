@@ -499,7 +499,7 @@
    <string name="open">La apertura de</string>
    <string name="close">Cierra</string>
    <string name="param_setting">De los parámetros</string>
-   <string name="data_syncing">La configuración y..</string>
+   <string name="data_syncing">La configuración y sincronización de los datos..</string>
    <string name="success_send_email">El Código de verificación ha sido enviado al buzón de correo, abrir el buzón de correo por favor ver</string>
    <string name="dev_type_idr">El timbre de la puerta de la Cámara</string>
    <string name="gprs_hint">¿En la actualidad en un patrón de tráfico, si abre el video?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">Archivo existente</string>
    <string name="look">Ver</string>
    <string name="success_download">Descarga exitosa</string>
-   <string name="network_hz">El dispositivo sólo permite Wi-Fi en frecuencias de 2,4 GHz.</string>
 </resources>

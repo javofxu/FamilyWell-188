@@ -426,22 +426,22 @@ public class TempControlDetail2Activity extends AppCompatActivity implements OnC
 
 
 
-//            if(cache_setting_temp!=0&&cache_setting_xiaoshu>=0&&cahce_tongsuo>=0&&cahce_valve>=0&&cahce_window>=0
-//                &&cache_mode >= 0
-//                    &&cache_setting_temp == sta && cache_setting_xiaoshu==xiaoshu
-//                    && cache_mode == mode2
-//                    && cahce_tongsuo == status_tongsuo
-//                    && cahce_valve == shineng_valve2
-//                    && cahce_window == shineng_window2){
-//               handler.sendEmptyMessage(1);
-//
-//            }
-//            cache_setting_xiaoshu = -1;
-//            cache_setting_temp = 0;
-//            cahce_tongsuo = -1;
-//            cache_mode = -1;
-//            cahce_window = -1;
-//            cahce_valve = -1;
+            if(cache_setting_temp!=0&&cache_setting_xiaoshu>=0&&cahce_tongsuo>=0&&cahce_valve>=0&&cahce_window>=0
+                &&cache_mode >= 0
+                    &&cache_setting_temp == sta && cache_setting_xiaoshu==xiaoshu
+                    && cache_mode == mode2
+                    && cahce_tongsuo == status_tongsuo
+                    && cahce_valve == shineng_valve2
+                    && cahce_window == shineng_window2){
+               handler.sendEmptyMessage(1);
+
+            }
+            cache_setting_xiaoshu = -1;
+            cache_setting_temp = 0;
+            cahce_tongsuo = -1;
+            cache_mode = -1;
+            cahce_window = -1;
+            cahce_valve = -1;
 
         }catch (Exception e){
             showStatus.setText(getResources().getString(R.string.offline));
@@ -484,9 +484,7 @@ public class TempControlDetail2Activity extends AppCompatActivity implements OnC
             finish();
         }else if(event.getEvent()==SendCommand.EQUIPMENT_CONTROL){
             SendCommand.clearCommnad();
-            updateDeviceStatus();
-            handler.sendEmptyMessage(1);
-            //Toast.makeText(TempControlDetail2Activity.this,getResources().getString(R.string.data_syncing),Toast.LENGTH_SHORT).show();
+            Toast.makeText(TempControlDetail2Activity.this,getResources().getString(R.string.data_syncing),Toast.LENGTH_SHORT).show();
         }
 
         if(event.getRefreshevent()==5){
@@ -795,9 +793,8 @@ public class TempControlDetail2Activity extends AppCompatActivity implements OnC
                     if(progressDialog!=null && progressDialog.isShowing()){
                         progressDialog.dismiss();
                         progressDialog =null;
-                        Toast.makeText(TempControlDetail2Activity.this,getResources().getString(R.string.data_syncing),Toast.LENGTH_SHORT).show();
                     }
-
+                    Toast.makeText(TempControlDetail2Activity.this,getResources().getString(R.string.success_set),Toast.LENGTH_SHORT).show();
 
                     break;
                 case 2:
@@ -825,7 +822,7 @@ public class TempControlDetail2Activity extends AppCompatActivity implements OnC
                 count_s ++;
             }
 
-            if(count_s >= 5){
+            if(count_s >= 25){
                 count_s = 0;
 
                 handler.sendEmptyMessage(2);
@@ -834,40 +831,5 @@ public class TempControlDetail2Activity extends AppCompatActivity implements OnC
         }
     }
 
-    private void updateDeviceStatus(){
-        try {
-            float da = bar_setting_temp.getCurrentValues();
-            int settemtp = (int)Math.floor(da);
-            int settemtpxiaoshu = (String.valueOf(da).contains(".5")?1:0);
-            int valve = (valve_check.isChecked()?1:0);
-            int window = (window_check.isChecked()?1:0);
-            int tongsuo = (tongsuo_check.isChecked()?1:0);
-            String status = device.getState();
-            Log.i(TAG,"修改前:"+status);
-            byte[]ds = ByteUtil.hexStr2Bytes(status);
-            ds[0]  = (byte)(ds[0]&0x7F|(window==0?0x00:0x80));
-            ds[0]  = (byte)(ds[0]&0xBF|(valve==0?0x00:0x40));
-            ds[0]  = (byte)(ds[0]&0xDF|(tongsuo==0?0x00:0x20));
-            ds[2]  = (byte)(ds[2]&0xDF|(settemtpxiaoshu==0?0x00:0x20));
-            ds[2]  = (byte)(ds[2]&0xE0|(settemtp&0x1F));
-            ds[3]  = (byte)(ds[3]&0xFC|(setting_mode&0x03));
-            String str1 = ByteUtil.convertByte2HexString(ds[0]);
-            String str2 = ByteUtil.convertByte2HexString(ds[1]);
-            String str3 = ByteUtil.convertByte2HexString(ds[2]);
-            String str4 = ByteUtil.convertByte2HexString(ds[3]);
-            device.setState(str1+str2+str3+str4);
-            ED = new EquipDAO(this);
-            EquipmentBean applicationInfo = new EquipmentBean();
-            applicationInfo.setDeviceid(device.getDeviceid());
-            applicationInfo.setEqid(device.getEqid());
-            applicationInfo.setEquipmentDesc(device.getEquipmentDesc());
-            applicationInfo.setState(str1+str2+str3+str4);
-            Log.i(TAG,"修改后:"+str1+str2+str3+str4);
-            ED.update(applicationInfo);
-        }catch (Exception e){
-
-        }
-
-    }
 
 }

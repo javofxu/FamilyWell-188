@@ -499,7 +499,7 @@
    <string name="open">Ouvrir</string>
    <string name="close">Fermer</string>
    <string name="param_setting">Paramètres</string>
-   <string name="data_syncing">Est disposé..</string>
+   <string name="data_syncing">Est disposé, dans une synchronisation de données..</string>
    <string name="success_send_email">Le code de vérification a été envoyé sur votre adresse mail. </string>
    <string name="dev_type_idr">La sonnette de la caméra</string>
    <string name="gprs_hint">Voulez vous ouvrir la video ?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">Fichier existant</string>
    <string name="look">Regarder</string>
    <string name="success_download">Téléchargement réussi</string>
-   <string name="network_hz">Le dispositif ne prend en charge que les Wi-fi de 2,4 GHz.</string>
 </resources>

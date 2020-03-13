@@ -242,13 +242,7 @@ public class ValveDetailActivity extends AppCompatActivity {
         deviceLogo.setImageResource(R.drawable.detail15);
         up1 = (ImageView) findViewById(R.id.curtainUp);
         down1 = (ImageView) findViewById(R.id.curtainDown);
-        stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                num =1;
-                chuli(num);
-            }
-        });
+        stop.setVisibility(View.INVISIBLE);
         emergencyCall = (TextView) findViewById(R.id.emergencyCall);
         emergencyCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,7 +278,7 @@ public class ValveDetailActivity extends AppCompatActivity {
         down1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num =3;
+                num =1;
                 chuli(num);
             }
         });

@@ -499,7 +499,7 @@
    <string name="open">Open</string>
    <string name="close">Stäng</string>
    <string name="param_setting">Parameterinställning</string>
-   <string name="data_syncing">Inställningen är klar...</string>
+   <string name="data_syncing">Inställningen är klar, data synkroniseras...</string>
    <string name="success_send_email">Verifieringskoden har skickats med mejl. Kolla din mejl.</string>
    <string name="dev_type_idr">Dörrklocka kamera</string>
    <string name="gprs_hint">För närvarande i trafikläge, öppna videon?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">Filen finns redan</string>
    <string name="look">Se</string>
    <string name="success_download">Nerladdning lyckades</string>
-   <string name="network_hz">Apparaten stöder bara 2.4GHz Wi Fi.</string>
 </resources>

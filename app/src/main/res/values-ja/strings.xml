@@ -549,5 +549,4 @@
    <string name="file_is_exist">ファイルは既に存在します</string>
    <string name="look">表示</string>
    <string name="success_download">ダウンロード成功</string>
-   <string name="network_hz">このデバイスは2.4 GHz周波数のWi-Fiのみ対応しています。</string>
 </resources>

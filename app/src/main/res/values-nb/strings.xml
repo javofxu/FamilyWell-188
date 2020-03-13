@@ -499,7 +499,7 @@
    <string name="open">Åpne</string>
    <string name="close">Lukk</string>
    <string name="param_setting">Param-innstilling</string>
-   <string name="data_syncing">Oppsett..</string>
+   <string name="data_syncing">Oppsett, datasynkronisering..</string>
    <string name="success_send_email">Vellykket Send e-post, sjekk innboksen din.</string>
    <string name="dev_type_idr">Dørklokke</string>
    <string name="gprs_hint">I trafikkmodus for øyeblikket, åpner du videoen?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">Filen finnes allerede</string>
    <string name="look">utsikt</string>
    <string name="success_download">Nerladdning lyckades</string>
-   <string name="network_hz">This device only supports 2.4GHZ frequency Wi-Fi.</string>
 </resources>

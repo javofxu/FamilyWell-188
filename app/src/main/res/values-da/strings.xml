@@ -499,7 +499,7 @@
    <string name="open">Åbn</string>
    <string name="close">Luk</string>
    <string name="param_setting">Parameterindstilling</string>
-   <string name="data_syncing">Indstillingen er udført</string>
+   <string name="data_syncing">Indstillingen er udført, data synkroniseres...</string>
    <string name="success_send_email">Valideringskoden er fremsendt pr. mail. Tjek din mail.</string>
    <string name="dev_type_idr">Dørklokke kamera</string>
    <string name="gprs_hint">I trafik-tilstand på nuværende tidspunkt, vil du åbne videoen?</string>
@@ -549,5 +549,4 @@
    <string name="file_is_exist">Filen eksisterer allerede</string>
    <string name="look">Se</string>
    <string name="success_download">Last suksess</string>
-   <string name="network_hz">This device only supports 2.4GHZ frequency Wi-Fi.</string>
 </resources>
