@@ -477,57 +477,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         Constants.setOnlineSite("hekreu.me");
 
-        new Thread(){
-            @Override
-            public void run() {
-
-                try {
-                final String HOST="info.hekr.me";
-                //final String HOST="127.0.0.1";
-                Socket socket = null;//创建一个客户端连接
-
-                    socket = new Socket();
-                    socket.connect(new InetSocketAddress(HOST,91),5000);
-                OutputStream out = socket.getOutputStream();//获取服务端的输出流，为了向服务端输出数据
-                InputStream in=socket.getInputStream();//获取服务端的输入流，为了获取服务端输入的数据
-
-                PrintWriter bufw=new PrintWriter(out,true);
-                BufferedReader bufr=new BufferedReader(new InputStreamReader(in));
-                    Log.i(TAG,"发送啦");//打印服务端传来的数据
-                    bufw.println("{\"action\":\"getAppDomain\"}");//发送数据给服务端
-                    bufw.flush();
-                while (true)
-                {
-                    String line=null;
-                    line=bufr.readLine();//读取服务端传来的数据
-                    if(line==null)
-                        break;
-                    Log.i(TAG,"服务端说:"+line);//打印服务端传来的数据
-                        JSONObject jsonObject = JSONObject.parseObject(line);
-                        JSONObject jsonObject1 = jsonObject.getJSONObject("dcInfo");
-                        String domain = jsonObject1.getString("domain");
-                        try {
-                            if(!TextUtils.isEmpty(domain)){
-                                Log.i(TAG,"获取到的domain:"+domain);
-                                ECPreferences.savePreference(ECPreferenceSettings.SETTINGS_DOMAIN, domain, true);
-                                Constants.setOnlineSite(domain);
-                                break;
-                            }
-                       } catch (InvalidClassException e) {
-                            e.printStackTrace();
-                        }
-
-
-
-                }
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-
 
     }
 
