@@ -282,6 +282,7 @@ public class ValveDetailActivity extends AppCompatActivity {
                 chuli(num);
             }
         });
+
     }
     private void chuli(int num1){
         switch (num1){
@@ -291,9 +292,9 @@ public class ValveDetailActivity extends AppCompatActivity {
             case 2://close
                 status2 = "01";
                 break;
-            case 3://open
+            /*case 3://open
                 status2 = "02";
-                break;
+                break;*/
             default:
                 break;
         }
