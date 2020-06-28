@@ -550,4 +550,7 @@
    <string name="work_mode">work_mode</string>
    <string name="wt">Rilevatore acqua</string>
    <string name="year">anno</string>
+   <string name="china_point">Cina</string>
+   <string name="europea_point">Europa</string>
+   <string name="choose_server">Seleziona regione</string>
 </resources>

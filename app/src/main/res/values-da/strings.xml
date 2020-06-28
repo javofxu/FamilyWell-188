@@ -550,4 +550,7 @@
    <string name="work_mode">Driftstilstand</string>
    <string name="wt">Vandlækage-alarm</string>
    <string name="year">år</string>
+   <string name="china_point">Kinesisk</string>
+   <string name="europea_point">Europa</string>
+   <string name="choose_server">Vælg region</string>
 </resources>

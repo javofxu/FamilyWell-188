@@ -550,4 +550,7 @@
    <string name="work_mode">工作模式</string>
    <string name="wt">水浸探测器</string>
    <string name="year">年</string>
+   <string name="china_point">中国</string>
+   <string name="europea_point">欧洲</string>
+   <string name="choose_server">选择地区</string>
 </resources>

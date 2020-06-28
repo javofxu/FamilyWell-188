@@ -550,4 +550,7 @@
    <string name="work_mode">Working mode</string>
    <string name="wt">WaterCheck</string>
    <string name="year">year</string>
+   <string name="china_point">China</string>
+   <string name="europea_point">Europe</string>
+   <string name="choose_server">Choose Region</string>
 </resources>

@@ -550,4 +550,7 @@
    <string name="work_mode">work_mode</string>
    <string name="wt">Watermelder</string>
    <string name="year">Jaar</string>
+   <string name="china_point">China</string>
+   <string name="europea_point">Europa</string>
+   <string name="choose_server">Selecteer de regio</string>
 </resources>

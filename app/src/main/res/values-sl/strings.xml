@@ -550,4 +550,7 @@
    <string name="work_mode">work_mode</string>
    <string name="wt">Poplavni detektor</string>
    <string name="year">leto</string>
+   <string name="china_point">Kitajska</string>
+   <string name="europea_point">Evropa</string>
+   <string name="choose_server">Izberite območje</string>
 </resources>

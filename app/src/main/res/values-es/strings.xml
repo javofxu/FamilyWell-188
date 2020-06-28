@@ -550,4 +550,7 @@
    <string name="work_mode">El modo de trabajo</string>
    <string name="wt">comprobador de agua</string>
    <string name="year">año</string>
+   <string name="china_point">China</string>
+   <string name="europea_point">Europa</string>
+   <string name="choose_server">Selección de área</string>
 </resources>

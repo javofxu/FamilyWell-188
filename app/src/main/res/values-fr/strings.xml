@@ -550,4 +550,7 @@
    <string name="work_mode">Mode de mise en fonctionnement</string>
    <string name="wt">Détecteur de fuite d’eau</string>
    <string name="year">Année</string>
+   <string name="china_point">Chine</string>
+   <string name="europea_point">Europe</string>
+   <string name="choose_server">Zone de sélection</string>
 </resources>
