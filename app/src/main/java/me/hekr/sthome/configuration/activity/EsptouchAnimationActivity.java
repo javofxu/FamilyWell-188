@@ -707,13 +707,10 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                     ControllerWifi.getInstance().targetip = ir.getInetAddress();
 
                     if (ir.isSuc()) {
-
-                        String url = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_UDP_SETTING,"");
-                        if("site05EN".equals(url)){
-                            STEvent stEvent = new STEvent();
-                            stEvent.setServiceevent(8);
-                            EventBus.getDefault().post(stEvent);
-                        }
+                        
+                        STEvent stEvent = new STEvent();
+                        stEvent.setServiceevent(8);
+                        EventBus.getDefault().post(stEvent);
 
                         try {
                             Thread.sleep(10000);

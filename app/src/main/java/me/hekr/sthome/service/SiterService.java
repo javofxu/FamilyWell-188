@@ -440,13 +440,11 @@ public class SiterService extends Service {
                         public void run() {
                             try {
 
-                                HashSet<String> set = new HashSet<String>();
 
                                 deviceDAO.deleteAll();
                                 String vl = null;
                                 choiceddevice = null;
                                 for(DeviceBean bean:devicesLists){
-                                    set.add(bean.getDcInfo().getConnectHost());
                                     MyDeviceBean bean1 = new MyDeviceBean();
                                     bean1.setDeviceName(bean.getDeviceName());
                                     bean1.setDevTid(bean.getDevTid());
@@ -479,9 +477,6 @@ public class SiterService extends Service {
                                         }
                                     }
                                     deviceDAO.addDevice(bean1);
-                                }
-                                if(devicesLists.size()>0) {
-                                    Hekr.getHekrClient().setHosts(set);
                                 }
                                 if (TextUtils.isEmpty(vl) ) {
 
@@ -1214,8 +1209,12 @@ public class SiterService extends Service {
         try {
 
             Log.i(TAG," ControllerWifi.getInstance().targetip ===" + ControllerWifi.getInstance().targetip.toString());
-
-            UDPSendData udpSendData = new UDPSendData(ControllerWifi.getInstance().ds, ControllerWifi.getInstance().targetip,"IOT_SWITCH:"+ ConnectionPojo.getInstance().deviceTid+":"+CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_UDP_SETTING,""));
+            String de  = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_REGION,"");
+            String dd = "site06";
+            if(de.contains("hekreu.me")){
+                dd = "site07";
+            }
+            UDPSendData udpSendData = new UDPSendData(ControllerWifi.getInstance().ds, ControllerWifi.getInstance().targetip,"IOT_SWITCH:"+ ConnectionPojo.getInstance().deviceTid+":"+dd);
             sendService.execute(udpSendData);
             sendService.awaitTermination(50, TimeUnit.MICROSECONDS);
         } catch (InterruptedException e) {

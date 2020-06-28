@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
-            <me.hekr.sthome.commonBaseView.SlideListView
+            <ListView
                 android:divider="@null"
                 android:id="@+id/eqlist"
                 android:layout_width="match_parent"
