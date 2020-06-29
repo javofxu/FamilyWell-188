@@ -35,6 +35,7 @@ public class SiterSDK {
     public static String SETTINGS_CONFIG_UDP_SETTING = "com.siterwell.sthome.upd.setting";
     public static String SETTINGS_CONFIG_ENCODE = "com.siterwell.sthome.encode";
     public static String SETTINGS_CONFIG_UPDATE_AUTO = "com.siterwell.sthome.update";
+    public static String SETTINGS_CONFIG_REGION = "com.siterwell.sthome.region";
     /**
      * 初始化SDK, id 必须传入json格式文件的资源id。文件格式详见SDK文档。
      *

@@ -425,6 +425,10 @@
             android:name=".xmipc.ActivityGuideDeviceBeforeWifiConfig"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".serverchoose.ChooseServerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
         <!-- push service -->
         <!--<meta-data-->
             <!--android:name="PUSH_APPID"-->

@@ -102,7 +102,7 @@ public class HekrUser {
     }
 
     /**
-     * 3.3 /3.4 注册回调
++     * 3.3 /3.4 注册回调
      *
      * @author jin123d
      */

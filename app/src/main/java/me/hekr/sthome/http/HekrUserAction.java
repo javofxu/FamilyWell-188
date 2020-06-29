@@ -2049,12 +2049,14 @@ public class HekrUserAction {
             @Override
             public void getSuccess(Object object) {
                 Log.i(TAG, "推送解绑标签接口调用成功");
+                if(unPushTagBindListener!=null)
                 unPushTagBindListener.unPushTagBindSuccess();
             }
 
             @Override
             public void getFail(int errorCode) {
                 Log.i(TAG, "推送解绑标签接口调用失败");
+                if(unPushTagBindListener!=null)
                 unPushTagBindListener.unPushTagBindFail(errorCode);
             }
         });
