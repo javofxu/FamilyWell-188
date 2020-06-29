@@ -13,8 +13,8 @@ android {
         applicationId "com.siterwell.familywell"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 2675
-        versionName "2.675"
+        versionCode 2677
+        versionName "2.677"
 
         manifestPlaceholders = [
                 GETUI_APP_ID : "iohOusgIfuA57fOVfndY39",
