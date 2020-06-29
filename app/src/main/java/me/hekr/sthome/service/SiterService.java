@@ -1194,7 +1194,12 @@ public class SiterService extends Service {
                 e.printStackTrace();
             }
             Log.i(TAG," 发送搜索udp广播地址 ===" + target.toString());
-            UDPSendData udpSendData = new UDPSendData(ControllerWifi.getInstance().ds,target,"IOT_KEY?"+ ConnectionPojo.getInstance().deviceTid+":"+CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_UDP_SETTING,""));
+            String de  = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_REGION,"");
+            String dd = "site06";
+            if(de.contains("hekreu.me")){
+                dd = "site07";
+            }
+            UDPSendData udpSendData = new UDPSendData(ControllerWifi.getInstance().ds,target,"IOT_KEY?"+ ConnectionPojo.getInstance().deviceTid+":"+dd);
             sendService.execute(udpSendData);
             sendService.awaitTermination(50, TimeUnit.MICROSECONDS);
         } catch (InterruptedException e) {
@@ -1228,8 +1233,12 @@ public class SiterService extends Service {
         try {
 
             Log.i(TAG," ControllerWifi.getInstance().targetip ===" + ControllerWifi.getInstance().targetip.toString());
-
-            UDPSendData udpSendData = new UDPSendData(ControllerWifi.getInstance().ds, ControllerWifi.getInstance().targetip,"IOT_KEY?"+ ConnectionPojo.getInstance().deviceTid+":"+CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_UDP_SETTING,""));
+            String dd = "site06";
+            String de  = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_REGION,"");
+            if(de.contains("hekreu.me")){
+                dd = "site07";
+            }
+            UDPSendData udpSendData = new UDPSendData(ControllerWifi.getInstance().ds, ControllerWifi.getInstance().targetip,"IOT_KEY?"+ ConnectionPojo.getInstance().deviceTid+":"+dd);
             sendService.execute(udpSendData);
             sendService.awaitTermination(50, TimeUnit.MICROSECONDS);
         } catch (InterruptedException e) {
