@@ -29,12 +29,27 @@ public class ChooseServerActivity extends TopbarSuperActivity implements Adapter
         msAdapter = new ServerAdapter(this);
         sListView.setAdapter(msAdapter);
         sListView.setOnItemClickListener(this);
-        getTopBarView().setTopBarStatus(1, 1, getResources().getString(R.string.choose_server), null, new View.OnClickListener() {
+        getTopBarView().setTopBarStatus(1, 2, getResources().getString(R.string.choose_server), getResources().getString(R.string.ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        }, null);
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String d = "";
+                if(msAdapter.getCheck()==0){
+                    d = "hekreu.me";
+
+                }else{
+                    d = "hekr.me";
+                }
+                CacheUtil.putString(SiterSDK.SETTINGS_CONFIG_REGION,d);
+                HekrSDK.setOnlineSite(d);
+                startActivity(new Intent(ChooseServerActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
         getTopBarView().getBackView().setVisibility(View.GONE);
         initChose();
     }
@@ -59,16 +74,6 @@ public class ChooseServerActivity extends TopbarSuperActivity implements Adapter
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-           String d = "";
-           if(i==0){
-              d = "hekreu.me";
-
-           }else{
-             d = "hekr.me";
-           }
-        CacheUtil.putString(SiterSDK.SETTINGS_CONFIG_REGION,d);
-        HekrSDK.setOnlineSite(d);
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
+        msAdapter.setCheck(i);
     }
 }
