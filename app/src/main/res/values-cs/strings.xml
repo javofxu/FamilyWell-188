@@ -549,4 +549,8 @@
    <string name="file_is_exist">Soubor již existuje</string>
    <string name="look">Vidíš?</string>
    <string name="success_download">Stahování úspěšně</string>
+   <string name="china_point">Čínská</string>
+   <string name="europea_point">Evropa</string>
+   <string name="choose_server">Vybrat region</string>
+   <string name="restart_gateway">Prosím, restartujte bránu a přerozdělte síť.</string>
 </resources>

@@ -549,4 +549,8 @@
    <string name="file_is_exist">Bestand bestaat al</string>
    <string name="look">Zie</string>
    <string name="success_download">Download succesvol</string>
+   <string name="china_point">China</string>
+   <string name="europea_point">Europa</string>
+   <string name="choose_server">Selecteer de regio</string>
+   <string name="restart_gateway">Start de poort opnieuw en herdistribueer het netwerk.</string>
 </resources>

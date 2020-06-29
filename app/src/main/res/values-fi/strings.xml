@@ -549,4 +549,8 @@
    <string name="file_is_exist">Tiedosto on jo olemassa</string>
    <string name="look">Katso</string>
    <string name="success_download">Lataus onnistui</string>
+   <string name="china_point">Kiina</string>
+   <string name="europea_point">Eurooppa</string>
+   <string name="choose_server">Valitse alue</string>
+   <string name="restart_gateway">Käynnistä portti uudelleen ja jaa verkko uudelleen</string>
 </resources>

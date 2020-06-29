@@ -549,4 +549,8 @@
    <string name="file_is_exist">文件已存在</string>
    <string name="look">查看</string>
    <string name="success_download">下载成功</string>
+   <string name="china_point">中国</string>
+   <string name="europea_point">欧洲</string>
+   <string name="choose_server">选择地区</string>
+   <string name="restart_gateway">请重启网关后重新配网</string>
 </resources>

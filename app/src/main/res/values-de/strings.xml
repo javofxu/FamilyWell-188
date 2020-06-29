@@ -549,4 +549,8 @@
    <string name="file_is_exist">Datei existiert bereits</string>
    <string name="look">Siehe</string>
    <string name="success_download">Herunterladen erfolgreich</string>
+   <string name="china_point">China</string>
+   <string name="europea_point">Europa</string>
+   <string name="choose_server">Region auswählen</string>
+   <string name="restart_gateway">Bitte starten Sie das Gateway neu und verteilen Sie das Netzwerk</string>
 </resources>
