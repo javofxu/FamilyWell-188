@@ -13,8 +13,8 @@ android {
         minSdkVersion 21
         applicationId "com.siterwell.iwell"
         targetSdkVersion 28
-        versionCode 1010
-        versionName "1.010"
+        versionCode 1030
+        versionName "1.030"
 
         manifestPlaceholders = [
                 GETUI_APP_ID : "Q5K0egWhlA7wpeNSlrZzS6",
