@@ -550,4 +550,8 @@
    <string name="work_mode">Arbeidsmodus</string>
    <string name="wt">VannKontroll</string>
    <string name="year">år</string>
+   <string name="china_point">Kina</string>
+   <string name="europea_point">Europa</string>
+   <string name="choose_server">Velg område</string>
+   <string name="restart_gateway">Vennligst starte porten igjen og redistriburer nettverket</string>
 </resources>

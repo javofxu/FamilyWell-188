@@ -550,4 +550,8 @@
    <string name="work_mode">Työskentelytila</string>
    <string name="wt">Vuotohälytin</string>
    <string name="year">vuosi</string>
+   <string name="china_point">Kiina</string>
+   <string name="europea_point">Eurooppa</string>
+   <string name="choose_server">Valitse alue</string>
+   <string name="restart_gateway">Käynnistä portti uudelleen ja jaa verkko uudelleen</string>
 </resources>

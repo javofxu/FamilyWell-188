@@ -11,11 +11,18 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.InvalidClassException;
+
+import me.hekr.sdk.utils.CacheUtil;
 import me.hekr.sthome.R;
 import me.hekr.sthome.common.TopbarSuperActivity;
+import me.hekr.sthome.crc.CoderUtils;
 import me.hekr.sthome.event.STEvent;
 import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
+import me.hekr.sthome.tools.ECPreferenceSettings;
+import me.hekr.sthome.tools.ECPreferences;
+import me.hekr.sthome.tools.SiterSDK;
 import me.hekr.sthome.tools.SystemUtil;
 import me.hekr.sthome.tools.UnitTools;
 
@@ -59,7 +66,7 @@ public class ChangePasswordActivity extends TopbarSuperActivity {
 
     private void modify(){
         String oldpsw = oldtext.getText().toString().trim();
-        String newpsw = newtext.getText().toString().trim();
+       final String newpsw = newtext.getText().toString().trim();
         String confirmpsw = confirmtext.getText().toString().trim();
 
         if(TextUtils.isEmpty(oldpsw)){
@@ -86,51 +93,43 @@ public class ChangePasswordActivity extends TopbarSuperActivity {
                     HekrUserAction.getInstance(ChangePasswordActivity.this).unPushAllTagBind(new HekrUser.UnPushTagBindListener() {
                         @Override
                         public void unPushTagBindSuccess() {
-                            Toast.makeText(ChangePasswordActivity.this, getResources().getString(R.string.success),Toast.LENGTH_SHORT).show();
-                            String fcmclientid = FirebaseInstanceId.getInstance().getToken();
-                            if(!TextUtils.isEmpty(fcmclientid)){
-                                Log.i(TAG,"FCM平台CLIENTID："+fcmclientid);
-                                STEvent stEvent = new STEvent();
-                                stEvent.setRefreshevent(9);
-                                stEvent.setFcm_token(fcmclientid);
-                                EventBus.getDefault().post(stEvent);
+                            try {
+                                ECPreferences.savePreference(ECPreferenceSettings.SETTINGS_PASSWORD, CoderUtils.getEncrypt(newpsw),true);
+                            } catch (InvalidClassException e) {
+                                e.printStackTrace();
+                            }
+                            Toast.makeText(ChangePasswordActivity.this, getResources().getString(R.string.success), Toast.LENGTH_SHORT).show();
+                            String de = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_REGION, "");
+                            if (de.contains("hekreu.me")) {
+                                String fcmclientid = FirebaseInstanceId.getInstance().getToken();
+                                if (!TextUtils.isEmpty(fcmclientid)) {
+                                    Log.i(TAG, "FCM平台CLIENTID：" + fcmclientid);
+                                    STEvent stEvent = new STEvent();
+                                    stEvent.setRefreshevent(9);
+                                    stEvent.setFcm_token(fcmclientid);
+                                    EventBus.getDefault().post(stEvent);
+                                    com.huawei.android.pushagent.api.PushManager.requestToken(ChangePasswordActivity.this);
 
-                                com.huawei.android.pushagent.api.PushManager.requestToken(ChangePasswordActivity.this);
 
-
-                            }else{
-
-                                if( "honor".equals(SystemUtil.getDeviceBrand().toLowerCase()) || "huawei".equals(SystemUtil.getDeviceBrand().toLowerCase())){
+                                }
+                            } else {
+                                if ("honor".equals(SystemUtil.getDeviceBrand().toLowerCase()) || "huawei".equals(SystemUtil.getDeviceBrand().toLowerCase())) {
 
                                     com.huawei.android.pushagent.api.PushManager.requestToken(ChangePasswordActivity.this);
-                                }
-                                else if("xiaomi".equals(SystemUtil.getDeviceBrand().toLowerCase())){
+                                } else if ("xiaomi".equals(SystemUtil.getDeviceBrand().toLowerCase())) {
                                     String ds = MiPushClient.getRegId(ChangePasswordActivity.this);
-                                    Log.i(TAG,"小米平台CLIENTID："+ds);
-                                    if(!TextUtils.isEmpty(ds)) {
+                                    Log.i(TAG, "小米平台CLIENTID：" + ds);
+                                    if (!TextUtils.isEmpty(ds)) {
                                         STEvent stEvent = new STEvent();
                                         stEvent.setRefreshevent(13);
                                         stEvent.setFcm_token(ds);
                                         EventBus.getDefault().post(stEvent);
-                                    }else{
+                                    } else {
                                         Log.i(TAG, "小米平台CLIENTID为空");
                                     }
                                 }
-//                                else{
-//
-//                                    String cid = PushManager.getInstance().getClientid(ChangePasswordActivity.this);
-//                                    if(!TextUtils.isEmpty(cid)) {
-//                                        Log.i(TAG, "个推client id =" + cid);
-//                                        STEvent stEvent = new STEvent();
-//                                        stEvent.setRefreshevent(11);
-//                                        stEvent.setFcm_token(cid);
-//                                        EventBus.getDefault().post(stEvent);
-//                                    }else{
-//                                        Log.i(TAG, "个推client id为空");
-//                                    }
-//                                }
-                            }
 
+                            }
                             hideProgressDialog();
                             hideSoftKeyboard();
                             finish();

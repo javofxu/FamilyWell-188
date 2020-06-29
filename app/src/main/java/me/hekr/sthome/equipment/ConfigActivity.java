@@ -169,80 +169,10 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int which) {
 
                                 showProgressDialog(getResources().getString(R.string.logouting));
-
-
-                                String fcmtoken = FirebaseInstanceId.getInstance().getToken();
-                                if(TextUtils.isEmpty(fcmtoken)) {
-                                    if ("huawei".equals(SystemUtil.getDeviceBrand().toLowerCase()) || "honor".equals(SystemUtil.getDeviceBrand().toLowerCase())) {
-                                        String token = getHuaweiToken();
-                                        if (TextUtils.isEmpty(token)) {
-                                            handler.sendEmptyMessageDelayed(LOGOUT_SUCCESS, 1000);
-                                        } else {
-
-                                            HekrUserAction.getInstance(ConfigActivity.this).unPushTagBind(token, 2, new HekrUser.UnPushTagBindListener() {
-                                                @Override
-                                                public void unPushTagBindSuccess() {
-                                                    handler.sendEmptyMessageDelayed(LOGOUT_SUCCESS, 1000);
-                                                }
-
-                                                @Override
-                                                public void unPushTagBindFail(int errorCode) {
-                                                    if(errorCode == 1){
-                                                        handler.sendEmptyMessage(LOGOUT_SUCCESS);
-                                                    }else{
-                                                        showToast(UnitTools.errorCode2Msg(ConfigActivity.this, errorCode));
-                                                        hideProgressDialog();
-                                                    }
-
-                                                }
-                                            });
-
-
-                                        }
-                                    } else if ("xiaomi".equals(SystemUtil.getDeviceBrand().toLowerCase())) {
-
-                                        String clientid = MiPushClient.getRegId(ConfigActivity.this);
-                                        HekrUserAction.getInstance(ConfigActivity.this).unPushTagBind(clientid, 1, new HekrUser.UnPushTagBindListener() {
-                                            @Override
-                                            public void unPushTagBindSuccess() {
-                                                handler.sendEmptyMessageDelayed(LOGOUT_SUCCESS, 1000);
-                                            }
-
-                                            @Override
-                                            public void unPushTagBindFail(int errorCode) {
-                                                if(errorCode == 1){
-                                                    handler.sendEmptyMessage(LOGOUT_SUCCESS);
-                                                }else{
-                                                    showToast(UnitTools.errorCode2Msg(ConfigActivity.this, errorCode));
-                                                    hideProgressDialog();
-                                                }
-                                            }
-                                        });
-
-                                    }else {
-                                        handler.sendEmptyMessageDelayed(LOGOUT_SUCCESS, 1000);
-                                    }
-                                }else{
-
-                                    HekrUserAction.getInstance(ConfigActivity.this).unPushTagBind(fcmtoken, 3, new HekrUser.UnPushTagBindListener() {
-                                        @Override
-                                        public void unPushTagBindSuccess() {
-                                            handler.sendEmptyMessageDelayed(LOGOUT_SUCCESS, 1000);
-                                        }
-
-                                        @Override
-                                        public void unPushTagBindFail(int errorCode) {
-                                            if(errorCode == 1){
-                                                handler.sendEmptyMessage(LOGOUT_SUCCESS);
-                                            }else{
-                                                showToast(UnitTools.errorCode2Msg(ConfigActivity.this, errorCode));
-                                                hideProgressDialog();
-                                            }
-                                        }
-                                    });
-
-                                }
-
+                                unbindFirebase();
+                                unbindHuawei();
+                                unbindXiaoMi();
+                                handler.sendEmptyMessageDelayed(LOGOUT_SUCCESS, 5000);
                     }
                 });
                 elc.show();
@@ -314,6 +244,33 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
    private void gotoAboutActivity(){
       startActivity(new Intent(ConfigActivity.this,AboutActivity.class));
 
+   }
+
+   private void unbindFirebase(){
+       String fcmtoken = FirebaseInstanceId.getInstance().getToken();
+       if(!TextUtils.isEmpty(fcmtoken)){
+           HekrUserAction.getInstance(ConfigActivity.this).unPushTagBind(fcmtoken, 3, null);
+       }
+   }
+
+   private void unbindHuawei(){
+       if ("huawei".equals(SystemUtil.getDeviceBrand().toLowerCase()) || "honor".equals(SystemUtil.getDeviceBrand().toLowerCase())) {
+           String token = getHuaweiToken();
+           if (!TextUtils.isEmpty(token)) {
+
+               HekrUserAction.getInstance(ConfigActivity.this).unPushTagBind(token, 2, null);
+
+           }
+       }
+   }
+
+   private void unbindXiaoMi(){
+       if ("xiaomi".equals(SystemUtil.getDeviceBrand().toLowerCase())) {
+
+           String clientid = MiPushClient.getRegId(ConfigActivity.this);
+           HekrUserAction.getInstance(ConfigActivity.this).unPushTagBind(clientid, 1, null);
+
+       }
    }
 
 

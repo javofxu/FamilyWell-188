@@ -550,4 +550,8 @@
    <string name="work_mode">work_mode</string>
    <string name="wt">Podlahový detektor</string>
    <string name="year">rok</string>
+   <string name="china_point">Čínská</string>
+   <string name="europea_point">Evropa</string>
+   <string name="choose_server">Vybrat region</string>
+   <string name="restart_gateway">Prosím, restartujte bránu a přerozdělte síť.</string>
 </resources>

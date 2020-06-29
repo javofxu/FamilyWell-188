@@ -550,4 +550,8 @@
    <string name="work_mode">Arbetsläge</string>
    <string name="wt">Vattenläckagevarnare</string>
    <string name="year">år</string>
+   <string name="china_point">Kina</string>
+   <string name="europea_point">Europa</string>
+   <string name="choose_server">Välj område</string>
+   <string name="restart_gateway">Starta om porten och omfördela nätverket</string>
 </resources>

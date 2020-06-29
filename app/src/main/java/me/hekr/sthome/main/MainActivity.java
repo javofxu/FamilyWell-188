@@ -76,6 +76,7 @@ import me.hekr.sthome.tools.ECPreferenceSettings;
 import me.hekr.sthome.tools.ECPreferences;
 import me.hekr.sthome.tools.PermissionUtils;
 import me.hekr.sthome.tools.SendCommand;
+import me.hekr.sthome.tools.SiterSDK;
 import me.hekr.sthome.tools.SystemUtil;
 import me.hekr.sthome.tools.UnitTools;
 import me.hekr.sthome.updateApp.UpdateAppAuto;
@@ -154,40 +155,37 @@ public class MainActivity extends AppCompatActivity implements DeviceFragment.Se
 
 
 
+                String de  = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_REGION,"");
+        if(de.contains("hekreu.me")){
+            String fcmclientid = FirebaseInstanceId.getInstance().getToken();
+            if(!TextUtils.isEmpty(fcmclientid)){
+                Log.i(TAG,"FCM平台CLIENTID："+fcmclientid);
+                STEvent stEvent = new STEvent();
+                stEvent.setRefreshevent(9);
+                stEvent.setFcm_token(fcmclientid);
+                EventBus.getDefault().post(stEvent);
+                com.huawei.android.pushagent.api.PushManager.requestToken(this);
 
-
-                String fcmclientid = FirebaseInstanceId.getInstance().getToken();//
-                if(!TextUtils.isEmpty(fcmclientid)){
-                    Log.i(TAG,"FCM平台CLIENTID："+fcmclientid);
-                    STEvent stEvent = new STEvent();
-                    stEvent.setRefreshevent(9);
-                    stEvent.setFcm_token(fcmclientid);
-                    EventBus.getDefault().post(stEvent);
-                    com.huawei.android.pushagent.api.PushManager.requestToken(this);
-
-
-                }else{
-  //啊啊啊
-                    if( "honor".equals(SystemUtil.getDeviceBrand().toLowerCase()) || "huawei".equals(SystemUtil.getDeviceBrand().toLowerCase())){
-
-                        com.huawei.android.pushagent.api.PushManager.requestToken(this);
-                    }
-                    else if("xiaomi".equals(SystemUtil.getDeviceBrand().toLowerCase())){
-                        String ds = MiPushClient.getRegId(this);
-                        Log.i(TAG,"小米平台CLIENTID："+ds);
-                        if(!TextUtils.isEmpty(ds)) {
-                            STEvent stEvent = new STEvent();
-                            stEvent.setRefreshevent(13);
-                            stEvent.setFcm_token(ds);
-                            EventBus.getDefault().post(stEvent);
-                        }else{
-                            Log.i(TAG, "小米平台CLIENTID为空");
-                        }
-                    }
             }
+        }else{
+            if( "honor".equals(SystemUtil.getDeviceBrand().toLowerCase()) || "huawei".equals(SystemUtil.getDeviceBrand().toLowerCase())){
 
+                com.huawei.android.pushagent.api.PushManager.requestToken(this);
+            }
+            else if("xiaomi".equals(SystemUtil.getDeviceBrand().toLowerCase())){
+                String ds = MiPushClient.getRegId(this);
+                Log.i(TAG,"小米平台CLIENTID："+ds);
+                if(!TextUtils.isEmpty(ds)) {
+                    STEvent stEvent = new STEvent();
+                    stEvent.setRefreshevent(13);
+                    stEvent.setFcm_token(ds);
+                    EventBus.getDefault().post(stEvent);
+                }else{
 
-
+                    Log.i(TAG, "小米平台CLIENTID为空");
+                }
+            }
+        }
 
     }
 
