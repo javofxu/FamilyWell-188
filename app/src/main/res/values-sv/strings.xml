@@ -550,4 +550,5 @@
    <string name="look">Se</string>
    <string name="success_download">Nerladdning lyckades</string>
    <string name="network_hz">Apparaten stöder bara 2.4GHz Wi Fi.</string>
+   <string name="restart_gateway">Starta om porten och omfördela nätverket</string>
 </resources>

@@ -550,4 +550,5 @@
    <string name="look">Se</string>
    <string name="success_download">Last suksess</string>
    <string name="network_hz">Apparatet understøtter kun 2.4GHz Wi Fi.</string>
+   <string name="restart_gateway">Start venligst gateway og omfordel netværket</string>
 </resources>
