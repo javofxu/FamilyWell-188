@@ -553,4 +553,5 @@
    <string name="china_point">China</string>
    <string name="europea_point">Europe</string>
    <string name="choose_server">Choose Region</string>
+   <string name="restart_gateway">Please restart the gateway and re-config the WiFi network</string>
 </resources>

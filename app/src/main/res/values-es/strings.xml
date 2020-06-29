@@ -553,4 +553,5 @@
    <string name="china_point">China</string>
    <string name="europea_point">Europa</string>
    <string name="choose_server">Selección de área</string>
+   <string name="restart_gateway">Reinicia el portal y Redimensiona la red.</string>
 </resources>

@@ -553,4 +553,5 @@
    <string name="china_point">中国</string>
    <string name="europea_point">ヨーロッパ</string>
    <string name="choose_server">選択領域</string>
+   <string name="restart_gateway">ゲートウェイを再起動してネットワークを再構築してください</string>
 </resources>
