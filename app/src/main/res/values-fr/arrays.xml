@@ -213,14 +213,14 @@
         <item>Actif</item>
     </array>
     <array name="question">
-        <item>Erreur de mot de passe wifi</item>
-        <item>Espace dans le mot de passe</item>
-        <item>Fréquence de connexion</item>
+        <item>Erreur de mot de passe WIFI</item>
+        <item>Un problème d'espace</item>
+        <item>2.4GHZ-WIFI</item>
     </array>
     <array name="question_detail">
-        <item>Le mot de passe est incorrect</item>
-        <item>Le mot de passe ne doit pas contenir d’espace</item>
-        <item>Fréquence : 2.4 GHz\nCe produit ne supporte pas la fréquence 5GHz</item>
+        <item>Le mot de passe wifi que vous avez rentré est peut-être incorrect</item>
+        <item>SSID ou le mot de passe de votre routeur peut contenir des espaces</item>
+        <item>Ce produit ne supporte que la fréquence de 2,4 GHz, (ne fonctionne pas en 5ghz), veillez à ce que le routeur soit correctement paramétré</item>
     </array>
     <array name="outdoor_siren_action">
         <item>Silence</item>
