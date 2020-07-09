@@ -1210,7 +1210,7 @@ public class SiterService extends Service {
         try {
 
             Log.i(TAG," ControllerWifi.getInstance().targetip ===" + ControllerWifi.getInstance().targetip.toString());
-            UDPSendData udpSendData = new UDPSendData(ControllerWifi.getInstance().ds, ControllerWifi.getInstance().targetip,"IOT_SWITCH:"+ ConnectionPojo.getInstance().deviceTid+":"+"LIFE03");
+            UDPSendData udpSendData = new UDPSendData(ControllerWifi.getInstance().ds, ControllerWifi.getInstance().targetip,"IOT_SWITCH:"+ ConnectionPojo.getInstance().deviceTid+":"+"site07");
             sendService.execute(udpSendData);
             sendService.awaitTermination(50, TimeUnit.MICROSECONDS);
         } catch (InterruptedException e) {

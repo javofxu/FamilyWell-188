@@ -13,8 +13,8 @@ android {
         minSdkVersion 21
         applicationId "com.siterwell.lifebox"
         targetSdkVersion 28
-        versionCode 1174
-        versionName "1.174"
+        versionCode 1176
+        versionName "1.176"
 
         manifestPlaceholders = [
                 GETUI_APP_ID : "ZhOR178fAO9CtR196PubM7",
