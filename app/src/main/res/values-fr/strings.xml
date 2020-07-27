@@ -554,4 +554,7 @@
    <string name="europea_point">Europe</string>
    <string name="choose_server">Zone de sélection</string>
    <string name="restart_gateway">Redémarrez le portail et reconfigurez le réseau.</string>
+    <string name="ap_connect">AP Connect</string>
+    <string name="ap_config_title">Press and hold the button for more than three seconds in the gateway one button distribution mode (fast flashing blue light about 3 times per second)</string>
+   <string name="ap_title_msg">Please confirm that the gateway blue light flashes slowly (about once every 2 seconds) and then click next</string>
 </resources>

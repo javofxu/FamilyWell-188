@@ -60,10 +60,6 @@ public class EsptouchDemoActivity extends TopbarSuperActivity implements View.On
 		return R.layout.activity_esptouch;
 	}
 
-
-
-
-
 	private void initGuider()
 	{
 		getTopBarView().setTopBarStatus(1, 1, getResources().getString(R.string.net_configuration), null, new View.OnClickListener() {
@@ -156,8 +152,6 @@ public class EsptouchDemoActivity extends TopbarSuperActivity implements View.On
 				startActivity(intent);
 				finish();
 			}
-
-
 		}
 	}
 

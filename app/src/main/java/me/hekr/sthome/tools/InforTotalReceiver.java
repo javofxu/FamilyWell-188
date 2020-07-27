@@ -81,26 +81,21 @@ public abstract class InforTotalReceiver extends BroadcastReceiver {
         }
         else if(intent.getAction().equals(SiterConstantsUtil.ActionStrUtil.ACTION_WS_DATA_RECEIVE)){
             msg =intent.getStringExtra(SiterConstantsUtil.HEKR_WS_PAYLOAD);
-
             try {
                 json = new JSONObject(msg);
                 String action  = json.getString("action");
                 params = json.getJSONObject("params");
                 String devTids = params.getString("devTid");
                 //若是内网则不需要解析当前网关收到的外网数据包，减轻数据接收负担
-                if(ControllerWifi.getInstance().wifiTag && ConnectionPojo.getInstance().deviceTid.equals(devTids)
-                        && !"devLogin".equals(action) && !"devLogout".equals(action)){
+                if(ControllerWifi.getInstance().wifiTag && ConnectionPojo.getInstance().deviceTid.equals(devTids) && !"devLogin".equals(action)){
                     return;
                 }
-
                 if("devSend".equals(json.getString("action"))){
                     ViewWindow.showView(context,msg,R.color.black);
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }else if(intent.getAction().equals(SiterService.UDP_BROADCAST)){
 
             msg =intent.getStringExtra("message");

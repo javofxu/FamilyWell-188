@@ -554,4 +554,7 @@
    <string name="europea_point">欧洲</string>
    <string name="choose_server">选择地区</string>
    <string name="restart_gateway">请重启网关后重新配网</string>
+    <string name="ap_connect">AP配网</string>
+   <string name="ap_config_title">在网关一键配网模式下(快速闪烁蓝灯约每秒3次)的情况下,长按按钮三秒以上</string>
+   <string name="ap_title_msg">请确认网关蓝灯慢速闪烁(约每2秒一次),然后点击下一步</string>
 </resources>

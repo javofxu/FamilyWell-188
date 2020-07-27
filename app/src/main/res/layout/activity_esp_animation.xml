@@ -5,22 +5,23 @@
     android:gravity="center_horizontal">
 
     <me.hekr.sthome.commonBaseView.RoundProgressView
+        android:id="@+id/roundprogress"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id="@+id/roundprogress"/>
+        android:layout_height="400dp" />
 
     <TextView
+        android:id="@+id/tishi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginLeft="@dimen/NormalPadding"
-        android:layout_marginRight="@dimen/NormalPadding"
-        android:id="@+id/tishi"/>
+        android:layout_marginRight="@dimen/NormalPadding"/>
 
     <TextView
+        android:id="@+id/fail_reason"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:id="@+id/fail_reason"
         android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
         android:gravity="center_vertical"/>
@@ -33,7 +34,19 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/modle_done"
         android:visibility="gone"
+        android:background="@drawable/modle_done"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:textAllCaps="false"
+        android:id="@+id/ap_config"
+        android:text="@string/ap_connect"
+        android:textSize="@dimen/addsys_bottom_text_size"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        android:background="@drawable/modle_done"
         android:textColor="@color/white"/>
 </LinearLayout>
