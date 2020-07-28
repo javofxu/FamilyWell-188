@@ -83,8 +83,8 @@ public class ButtonDetailActivity extends AppCompatActivity implements MultiDire
     private HistoryAdapter historyAdapter;
     private int page;
     private View empty;
-    private SystemTintManager tintManager;
     private int falg = 0;
+    private String mNewName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -172,18 +172,14 @@ public class ButtonDetailActivity extends AppCompatActivity implements MultiDire
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         EditText text = (EditText) alertDialog.getContent().findViewById(R.id.tet);
-                                        String newname = text.getText().toString().trim();
-
-                                        if(!TextUtils.isEmpty(newname)){
-
+                                        mNewName = text.getText().toString().trim();
+                                        if(!TextUtils.isEmpty(mNewName)){
                                             try {
                                                 String encode = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_ENCODE,"GBK");
-                                                if(newname.getBytes(encode).length<=15){
-                                                    if(!EmojiFilter.containsEmoji(newname)) {
+                                                if(mNewName.getBytes(encode).length<=15){
+                                                    if(!EmojiFilter.containsEmoji(mNewName)) {
                                                         alertDialog.setDismissFalse(true);
-                                                        eq_name.setText(newname);
-                                                        updateName(newname);
-                                                        String ds = CoderUtils.getAscii(newname);
+                                                        String ds = CoderUtils.getAscii(mNewName);
                                                         String dsCRC = ByteUtil.CRCmaker(ds);
                                                         SendCommand.Command = SendCommand.MODIFY_EQUIPMENT_NAME;
                                                         sd.modifyEquipmentName(device.getEqid(), ds + dsCRC);
@@ -199,8 +195,7 @@ public class ButtonDetailActivity extends AppCompatActivity implements MultiDire
                                                 e.printStackTrace();
                                             }
 
-                                        }
-                                        else{
+                                        }else{
                                             alertDialog.setDismissFalse(false);
                                             Toast.makeText(ButtonDetailActivity.this,getResources().getString(R.string.name_is_null),Toast.LENGTH_SHORT).show();
                                         }
@@ -228,10 +223,8 @@ public class ButtonDetailActivity extends AppCompatActivity implements MultiDire
         });
         root = (RelativeLayout)findViewById(R.id.root);
         //沉浸式设置支持API19
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            int top = UnitTools.getStatusBarHeight(this);
-            root.setPadding(0,top,0,0);
-        }
+        int top = UnitTools.getStatusBarHeight(this);
+        root.setPadding(0,top,0,0);
         showStatus = (TextView) findViewById(R.id.showStatus);
         signal = (ImageView) findViewById(R.id.signalPosition);
         quatity = (ImageView) findViewById(R.id.quantityPosition);
@@ -283,21 +276,20 @@ public class ButtonDetailActivity extends AppCompatActivity implements MultiDire
         listView.setAdapter(historyAdapter);
         empty = findViewById(R.id.empty);
         listView.setEmptyView(empty);
-        tintManager = new SystemTintManager(this);// 创建状态栏的管理实例
 
         doStatusShow(device.getState());
         showBattery();
     }
 
     private void updateName(String edit) {
-        if( !device.getEquipmentName().equals(edit)){
-
+        if(!device.getEquipmentName().equals(edit)){
             device.setEquipmentName(edit);
             ED = new EquipDAO(this);
             try {
                 ED.updateName(device);
+                eq_name.setText(edit);
             }catch (Exception e){
-                Toast.makeText(ButtonDetailActivity.this,getResources().getString(R.string.name_is_repeat),Toast.LENGTH_SHORT).show();
+                Toast.makeText(ButtonDetailActivity.this, getString(R.string.name_is_repeat),Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -395,6 +387,7 @@ public class ButtonDetailActivity extends AppCompatActivity implements MultiDire
     public  void onEventMainThread(STEvent event){
         if(event.getEvent() == SendCommand.MODIFY_EQUIPMENT_NAME){
             SendCommand.clearCommnad();
+            updateName(mNewName);
             Toast.makeText(ButtonDetailActivity.this,getResources().getString(R.string.update_name_success),Toast.LENGTH_SHORT).show();
         }else if(event.getEvent() == SendCommand.DELETE_EQUIPMENT_DETAIL){
             SendCommand.clearCommnad();

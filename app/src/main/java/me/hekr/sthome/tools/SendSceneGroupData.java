@@ -3,6 +3,7 @@ package me.hekr.sthome.tools;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +34,11 @@ public abstract class SendSceneGroupData {
      * @param groupCode
      */
     private void sendAction(final String groupCode){
+        boolean status = NetWorkStatusUtil.getInstance().getNetWorkStatus();
+        if (!status){
+            Toast.makeText(context, context.getString(R.string.net_error), Toast.LENGTH_SHORT).show();
+            return;
+        }
         Log.i(TAG,"===send tag==="+ControllerWifi.getInstance().wifiTag);
         if(ControllerWifi.getInstance().wifiTag){
             if(ConnectionPojo.getInstance().encryption){

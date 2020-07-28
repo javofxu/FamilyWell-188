@@ -100,7 +100,7 @@ public class ModeButtonDetailActivity extends AppCompatActivity implements ModeB
     private HistoryAdapter historyAdapter;
     private int page;
     private View empty;
-    private SystemTintManager tintManager;
+    private String newname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -210,17 +210,13 @@ public class ModeButtonDetailActivity extends AppCompatActivity implements ModeB
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         EditText text = (EditText) alertDialog.getContent().findViewById(R.id.tet);
-                                        String newname = text.getText().toString().trim();
-
+                                        newname = text.getText().toString().trim();
                                         if(!TextUtils.isEmpty(newname)){
-
                                             try {
                                                 String encode = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_ENCODE,"GBK");
                                                 if(newname.getBytes(encode).length<=15){
                                                     if(!EmojiFilter.containsEmoji(newname)) {
                                                         alertDialog.setDismissFalse(true);
-                                                        eq_name.setText(newname);
-                                                        updateName(newname);
                                                         String ds = CoderUtils.getAscii(newname);
                                                         String dsCRC = ByteUtil.CRCmaker(ds);
                                                         SendCommand.Command = SendCommand.MODIFY_EQUIPMENT_NAME;
@@ -314,7 +310,6 @@ public class ModeButtonDetailActivity extends AppCompatActivity implements ModeB
         listView.setAdapter(historyAdapter);
         empty = findViewById(R.id.empty);
         listView.setEmptyView(empty);
-        tintManager = new SystemTintManager(this);// 创建状态栏的管理实例
 
         doStatusShow(device.getState());
         showBattery();
@@ -322,11 +317,11 @@ public class ModeButtonDetailActivity extends AppCompatActivity implements ModeB
 
     private void updateName(String edit) {
         if( !device.getEquipmentName().equals(edit)){
-
             device.setEquipmentName(edit);
             ED = new EquipDAO(this);
             try {
                 ED.updateName(device);
+                eq_name.setText(edit);
             }catch (Exception e){
                 Toast.makeText(ModeButtonDetailActivity.this,getResources().getString(R.string.name_is_repeat),Toast.LENGTH_SHORT).show();
             }
@@ -383,6 +378,7 @@ public class ModeButtonDetailActivity extends AppCompatActivity implements ModeB
     public  void onEventMainThread(STEvent event){
         if(event.getEvent() == SendCommand.MODIFY_EQUIPMENT_NAME){
             SendCommand.clearCommnad();
+            updateName(newname);
             Toast.makeText(ModeButtonDetailActivity.this,getResources().getString(R.string.update_name_success),Toast.LENGTH_SHORT).show();
         }else if(event.getEvent() == SendCommand.DELETE_EQUIPMENT_DETAIL){
             SendCommand.clearCommnad();
