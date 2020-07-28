@@ -123,7 +123,7 @@ public class UDPSocketServer {
 				return null;
 			}
 			return recDatas;
-		} catch (IOException e) {
+		} catch (IOException | NullPointerException e) {
 			e.printStackTrace();
 		}
 		return null;

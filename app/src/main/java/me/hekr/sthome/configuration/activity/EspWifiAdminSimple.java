@@ -11,8 +11,6 @@ import android.util.Log;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static android.content.Context.WIFI_SERVICE;
@@ -21,7 +19,6 @@ public class EspWifiAdminSimple {
 	private static final String TAG = "EspWifiAdminSimple";
 	private final Context mContext;
 	private WifiManager wifiManager;
-	private boolean firstflag = false;
 	
 	public EspWifiAdminSimple(Context context) {
 		mContext = context;
@@ -115,7 +112,11 @@ public class EspWifiAdminSimple {
 		return mWiFiNetworkInfo;
 	}
 
-	ScanResult getWifiList() {
+	boolean startScan(){
+		return wifiManager.startScan();
+	}
+
+	ScanResult findWifiList() {
 		List<ScanResult> scanWifiList = wifiManager.getScanResults();
 		if (scanWifiList != null && scanWifiList.size() > 0) {
 			for (int i = 0; i < scanWifiList.size(); i++) {

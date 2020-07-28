@@ -23,19 +23,21 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import me.hekr.sdk.utils.CacheUtil;
 import me.hekr.sdk.utils.LogUtil;
+import me.hekr.sthome.DeviceListActivity;
 import me.hekr.sthome.R;
 import me.hekr.sthome.autoudp.ControllerWifi;
 import me.hekr.sthome.common.CCPAppManager;
 import me.hekr.sthome.common.DateUtil;
 import me.hekr.sthome.common.TopbarSuperActivity;
+import me.hekr.sthome.commonBaseView.CustomStatusView;
 import me.hekr.sthome.commonBaseView.ProgressDialog;
-import me.hekr.sthome.commonBaseView.RoundProgressView;
 import me.hekr.sthome.configuration.EsptouchTask;
 import me.hekr.sthome.configuration.IEsptouchListener;
 import me.hekr.sthome.configuration.IEsptouchResult;
@@ -47,6 +49,7 @@ import me.hekr.sthome.http.HekrUserAction;
 import me.hekr.sthome.http.bean.BindDeviceBean;
 import me.hekr.sthome.http.bean.DcInfo;
 import me.hekr.sthome.http.bean.DeviceBean;
+import me.hekr.sthome.main.MainActivity;
 import me.hekr.sthome.model.modelbean.MyDeviceBean;
 import me.hekr.sthome.model.modelbean.SceneBean;
 import me.hekr.sthome.model.modelbean.SysModelBean;
@@ -64,10 +67,10 @@ import me.hekr.sthome.tools.UnitTools;
  */
 public class EsptouchAnimationActivity extends TopbarSuperActivity implements View.OnClickListener{
     private final String TAG = EsptouchAnimationActivity.class.getName();
-    private RoundProgressView roundProgressView;
+    private CustomStatusView roundProgressView;
     private EspWifiAdminSimple mWifiAdmin;
     private Timer timer = null;
-    private TextView textView;
+    private TextView textView, mProgress;
     private int count = 0;
     private final int SPEED1 = 1;
     private final int SPEED2 = 20;
@@ -95,7 +98,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     private ProgressDialog progressDialog;
     private int count_of_bind = 0;
     private TextView fail_reason_view;
-
+    private DecimalFormat mFormat;
     private boolean isApConnect = false;
 
     @Override
@@ -104,6 +107,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         isApConnect = getIntent().getBooleanExtra("isApConnect", false);
         initSSIdInfo();
         init();
+        mFormat = new DecimalFormat("##0.0");
     }
 
     @Override
@@ -137,8 +141,8 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         textView = findViewById(R.id.tishi);
         textView.setText(getString(R.string.esptouch_is_configuring));
         roundProgressView = findViewById(R.id.roundprogress);
-        roundProgressView.setMax(1f);
-        roundProgressView.setProgress(0.00f);
+        mProgress = findViewById(R.id.progress_num);
+        roundProgressView.loadLoading();
         getTopBarView().setTopBarStatus(1, 1, getResources().getString(R.string.net_configuration), null, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,10 +161,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         }else {
             initApConnect();
         }
-    }
-
-    private void UpdateInfo(int count){
-        roundProgressView.setProgress(((float) count)/200000f);
     }
 
     private void initApConnect(){
@@ -231,7 +231,8 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                     UpdateInfo(progress);
                     break;
                 case 2:
-                    roundProgressView.setErrStatus();
+                    mProgress.setVisibility(View.GONE);
+                    roundProgressView.loadFailure();
                     Now_speed = SPEED1;
                     if(timer!=null){
                         timer.cancel();
@@ -283,15 +284,14 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                     }
                     break;
                 case 3:
+                    mProgress.setVisibility(View.GONE);
+                    roundProgressView.loadSuccess();
                     Log.i(TAG,"跳转到成功页面");
                     if(timer!=null){
                         timer.cancel();
                         timer = null;
                     }
-                    Intent tent = new Intent(EsptouchAnimationActivity.this, EsptouchSuccessActivity.class);
-                    tent.putExtra("devid",choosetoDeviceid);
-                    startActivity(tent);
-                    finish();
+                    connectSuccess();
                     break;
                 case 4:
                     if(count_of_bind<8){
@@ -311,6 +311,35 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             return false;
         }
     });
+
+    private void UpdateInfo(int count){
+        String num = mFormat.format(((float) count)/2000f) + "%";
+        mProgress.setText(num);
+    }
+
+    private void gatewayConfigSuccess(final String deviceName){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                @SuppressLint({"StringFormatInvalid", "LocalSuppress"}) String text = String.format(getString(R.string.is_connected_to_wifi), deviceName);
+                showToast(text);
+                textView.setText(getResources().getString(R.string.device_has_been_find));
+            }
+        });
+    }
+
+    private void connectSuccess(){
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                MainActivity.flag_checkfireware = true;
+                Intent intent = new Intent(EsptouchAnimationActivity.this, DeviceListActivity.class);
+                intent.putExtra("devid",choosetoDeviceid);
+                startActivity(intent);
+                finish();
+            }
+        }, 1200);
+    }
 
     private void connect(){
         Log.i(TAG, "connect: " + ControllerWifi.getInstance().deviceTid + "--" + ControllerWifi.getInstance().bind);
@@ -368,20 +397,12 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             }else{
                 count = count+Now_speed;
                 handler.sendMessage(handler.obtainMessage(1, count));
-                if(count>=120000){
-                    if(flag<=0){
-                        Now_speed = SPEED1;
-                    }else if(flag==1){
-                        Now_speed = SPEED2;
-                    }else {
-                        Now_speed = SPEED3;
-                    }
+                if(flag<=0){
+                    Now_speed = SPEED1;
+                }else if(flag==1){
+                    Now_speed = SPEED2;
                 }else {
-                    if(flag>=2){
-                        Now_speed = SPEED3;
-                    }else if (flag == 1){
-                        Now_speed = SPEED2;
-                    }
+                    Now_speed = SPEED3;
                 }
             }
         }
@@ -392,14 +413,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         @Override
         public void onEsptouchResultAdded(final IEsptouchResult result) {
             Now_speed = SPEED2;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    @SuppressLint({"StringFormatInvalid", "LocalSuppress"}) String text = String.format(getString(R.string.is_connected_to_wifi), result.getBssid());
-                    Toast.makeText(EsptouchAnimationActivity.this, text, Toast.LENGTH_LONG).show();
-                    textView.setText(getResources().getString(R.string.device_has_been_find));
-                }
-            });
+            gatewayConfigSuccess(result.getBssid());
             ConnectionPojo.getInstance().deviceTid = "GS193".equals(gatewaytype)?("RPMA_"+result.getBssid()):("ST_"+result.getBssid());
         }
     };
@@ -423,7 +437,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         protected List<IEsptouchResult> doInBackground(String... params) {
             List<IEsptouchResult> resultList =null;
             try {
-                int taskResultCount = -1;
+                int taskResultCount;
                 synchronized (mLock) {
                     // !!!NOTICE
                     String apSsid = mWifiAdmin.getWifiConnectedSsidAscii(params[0]);
@@ -612,7 +626,9 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         sceneBean3.setName("");
         sceneDAO.addinit(sceneBean3);
         flag = 1;
-        Log.i(TAG, "bindDeviceSuccess: success" + flag);
+        if (isApConnect){
+            gatewayConfigSuccess(ConnectionPojo.getInstance().deviceTid);
+        }
     }
 
     private void bindFail(int errorCode){
@@ -623,7 +639,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                 @Override
                 public void queryOwnerSuccess(String message) {
                     if(message.equals(CCPAppManager.getClientUser().getPhoneNumber())
-                            ||  message.equals(CCPAppManager.getClientUser().getEmail())   ){
+                            ||  message.equals(CCPAppManager.getClientUser().getEmail())){
                         choosetoDeviceid = controllerWifi.deviceTid;
                         flag = 1;
                     }else{

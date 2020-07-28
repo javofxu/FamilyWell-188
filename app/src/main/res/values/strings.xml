@@ -557,4 +557,6 @@
     <string name="ap_connect">AP Connect</string>
     <string name="ap_config_title">Press and hold the button for more than three seconds in the gateway one button distribution mode (fast flashing blue light about 3 times per second)</string>
    <string name="ap_title_msg">Please confirm that the gateway blue light flashes slowly (about once every 2 seconds) and then click next</string>
+    <string name="wait_connect_wifi">Connecting Wi Fi, please wait…</string>
+    <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
 </resources>

@@ -557,4 +557,6 @@
     <string name="ap_connect">AP配网</string>
    <string name="ap_config_title">在网关一键配网模式下(快速闪烁蓝灯约每秒3次)的情况下,长按按钮三秒以上</string>
    <string name="ap_title_msg">请确认网关蓝灯慢速闪烁(约每2秒一次),然后点击下一步</string>
+   <string name="wait_connect_wifi">正在连接Wi-Fi，请稍后…</string>
+    <string name="not_find_wifi">未搜索到“ESP”开头Wi-Fi</string>
 </resources>
