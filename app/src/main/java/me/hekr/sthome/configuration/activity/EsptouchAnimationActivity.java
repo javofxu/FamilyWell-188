@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -72,7 +71,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     private Timer timer = null;
     private TextView textView, mProgress;
     private int count = 0;
-    private final int SPEED1 = 1;
+    private final int SPEED1 = 2;
     private final int SPEED2 = 20;
     private final int SPEED3 = 20000;
     private int Now_speed;
@@ -107,7 +106,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         isApConnect = getIntent().getBooleanExtra("isApConnect", false);
         initSSIdInfo();
         init();
-        mFormat = new DecimalFormat("##0.0");
+        mFormat = new DecimalFormat("##0");
     }
 
     @Override
@@ -169,7 +168,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             public void run() {
                 sendTcpCode();
             }
-        }, 2000);
+        }, 5000);
     }
 
     private void sendTcpCode(){
