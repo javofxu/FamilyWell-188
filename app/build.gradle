@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         multiDexEnabled true
@@ -13,8 +13,8 @@ android {
         applicationId "com.siterwell.familywell"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 2677
-        versionName "2.677"
+        versionCode 2678
+        versionName "2.678"
 
         manifestPlaceholders = [
                 GETUI_APP_ID : "iohOusgIfuA57fOVfndY39",
@@ -25,18 +25,19 @@ android {
 
     signingConfigs {
         debug {
-            keyAlias '123456'
-            keyPassword '123456'
-            storeFile file('../keystore/xjjsiterwell.jks')
+            storeFile file("xjjsiterwell.jks")
             storePassword '123456'
+            keyAlias = '123456'
+            keyPassword '123456'
         }
         release {
-            keyAlias '123456'
-            keyPassword '123456'
-            storeFile file('../keystore/xjjsiterwell.jks')
+            storeFile file("xjjsiterwell.jks")
             storePassword '123456'
+            keyAlias = '123456'
+            keyPassword '123456'
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -44,7 +45,6 @@ android {
             debuggable false
         }
     }
-
 }
 
 repositories {
@@ -65,7 +65,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:10.2.6'
     implementation 'com.google.firebase:firebase-messaging:10.2.6'
     implementation 'com.firebase:firebase-jobdispatcher:0.6.0'
-    compile(name: 'libxmfunsdk-release', ext: 'aar')
+    implementation (name: 'libxmfunsdk-release', ext: 'aar')
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }
 apply plugin: 'com.google.gms.google-services'
