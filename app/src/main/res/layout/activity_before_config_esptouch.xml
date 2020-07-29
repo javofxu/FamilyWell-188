@@ -25,24 +25,25 @@
             android:id="@+id/ap_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:text="@string/config_instruction"
             android:textColor="@color/black"
-            android:textSize="@dimen/content_size"
+            android:textSize="@dimen/title_size"
             android:gravity="center"/>
 
         <TextView
             android:id="@+id/ap_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_margin="8dp"
             android:gravity="center"
             android:text="@string/how_to_config"
             android:textColor="@color/device_warn"
-            android:textSize="@dimen/title_size" />
+            android:textSize="@dimen/title_size_edit" />
 
         <Button
-            android:layout_gravity="center"
             android:id="@+id/next"
+            android:layout_gravity="center"
             android:textAllCaps="false"
             android:text="@string/next"
             android:textSize="@dimen/addsys_bottom_text_size"

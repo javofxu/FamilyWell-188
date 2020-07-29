@@ -272,7 +272,7 @@
    <string name="home_mode">Anwesend</string>
    <string name="hour">Stunde</string>
    <string name="hour_and_min">Stunden/Minuten</string>
-   <string name="how_to_config">Sobald die LED blau blinkt, drücken Sie bitte WEITER.</string>
+   <string name="how_to_config">Bitte bestätigen Sie, dass das Gateway-blaue Licht schnell blinkt (etwa 2-mal pro Sekunde)</string>
    <string name="hum">Luftfeuchtigkeit:</string>
    <string name="if_ok_click_next">Wenn ok, drücken Sie \"WEITER\"</string>
    <string name="Illegal_demolition">Unerlaubte Aktion</string>
@@ -555,8 +555,10 @@
    <string name="choose_server">Region auswählen</string>
    <string name="restart_gateway">Bitte starten Sie das Gateway neu und verteilen Sie das Netzwerk</string>
     <string name="ap_connect">AP Connect</string>
-    <string name="ap_config_title">Press and hold the button for more than three seconds in the gateway one button distribution mode (fast flashing blue light about 3 times per second)</string>
+    <string name="ap_config_title">Press and hold the button for more than three seconds in the gateway one button distribution mode (fast flashing blue light about 2 times per second)</string>
    <string name="ap_title_msg">Please confirm that the gateway blue light flashes slowly (about once every 2 seconds) and then click next</string>
     <string name="wait_connect_wifi">Connecting Wi Fi, please wait...</string>
     <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
+    <string name="connect_device_success">Mobile phone connected to device successfully</string>
+   <string name="information_success">Successfully transferred information to device</string>
 </resources>

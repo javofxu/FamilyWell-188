@@ -138,7 +138,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         btn_AP = findViewById(R.id.ap_config);
         btn_AP.setOnClickListener(this);
         textView = findViewById(R.id.tishi);
-        textView.setText(getString(R.string.esptouch_is_configuring));
         roundProgressView = findViewById(R.id.roundprogress);
         mProgress = findViewById(R.id.progress_num);
         roundProgressView.loadLoading();
@@ -155,53 +154,12 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         MyTask timerTask = new MyTask();
         timer.schedule(timerTask,0,1);
         if (!isApConnect) {
+            textView.setText(getString(R.string.esptouch_is_configuring));
             task3 = new EspTouchAsyncTask();
             task3.execute(apSsid, apBssid, apPassword, isSsidHiddenStr, taskResultCountStr);
         }else {
-            initApConnect();
+            textView.setText(getString(R.string.wait_connect_wifi));
         }
-    }
-
-    private void initApConnect(){
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                sendTcpCode();
-            }
-        }, 5000);
-    }
-
-    private void sendTcpCode(){
-        String de  = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_REGION,"");
-        String service = de.contains("hekreu.me") ? "site07" : "site06";
-        JSONObject json = new JSONObject();
-        try {
-            json.put("ssid", apSsid);
-            json.put("pwd", apPassword);
-            json.put("server", service);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.i(TAG, "initApConnect: " + json.toString());
-        TcpClientThread mTcpClient = new TcpClientThread(handler, "192.168.4.1", 80, json.toString());
-        mTcpClient.start();
-    }
-
-    private void onSearchBindKey(){
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    Thread.sleep(30000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                STEvent stEvent =new STEvent();
-                stEvent.setServiceevent(9);
-                EventBus.getDefault().post(stEvent);
-            }
-        }.start();
     }
 
     private Handler handler = new Handler(new Handler.Callback() {
@@ -209,21 +167,10 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
+                    textView.setText(R.string.information_success);
                     String receive = (String) msg.obj;
                     Log.i(TAG, "handleMessage: " + receive);
-                    try {
-                        JSONObject jsonObject = new JSONObject(receive);
-                        String deviceName = (String) jsonObject.get("rev");
-                        Log.i(TAG, "handleMessage: " + deviceName);
-                        ConnectionPojo.getInstance().deviceTid = deviceName;
-                        boolean isConnect = mWifiAdmin.addNetwork(apSsid, apPassword, 2);
-                        if (isConnect){
-                            Log.i(TAG, "handleMessage: 连接成功");
-                            onSearchBindKey();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    getTcpResponse(receive);
                     break;
                 case 1:
                     int progress = (int)msg.obj;
@@ -233,54 +180,12 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                     mProgress.setVisibility(View.GONE);
                     roundProgressView.loadFailure();
                     Now_speed = SPEED1;
-                    if(timer!=null){
-                        timer.cancel();
-                        timer = null;
-                        count = 0;
-                    }
-                    if (mEsptouchTask != null) {
-                        mEsptouchTask.interrupt();
-                    }
-                    if(task3!=null){
-                        task3.cancel(true);
-                    }
+                    cancelTask();
                     btn_retry.setVisibility(View.VISIBLE);
                     btn_AP.setVisibility(View.VISIBLE);
                     fail_reason_view.setVisibility(View.VISIBLE);
                     LogUtil.i(TAG,"flag_标志为:"+flag);
-                    switch (flag){
-                        case 6:
-                            textView.setText(getResources().getString(R.string.local_fail_to_get_info));
-                            break;
-                        case 7:
-                            textView.setText(getResources().getString(R.string.gateway_wifi_connect_but_not_connect_service));
-                            break;
-                        case -1:
-                        case 5:
-                            textView.setText(getResources().getString(R.string.failed_Esptouch_check_eq));
-                            break;
-                        case 0:
-                            textView.setText(getResources().getString(R.string.failed_Esptouch_check_net));
-                            break;
-                        case 2:
-                        case 4:
-                            if(!TextUtils.isEmpty(failmsg))
-                                textView.setText(failmsg);
-                            break;
-                        case 8:
-                            if(!TextUtils.isEmpty(failmsg))
-                            textView.setText(failmsg);
-                            btn_retry.setText(getResources().getString(R.string.re_login));
-                            break;
-                        case 3:
-                            if(TextUtils.isEmpty(already_deivce_name)){
-                                textView.setText(getResources().getString(R.string.device_already_bind));
-                            }else{
-                                String text = String.format(getResources().getString(R.string.device_already_bind_to), ControllerWifi.getInstance().deviceTid,already_deivce_name);
-                                textView.setText(text);
-                            }
-                            break;
-                    }
+                    showTextMsg(flag);
                     break;
                 case 3:
                     mProgress.setVisibility(View.GONE);
@@ -357,6 +262,90 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         });
     }
 
+    private void getTcpResponse(String receive){
+        try {
+            JSONObject jsonObject = new JSONObject(receive);
+            String deviceName = (String) jsonObject.get("rev");
+            Log.i(TAG, "handleMessage: " + deviceName);
+            ConnectionPojo.getInstance().deviceTid = deviceName;
+            boolean isConnect = mWifiAdmin.addNetwork(apSsid, apPassword, 2);
+            if (isConnect){
+                Log.i(TAG, "handleMessage: 连接成功");
+                textView.setText(R.string.esptouch_is_configuring);
+                onSearchBindKey();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void onSearchBindKey(){
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    Thread.sleep(30000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                STEvent stEvent =new STEvent();
+                stEvent.setServiceevent(9);
+                EventBus.getDefault().post(stEvent);
+            }
+        }.start();
+    }
+
+
+    @Subscribe          //订阅事件Event
+    public void onEventMainThread(STEvent event){
+        if (event.getServiceevent() == 7 && event.getNettype() == 4){
+            if (isApConnect){
+                String SSId = event.getSsid();
+                if (SSId!=null && SSId.contains("ESP")){
+                    textView.setText(R.string.connect_device_success);
+                    sendTcpCode();
+                }
+            }
+        }
+        switch (event.getRefreshevent()){
+            case 3:
+            case 6:
+                if(progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                    finish();
+                }
+                break;
+            case 7:
+                progressDialog.setPressText(event.getProgressText());
+                if(!progressDialog.isShowing()){
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+                }
+                break;
+            case 0x111:
+                Log.i(TAG, "onEventMainThread: 开始AP配网");
+                handler.sendEmptyMessage(5);
+                break;
+        }
+    }
+
+    private void sendTcpCode(){
+        String de  = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_REGION,"");
+        String service = de.contains("hekreu.me") ? "site07" : "site06";
+        JSONObject json = new JSONObject();
+        try {
+            json.put("ssid", apSsid);
+            json.put("pwd", apPassword);
+            json.put("server", service);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.i(TAG, "initApConnect: " + json.toString());
+        TcpClientThread mTcpClient = new TcpClientThread(handler, "192.168.4.1", 80, json.toString());
+        mTcpClient.start();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -376,6 +365,42 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                 intent.putExtra("PWD", apPassword);
                 startActivity(intent);
                 finish();
+                break;
+        }
+    }
+
+    private void showTextMsg(int flag){
+        switch (flag){
+            case 6:
+                textView.setText(getResources().getString(R.string.local_fail_to_get_info));
+                break;
+            case 7:
+                textView.setText(getResources().getString(R.string.gateway_wifi_connect_but_not_connect_service));
+                break;
+            case -1:
+            case 5:
+                textView.setText(getResources().getString(R.string.failed_Esptouch_check_eq));
+                break;
+            case 0:
+                textView.setText(getResources().getString(R.string.failed_Esptouch_check_net));
+                break;
+            case 2:
+            case 4:
+                if(!TextUtils.isEmpty(failmsg))
+                    textView.setText(failmsg);
+                break;
+            case 8:
+                if(!TextUtils.isEmpty(failmsg))
+                    textView.setText(failmsg);
+                btn_retry.setText(getResources().getString(R.string.re_login));
+                break;
+            case 3:
+                if(TextUtils.isEmpty(already_deivce_name)){
+                    textView.setText(getResources().getString(R.string.device_already_bind));
+                }else{
+                    String text = String.format(getResources().getString(R.string.device_already_bind_to), ControllerWifi.getInstance().deviceTid,already_deivce_name);
+                    textView.setText(text);
+                }
                 break;
         }
     }
@@ -528,31 +553,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     public  void onEventMainThread(UdpConfigEvent event){
         result_udpbind = event.getFlag_result();
         Log.i(TAG,"result_udpbind:"+result_udpbind);
-    }
-
-
-    @Subscribe          //订阅事件Event
-    public void onEventMainThread(STEvent event){
-        if(event.getRefreshevent()==7){
-            progressDialog.setPressText(event.getProgressText());
-            if(!progressDialog.isShowing()){
-                progressDialog.setCancelable(false);
-                progressDialog.show();
-            }
-        }else if(event.getRefreshevent()==3){
-            if(progressDialog.isShowing()){
-                progressDialog.dismiss();
-                finish();
-            }
-        }else if(event.getRefreshevent()==6){
-            if(progressDialog.isShowing()){
-                progressDialog.dismiss();
-                finish();
-            }
-        }else if (event.getRefreshevent() == 0x111){
-            Log.i(TAG, "onEventMainThread: 开始AP配网");
-            handler.sendEmptyMessage(5);
-        }
     }
 
     private void bindSuccess(DeviceBean deviceBean){
@@ -716,7 +716,12 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     protected void onDestroy() {
         super.onDestroy();
         count_of_bind = 0;
+        result_udpbind = 0;
         EventBus.getDefault().unregister(this);
+        cancelTask();
+    }
+
+    private void cancelTask(){
         if(timer!=null){
             timer.cancel();
             timer = null;
@@ -724,7 +729,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         if (mEsptouchTask != null) {
             mEsptouchTask.interrupt();
         }
-        result_udpbind = 0;
         if(task3!=null){
             task3.cancel(true);
             task3 = null;

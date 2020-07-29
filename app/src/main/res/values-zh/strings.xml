@@ -272,7 +272,7 @@
    <string name="home_mode">在家</string>
    <string name="hour">小时</string>
    <string name="hour_and_min">时/分</string>
-   <string name="how_to_config">请确认网关蓝灯闪烁，\n然后点击下一步。</string>
+   <string name="how_to_config">请确认网关蓝灯快速闪烁(约每秒2次)</string>
    <string name="hum">湿度:</string>
    <string name="if_ok_click_next">若确认，点击进入\"下一步\"</string>
    <string name="Illegal_demolition">故障</string>
@@ -555,8 +555,10 @@
    <string name="choose_server">选择地区</string>
    <string name="restart_gateway">请重启网关后重新配网</string>
     <string name="ap_connect">AP配网</string>
-   <string name="ap_config_title">在网关一键配网模式下(快速闪烁蓝灯约每秒3次)的情况下,长按按钮三秒以上</string>
+   <string name="ap_config_title">在网关一键配网模式下(快速闪烁蓝灯约每秒2次)的情况下,长按按钮三秒以上</string>
    <string name="ap_title_msg">请确认网关蓝灯慢速闪烁(约每2秒一次),然后点击下一步</string>
    <string name="wait_connect_wifi">正在连接Wi-Fi，请稍后…</string>
     <string name="not_find_wifi">未搜索到“ESP”开头Wi-Fi</string>
+   <string name="connect_device_success">手机连接设备成功</string>
+   <string name="information_success">向设备传输信息成功</string>
 </resources>
