@@ -114,7 +114,6 @@
     <dimen name="stdetail_top_minwidth">70dp</dimen>
 
     <dimen name="config_button_padding">3dp</dimen>
-
     <dimen name="toolbar_height">50dp</dimen>
     <dimen name="toolbar_margintop">55dp</dimen>
     <dimen name="top_edit_width">230dp</dimen>
@@ -169,4 +168,6 @@
     <dimen name="LargestTextSize">21sp</dimen>
     <dimen name="funcview_height">240dp</dimen>
     <dimen name="SubTitleTextSize">8sp</dimen>
+
+    <dimen name="progress_height">400dp</dimen>
 </resources>

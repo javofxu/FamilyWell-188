@@ -91,7 +91,7 @@ public class LockDetailActivity extends AppCompatActivity implements MultiDirect
     private HistoryAdapter historyAdapter;
     private int page;
     private View empty;
-    private SystemTintManager tintManager;
+    private String newname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -179,7 +179,7 @@ public class LockDetailActivity extends AppCompatActivity implements MultiDirect
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         EditText text = (EditText) alertDialog.getContent().findViewById(R.id.tet);
-                                        String newname = text.getText().toString().trim();
+                                        newname = text.getText().toString().trim();
 
                                         if(!TextUtils.isEmpty(newname)){
 
@@ -188,8 +188,6 @@ public class LockDetailActivity extends AppCompatActivity implements MultiDirect
                                                 if(newname.getBytes(encode).length<=15){
                                                     if(!EmojiFilter.containsEmoji(newname)) {
                                                         alertDialog.setDismissFalse(true);
-                                                        eq_name.setText(newname);
-                                                        updateName(newname);
                                                         String ds = CoderUtils.getAscii(newname);
                                                         String dsCRC = ByteUtil.CRCmaker(ds);
                                                         SendCommand.Command = SendCommand.MODIFY_EQUIPMENT_NAME;
@@ -375,8 +373,7 @@ public class LockDetailActivity extends AppCompatActivity implements MultiDirect
         listView.setAdapter(historyAdapter);
         empty = findViewById(R.id.empty);
         listView.setEmptyView(empty);
-        tintManager = new SystemTintManager(this);// 创建状态栏的管理实例
-         doStatusShow(device.getState());
+        doStatusShow(device.getState());
     }
     private void updateName(String edit) {
         if( !device.getEquipmentName().equals(edit)){
@@ -385,6 +382,7 @@ public class LockDetailActivity extends AppCompatActivity implements MultiDirect
             ED = new EquipDAO(this);
             try {
                 ED.updateName(device);
+                eq_name.setText(edit);
             }catch (Exception e){
                 Toast.makeText(this, getResources().getString(R.string.name_is_repeat),Toast.LENGTH_SHORT).show();
             }
@@ -392,8 +390,6 @@ public class LockDetailActivity extends AppCompatActivity implements MultiDirect
     }
 
     private void doStatusShow(String aaaa) {
-
-
         try {
             String signal1 = aaaa.substring(0,2);
             String quantity1 = aaaa.substring(2,4);
@@ -503,6 +499,7 @@ public class LockDetailActivity extends AppCompatActivity implements MultiDirect
     public  void onEventMainThread(STEvent event){
         if(event.getEvent() == SendCommand.MODIFY_EQUIPMENT_NAME){
             SendCommand.clearCommnad();
+            updateName(newname);
             Toast.makeText(LockDetailActivity.this,getResources().getString(R.string.update_name_success),Toast.LENGTH_SHORT).show();
         }else if(event.getEvent() == SendCommand.DELETE_EQUIPMENT_DETAIL){
             SendCommand.clearCommnad();

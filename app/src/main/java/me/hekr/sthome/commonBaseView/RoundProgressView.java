@@ -57,30 +57,23 @@ public class RoundProgressView extends View {
 
     public RoundProgressView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        Screenwidth = UnitTools.getScreenWidth(context);
-        mProgressRoundColor = context.getResources().getColor(R.color.text_color_selected);
-        mTextColor = context.getResources().getColor(R.color.text_color_selected);
-        init();
+        init(context);
     }
 
     public RoundProgressView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Screenwidth = UnitTools.getScreenWidth(context);
-        mProgressRoundColor = context.getResources().getColor(R.color.text_color_selected);
-        mTextColor = context.getResources().getColor(R.color.text_color_selected);
-        init();
+        init(context);
     }
 
     public RoundProgressView(Context context) {
         super(context);
+        init(context);
+    }
+
+    public void init(Context context){
         Screenwidth = UnitTools.getScreenWidth(context);
         mProgressRoundColor = context.getResources().getColor(R.color.text_color_selected);
         mTextColor = context.getResources().getColor(R.color.text_color_selected);
-        init();
-    }
-
-    public void init(){
-
     }
 
     @SuppressLint("DrawAllocation")
@@ -111,7 +104,6 @@ public class RoundProgressView extends View {
             mPaint.setColor(mProgressRoundColor);
             canvas.drawArc(oval, -90, 360*mProgress/mMax, false, mPaint);
 
-
             halfWidth = mWidth/4;
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(mCenterRoundColor);
@@ -125,7 +117,6 @@ public class RoundProgressView extends View {
             oval = new RectF(new Rect(halfWidth+mPaddingX, halfWidth, halfWidth*3+mPaddingX, halfWidth*3));
             canvas.drawArc(oval, 0, 360, false, mPaint);
 
-
             halfWidth = mWidth/4;
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(mCenterErrRoundColor);
@@ -133,20 +124,14 @@ public class RoundProgressView extends View {
             canvas.drawArc(oval, 0, 360, false, mPaint);
         }
 
-
-
         if(!flag){
             mPaint.reset();
             mPaint.setTextSize(mPencentTextSize);
             mPaint.setColor(mTextColor);
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setTextAlign(Paint.Align.CENTER);
-            String number = (int)(mProgress*100/mMax)+"";
-            canvas.drawText(number, mWidth/2+mPaddingX, mHeight/2, mPaint);
-
-            float textWidth = mPaint.measureText(number);
-            mPaint.setTextSize(mPencentTextSize/2);
-            canvas.drawText("%", mWidth/2+mPaddingX+textWidth/2+15, mHeight/2-mPencentTextSize/8, mPaint);
+            String number = (int)(mProgress*100/mMax)+"%";
+            canvas.drawText(number, mWidth/2 + mPencentTextSize/8, mHeight/2, mPaint);
         }else{
             mPaint.reset();
             mPaint.setColor(colors[0]);
@@ -154,8 +139,6 @@ public class RoundProgressView extends View {
             canvas.drawLine(Screenwidth/2-50, mHeight/2-(mHeight-mWidth)/2-50, Screenwidth/2+50, mHeight/2+50-(mHeight-mWidth)/2, mPaint);
             canvas.drawLine(Screenwidth/2-50, mHeight/2-(mHeight-mWidth)/2+50, Screenwidth/2+50, mHeight/2-(mHeight-mWidth)/2-50, mPaint);
         }
-
-
     }
 
     public void setMax(float mMax) {

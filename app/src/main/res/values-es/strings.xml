@@ -272,7 +272,7 @@
    <string name="home_mode">inicio</string>
    <string name="hour">hora</string>
    <string name="hour_and_min">hora/min</string>
-   <string name="how_to_config">Por favor, asegúrese de que el conector de la luz azul de los flashes y luego presione "siguiente paso".</string>
+   <string name="how_to_config">Por favor, confirmen la puerta, las luces azules parpadean rápidamente.</string>
    <string name="hum">humedad:</string>
    <string name="if_ok_click_next">si esta cofirmado, pulse el \"proximo paso"\</string>
    <string name="Illegal_demolition">Acción ilegal</string>
@@ -554,4 +554,11 @@
    <string name="europea_point">Europa</string>
    <string name="choose_server">Selección de área</string>
    <string name="restart_gateway">Reinicia el portal y Redimensiona la red.</string>
+    <string name="ap_connect">AP Connect</string>
+    <string name="ap_config_title">Press and hold the button for more than three seconds in the gateway one button distribution mode (fast flashing blue light about 2 times per second)</string>
+   <string name="ap_title_msg">Please confirm that the gateway blue light flashes slowly (about once every 2 seconds) and then click next</string>
+    <string name="wait_connect_wifi">Connecting Wi Fi, please wait...</string>
+    <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
+    <string name="connect_device_success">Mobile phone connected to device successfully</string>
+   <string name="information_success">Successfully transferred information to device</string>
 </resources>

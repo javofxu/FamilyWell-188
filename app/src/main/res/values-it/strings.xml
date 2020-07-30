@@ -272,7 +272,7 @@
    <string name="home_mode">Home</string>
    <string name="hour">ora</string>
    <string name="hour_and_min">ore/min</string>
-   <string name="how_to_config">Assicurarsi che la luce blu del connettore lampeggi e poi premere "passaggio successivo".</string>
+   <string name="how_to_config">Si prega di confermare che la luce blu gateway lampeggia rapidamente (circa due volte al secondo)</string>
    <string name="hum">Umidità:</string>
    <string name="if_ok_click_next">Se confermato clicca \"prossimo passaggio\"</string>
    <string name="Illegal_demolition">Rimozione non permessa</string>
@@ -554,4 +554,11 @@
    <string name="europea_point">Europa</string>
    <string name="choose_server">Seleziona regione</string>
    <string name="restart_gateway">Si prega di riavviare il gateway e ridistribuire la rete</string>
+    <string name="ap_connect">AP Connect</string>
+    <string name="ap_config_title">Press and hold the button for more than three seconds in the gateway one button distribution mode (fast flashing blue light about 2 times per second)</string>
+   <string name="ap_title_msg">Please confirm that the gateway blue light flashes slowly (about once every 2 seconds) and then click next</string>
+    <string name="wait_connect_wifi">Connecting Wi Fi, please wait…</string>
+    <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
+    <string name="connect_device_success">Mobile phone connected to device successfully</string>
+   <string name="information_success">Successfully transferred information to device</string>
 </resources>
