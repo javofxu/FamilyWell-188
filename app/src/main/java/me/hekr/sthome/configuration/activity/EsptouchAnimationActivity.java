@@ -96,7 +96,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     private String choosetoDeviceid;
     private String gatewaytype;
     private int result_udpbind = -1;
-    private ProgressDialog progressDialog;
     private int count_of_bind = 0;
     private TextView fail_reason_view;
     private DecimalFormat mFormat;
@@ -131,7 +130,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         fail_reason_view.setText(getClickableSpan());
         fail_reason_view.setMovementMethod(LinkMovementMethod.getInstance());
         fail_reason_view.setVisibility(View.GONE);
-        progressDialog = new ProgressDialog(this);
         gatewaytype = getIntent().getStringExtra("gatewaytype");
         sysmodelDAO = new SysmodelDAO(this);
         sceneDAO = new SceneDAO(this);
@@ -328,14 +326,14 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         EspWifiAdminSimple mWifiAdmin = new EspWifiAdminSimple(this);
         String currentWifi = mWifiAdmin.getWifiConnectedSsid();
         if(!apSsid.equals(currentWifi)){
-            ECAlertDialog  ecAlertDialog =  ECAlertDialog.buildAlert(EsptouchAnimationActivity.this,  String.format(getResources().getString(R.string.current_ssid_is_not_correct),apSsid) , new DialogInterface.OnClickListener() {
+            ECAlertDialog  ecAlertDialog =  ECAlertDialog.buildAlert(EsptouchAnimationActivity.this, String.format(getResources().getString(R.string.current_ssid_is_not_correct), apSsid), getResources().getString(R.string.cancel), getResources().getString(R.string.goto_set_wifi), null, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Intent intent = new Intent();
-                    if(android.os.Build.VERSION.SDK_INT >= 11){
+                    if (android.os.Build.VERSION.SDK_INT >= 11) {
                         //Honeycomb
                         intent.setClassName("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity");
-                    }else{
+                    } else {
                         //other versions
                         intent.setClassName("com.android.settings"
                                 , "com.android.settings.wifi.WifiSettings");
@@ -347,28 +345,28 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         }
     }
 
-    @Subscribe          //订阅事件Event
-    public void onEventMainThread(STEvent event){
-        switch (event.getRefreshevent()){
-            case 3:
-            case 6:
-                if(progressDialog.isShowing()){
-                    progressDialog.dismiss();
-                    finish();
+
+    //发送时间信息
+    private void sendTimeInfo(){
+        new Thread(){
+            @Override
+            public void run() {
+                sendOtherData.timeCheck();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                break;
-            case 7:
-                progressDialog.setPressText(event.getProgressText());
-                if(!progressDialog.isShowing()){
-                    progressDialog.setCancelable(false);
-                    progressDialog.show();
+                sendOtherData.timeZoneCheck(DateUtil.getCurrentTimeZone());
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                break;
-            case 0x111:
-                Log.i(TAG, "onEventMainThread: 开始AP配网");
+                Log.i(TAG, "开始绑定用户账号");
                 handler.sendEmptyMessage(5);
-                break;
-        }
+            }
+        }.start();
     }
 
     private void sendTcpCode(){
@@ -604,6 +602,8 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             }else if(result_udpbind == 0){
                 flag = 6;
                 handler.sendEmptyMessage(2);
+            }else if(result_udpbind ==2){
+                sendTimeInfo();
             }
         }
     }

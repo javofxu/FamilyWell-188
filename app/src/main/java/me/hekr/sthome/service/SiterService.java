@@ -970,9 +970,9 @@ public class SiterService extends Service{
                            Log.i(TAG, "+++++++++++++++++++++++++++++++++++++++++++++++ success 6");
                            ControllerWifi.getInstance().wifiTag = true;
                            if (isApConnect){
-                               STEvent stEvent =new STEvent();
-                               stEvent.setRefreshevent(0x111);
-                               EventBus.getDefault().post(stEvent);
+                               UdpConfigEvent udpConfigEvent = new UdpConfigEvent();
+                               udpConfigEvent.setFlag_result(2);
+                               EventBus.getDefault().post(udpConfigEvent);
                                isApConnect = false;
                            }
                        }
