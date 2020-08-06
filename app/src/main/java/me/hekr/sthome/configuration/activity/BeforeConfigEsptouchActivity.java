@@ -8,8 +8,11 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.wifi.ScanResult;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +26,7 @@ import me.hekr.sthome.common.TopbarSuperActivity;
 import me.hekr.sthome.commonBaseView.ECAlertDialog;
 import me.hekr.sthome.commonBaseView.loadingView.ZLoadingView;
 import me.hekr.sthome.commonBaseView.loadingView.Z_TYPE;
+import me.hekr.sthome.push.logger.Log;
 import me.hekr.sthome.tools.PermissionUtils;
 import me.hekr.sthome.tools.UnitTools;
 
@@ -30,6 +34,7 @@ import me.hekr.sthome.tools.UnitTools;
  * Created by gc-0001 on 2017/2/10.
  */
 public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements View.OnClickListener{
+    private final String TAG = BeforeConfigEsptouchActivity.class.getName();
     private AnimationDrawable ad;
     private static final int REQUEST_LOCATION=1001;
     private static final int REQUEST_LOCATION_SERVICE=1002;
@@ -39,6 +44,7 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
     private String mApSSId;
     private String mApPwd;
     private ZLoadingView zLoadingView;
+    private ECAlertDialog ecAlertDialog;
 
     @Override
     protected void onCreateInit() {
@@ -148,19 +154,50 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
         }
     }
 
-    private void configApWifi(ScanResult wifi){
-        String SSId = wifi.SSID;
-        boolean isConnect = mWifiAdmin.addNetwork(SSId, null, 0);
-        if (isConnect) {
-            Intent intent = new Intent(this, EsptouchAnimationActivity.class);
-            intent.putExtra("isApConnect", true);
-            intent.putExtra("ssid", mApSSId);
-            intent.putExtra("psw", mApPwd);
-            startActivity(intent);
-            finish();
-        }else {
-            showFinal(R.string.wait_connect_wifi);
+    //检测当前WIFI是否是ESP_带头的,8秒内四次检测到才算是确定已经设备AP信号
+    private int mCountCheckSSID= 0;
+    private int mCountTotalSSID= 0;
+    private Timer timerCheckSSID;
+    private class CheckSSIDTask extends TimerTask{
+        @Override
+        public synchronized void run() {
+            String wifi = mWifiAdmin.getWifiConnectedSsid();
+            if (!TextUtils.isEmpty(wifi)&&wifi.contains("ESP_")) {
+                mCountTotalSSID++;
+                Log.i(TAG,"检测到当前WiFi为ESP_次数："+mCountTotalSSID);
+                if(mCountTotalSSID>=4){
+                    timerCheckSSID.cancel();
+                    timerCheckSSID = null;
+                    mCountCheckSSID = 0;
+                    mCountTotalSSID = 0;
+                    gotoApConfig();
+                }
+
+            }else {
+                mCountCheckSSID++;
+                if (mCountCheckSSID>=8){
+                    timerCheckSSID.cancel();
+                    timerCheckSSID = null;
+                    mCountCheckSSID = 0;
+                    showSetWifiDialog();
+                }
+            }
         }
+    }
+
+    private void configApWifi(ScanResult wifi){
+
+            String SSId = wifi.SSID;
+            boolean isConnect = mWifiAdmin.addNetwork(SSId, null, 0);
+            if (isConnect) {
+                timerCheckSSID = new Timer();
+                CheckSSIDTask mTask = new CheckSSIDTask();
+                timerCheckSSID.schedule(mTask, 0, 1000);
+            }else {
+                showFinal(R.string.wait_connect_wifi);
+            }
+
+
     }
 
     private void showFinal(final int str){
@@ -168,7 +205,55 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
             @Override
             public void run() {
                 zLoadingView.setVisibility(View.GONE);
-                showToast(getString(str));
+                ecAlertDialog =  ECAlertDialog.buildAlert(BeforeConfigEsptouchActivity.this, str, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                ecAlertDialog.show();
+            }
+        });
+    }
+
+    private void showSetWifiDialog(){
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                zLoadingView.setVisibility(View.GONE);
+//               ecAlertDialog = ECAlertDialog.buildAlert(BeforeConfigEsptouchActivity.this, R.string.not_find_wifi, R.string.cancel, R.string.goto_set, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                    }
+//                }, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                    }
+//                });
+//                ecAlertDialog.show();
+                Intent intent = new Intent(BeforeConfigEsptouchActivity.this, GuideToSetEspWifiActivity.class);
+                intent.putExtra("isApConnect", true);
+                intent.putExtra("ssid", mApSSId);
+                intent.putExtra("psw", mApPwd);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    private void gotoApConfig(){
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(BeforeConfigEsptouchActivity.this, EsptouchAnimationActivity.class);
+                intent.putExtra("isApConnect", true);
+                intent.putExtra("ssid", mApSSId);
+                intent.putExtra("psw", mApPwd);
+                startActivity(intent);
+                finish();
             }
         });
     }

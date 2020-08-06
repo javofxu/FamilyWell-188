@@ -950,11 +950,19 @@ public class SiterService extends Service{
                    Log.i(TAG, "onEventMainThread: getBindKey");
                    isApConnect = true;
                    initBroadcastReceiveUdp();
-                   SeartchWifiData.MyTaskCallback mTaskCallback = new SeartchWifiData.MyTaskCallback() {
+                   SearchApWifiData.MyTaskCallback mTaskCallback = new SearchApWifiData.MyTaskCallback() {
                        @Override
                        public void operationFailed() {
                            Log.i(TAG, "+++++++++++++++++++++++++++++++++++++++++++++++ failed");
                            udpRecData.close();
+                           UdpConfigEvent udpConfigEvent = new UdpConfigEvent();
+                           if(TextUtils.isEmpty(ControllerWifi.getInstance().deviceTid)){
+                               udpConfigEvent.setFlag_result(0);
+                           }else{
+                               udpConfigEvent.setFlag_result(1);
+                           }
+
+                           EventBus.getDefault().post(udpConfigEvent);
                        }
 
                        @Override
@@ -974,7 +982,7 @@ public class SiterService extends Service{
                            searchUdp();
                        }
                    };
-                   SeartchWifiData mSearch = new SeartchWifiData(mTaskCallback);
+                   SearchApWifiData mSearch = new SearchApWifiData(mTaskCallback);
                    mSearch.startReSend();
                    break;
            }

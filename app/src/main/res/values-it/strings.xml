@@ -561,4 +561,8 @@
     <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
     <string name="connect_device_success">Mobile phone connected to device successfully</string>
    <string name="information_success">Successfully transferred information to device</string>
+   <string name="hand_connect_wifi">Connetti il tuo telefono Wi-Fi a ‘ESP_Xxx’e rientro in app</string>
+   <string name="goto_set_wifi">Installa la connessione Wi-Fi</string>
+   <string name="device_long_time_ap">Il dispositivo è stato in modalità di distribuzione AP da molto tempo. Si prega di riavviare il dispositivo e provare la distribuzione di nuovo</string>
+   <string name="current_ssid_is_not_correct">Il WiFi corrente non è %1$s, si prega di impostare manualmente e tornare all ’app</string>
 </resources>

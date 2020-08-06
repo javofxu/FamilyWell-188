@@ -333,6 +333,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
+            android:name=".configuration.activity.GuideToSetEspWifiActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name=".model.TimerListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />

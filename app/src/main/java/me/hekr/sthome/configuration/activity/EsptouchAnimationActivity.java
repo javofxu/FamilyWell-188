@@ -1,6 +1,7 @@
 package me.hekr.sthome.configuration.activity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -36,6 +37,7 @@ import me.hekr.sthome.common.CCPAppManager;
 import me.hekr.sthome.common.DateUtil;
 import me.hekr.sthome.common.TopbarSuperActivity;
 import me.hekr.sthome.commonBaseView.CustomStatusView;
+import me.hekr.sthome.commonBaseView.ECAlertDialog;
 import me.hekr.sthome.commonBaseView.ProgressDialog;
 import me.hekr.sthome.configuration.EsptouchTask;
 import me.hekr.sthome.configuration.IEsptouchListener;
@@ -159,11 +161,16 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             task3.execute(apSsid, apBssid, apPassword, isSsidHiddenStr, taskResultCountStr);
         }else {
             textView.setText(getString(R.string.wait_connect_wifi));
+            sendTcpCode();
         }
     }
 
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
+
+
+
+
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
@@ -210,6 +217,21 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                     break;
                 case 5:
                     connect();
+                    break;
+                case 0x111:
+                    flag = 111;
+                    mProgress.setVisibility(View.GONE);
+                    roundProgressView.loadFailure();
+                    Now_speed = SPEED1;
+                    cancelTask();
+                    btn_retry.setVisibility(View.VISIBLE);
+                    btn_AP.setVisibility(View.VISIBLE);
+                    fail_reason_view.setVisibility(View.VISIBLE);
+                    LogUtil.i(TAG,"flag_标志为:"+flag);
+                    showTextMsg(flag);
+                    break;
+                case 0x112:
+                    checkNetWorkWifi();
                     break;
             }
             return false;
@@ -271,7 +293,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             boolean isConnect = mWifiAdmin.addNetwork(apSsid, apPassword, 2);
             if (isConnect){
                 Log.i(TAG, "handleMessage: 连接成功");
-                textView.setText(R.string.esptouch_is_configuring);
                 onSearchBindKey();
             }
         } catch (JSONException e) {
@@ -285,7 +306,13 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             public void run() {
                 super.run();
                 try {
-                    Thread.sleep(30000);
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x112);
+                try {
+                    Thread.sleep(20000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -296,18 +323,32 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         }.start();
     }
 
+    //检查是否是配置的WIFI，不是的话弹框提示设置
+    private void checkNetWorkWifi(){
+        EspWifiAdminSimple mWifiAdmin = new EspWifiAdminSimple(this);
+        String currentWifi = mWifiAdmin.getWifiConnectedSsid();
+        if(!apSsid.equals(currentWifi)){
+            ECAlertDialog  ecAlertDialog =  ECAlertDialog.buildAlert(EsptouchAnimationActivity.this,  String.format(getResources().getString(R.string.current_ssid_is_not_correct),apSsid) , new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent = new Intent();
+                    if(android.os.Build.VERSION.SDK_INT >= 11){
+                        //Honeycomb
+                        intent.setClassName("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity");
+                    }else{
+                        //other versions
+                        intent.setClassName("com.android.settings"
+                                , "com.android.settings.wifi.WifiSettings");
+                    }
+                    startActivity(intent);
+                }
+            });
+            ecAlertDialog.show();
+        }
+    }
 
     @Subscribe          //订阅事件Event
     public void onEventMainThread(STEvent event){
-        if (event.getServiceevent() == 7 && event.getNettype() == 4){
-            if (isApConnect){
-                String SSId = event.getSsid();
-                if (SSId!=null && SSId.contains("ESP")){
-                    textView.setText(R.string.connect_device_success);
-                    sendTcpCode();
-                }
-            }
-        }
         switch (event.getRefreshevent()){
             case 3:
             case 6:
@@ -401,6 +442,9 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                     String text = String.format(getResources().getString(R.string.device_already_bind_to), ControllerWifi.getInstance().deviceTid,already_deivce_name);
                     textView.setText(text);
                 }
+                break;
+            case 111:
+                textView.setText(getResources().getString(R.string.device_long_time_ap));
                 break;
         }
     }
@@ -553,6 +597,15 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     public  void onEventMainThread(UdpConfigEvent event){
         result_udpbind = event.getFlag_result();
         Log.i(TAG,"result_udpbind:"+result_udpbind);
+        if(isApConnect){
+            if(result_udpbind==1){
+                flag = 7;
+                handler.sendEmptyMessage(2);
+            }else if(result_udpbind == 0){
+                flag = 6;
+                handler.sendEmptyMessage(2);
+            }
+        }
     }
 
     private void bindSuccess(DeviceBean deviceBean){

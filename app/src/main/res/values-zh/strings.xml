@@ -561,4 +561,8 @@
     <string name="not_find_wifi">未搜索到“ESP”开头Wi-Fi</string>
    <string name="connect_device_success">手机连接设备成功</string>
    <string name="information_success">向设备传输信息成功</string>
+   <string name="hand_connect_wifi">将手机WIFI连接到\'ESP_XXXX\'然后返回APP</string>
+   <string name="goto_set_wifi">设置Wi-Fi</string>
+   <string name="device_long_time_ap">设备长时间处于AP配网模式，请重启设备后重试配网</string>
+   <string name="current_ssid_is_not_correct">当前WIFI不是%1$s,请手动设置后返回APP</string>
 </resources>

@@ -75,7 +75,11 @@ public class TcpClientThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
             Log.i(TAG, "error: " + e.toString());
-        } finally {
+        }catch (StringIndexOutOfBoundsException e2){
+            e2.printStackTrace();
+            sendMsg(0x111, "");
+        }
+        finally {
             if (socket != null) {
                 try {
                     socket.close();
