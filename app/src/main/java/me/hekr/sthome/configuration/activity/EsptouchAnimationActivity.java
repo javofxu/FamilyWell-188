@@ -158,6 +158,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             task3 = new EspTouchAsyncTask();
             task3.execute(apSsid, apBssid, apPassword, isSsidHiddenStr, taskResultCountStr);
         }else {
+            ControllerWifi.getInstance().ap_config_ing = true;
             textView.setText(getString(R.string.wait_connect_wifi));
             sendTcpCode();
         }
@@ -770,6 +771,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         super.onDestroy();
         count_of_bind = 0;
         result_udpbind = 0;
+        ControllerWifi.getInstance().ap_config_ing = false;
         EventBus.getDefault().unregister(this);
         cancelTask();
     }

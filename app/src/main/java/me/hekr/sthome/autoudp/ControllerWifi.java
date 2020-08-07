@@ -16,6 +16,7 @@ public class ControllerWifi {
     public DatagramSocket ds;
     public boolean choose_gateway;
     public boolean switch_server_ok;
+    public boolean ap_config_ing;
 
     private static ControllerWifi instance = null;
     private ControllerWifi(){
