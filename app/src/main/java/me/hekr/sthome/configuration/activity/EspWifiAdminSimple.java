@@ -134,6 +134,16 @@ public class EspWifiAdminSimple {
 
 	// 添加一个网络并连接
 	boolean addNetwork(String SSId, String password, int type) {
+		String currentWifi = getWifiConnectedSsid();
+		List<WifiConfiguration> mWifiConfigList = wifiManager.getConfiguredNetworks();
+		for (WifiConfiguration c:mWifiConfigList){
+			if (c.SSID.equals("\"" + currentWifi + "\"")  /*&&  existingConfig.preSharedKey.equals("\""  +  password  +  "\"")*/) {
+				wifiManager.disableNetwork(c.networkId);
+
+				break;
+			}
+		}
+
 		WifiConfiguration wcg = configWifiInfo(SSId, password, type);
 		int netId = wcg.networkId;
 		if (netId == -1){

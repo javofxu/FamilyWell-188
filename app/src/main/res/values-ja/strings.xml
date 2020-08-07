@@ -561,4 +561,8 @@
     <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
     <string name="connect_device_success">Mobile phone connected to device successfully</string>
    <string name="information_success">Successfully transferred information to device</string>
+   <string name="hand_connect_wifi">携帯電話のWi-Fiを‘ESP_XXX’は次にアプリに戻ります。</string>
+   <string name="goto_set_wifi">Wi-Fiの設定</string>
+   <string name="device_long_time_ap">設備は長い時間APネットワークモードにあります。設備を再起動してからネットワークを再構築してください</string>
+   <string name="current_ssid_is_not_correct">現在WIFIは%1$sではありません。手動で設定してAPPに戻ってください。</string>
 </resources>

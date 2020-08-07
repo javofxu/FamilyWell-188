@@ -561,4 +561,8 @@
     <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
     <string name="connect_device_success">Mobile phone connected to device successfully</string>
    <string name="information_success">Successfully transferred information to device</string>
+   <string name="hand_connect_wifi">Poveži svoj Wi-Fi s ’ESP_XXX‘ in se vrni na aplikacijo</string>
+   <string name="goto_set_wifi">Vzpostavi Wi Fi</string>
+   <string name="device_long_time_ap">Naprava je že dolgo v načinu distribucije AP. Prosim, ponovno zaženite napravo in poskusite distribucijo.</string>
+   <string name="current_ssid_is_not_correct">Trenutni WiFi ni %1$s, prosim nastavite ročno in se vrnite na aplikacijo</string>
 </resources>
