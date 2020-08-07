@@ -893,7 +893,7 @@ public class SiterService extends Service{
                                if(udpRecData!=null) udpRecData.close();
                                break;
                            case 4:
-                               if((!newssid.equals(now_ssid)&&!TextUtils.isEmpty(now_ssid)) || (now_nettype<4&&!TextUtils.isEmpty(now_ssid))){
+                               if(ControllerWifi.getInstance().ap_config_ing==false&&((!newssid.equals(now_ssid)&&!TextUtils.isEmpty(now_ssid)) || (now_nettype<4&&!TextUtils.isEmpty(now_ssid)))){
                                    initBroadcastReceiveUdp();
                                    SeartchWifiData.MyTaskCallback taskCallback3 = new SeartchWifiData.MyTaskCallback() {
                                        @Override
