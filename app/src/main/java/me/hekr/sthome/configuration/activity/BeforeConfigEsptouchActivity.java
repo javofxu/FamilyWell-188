@@ -45,6 +45,7 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
     private String mApPwd;
     private ZLoadingView zLoadingView;
     private ECAlertDialog ecAlertDialog;
+    private Button next_btn;
 
     @Override
     protected void onCreateInit() {
@@ -58,7 +59,7 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
     }
 
     private void initView(){
-        Button next_btn = findViewById(R.id.next);
+        next_btn = findViewById(R.id.next);
         ImageView image = findViewById(R.id.imageView1);
         image.setBackgroundResource(R.drawable.config_tishi);
         zLoadingView = findViewById(R.id.loadingView);
@@ -121,6 +122,7 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
             TimerTask mTask = new MyTask();
             zLoadingView.setLoadingBuilder(Z_TYPE.SINGLE_CIRCLE);
             zLoadingView.setVisibility(View.VISIBLE);
+            next_btn.setVisibility(View.GONE);
             mTimer.schedule(mTask, 0, 1000);
         }else {
             startActivity(new Intent(this, EsptouchDemoActivity.class));
@@ -205,6 +207,7 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
             @Override
             public void run() {
                 zLoadingView.setVisibility(View.GONE);
+                next_btn.setVisibility(View.VISIBLE);
                 ecAlertDialog =  ECAlertDialog.buildAlert(BeforeConfigEsptouchActivity.this, str, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -221,18 +224,7 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
             @Override
             public void run() {
                 zLoadingView.setVisibility(View.GONE);
-//               ecAlertDialog = ECAlertDialog.buildAlert(BeforeConfigEsptouchActivity.this, R.string.not_find_wifi, R.string.cancel, R.string.goto_set, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                    }
-//                }, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                    }
-//                });
-//                ecAlertDialog.show();
+                next_btn.setVisibility(View.VISIBLE);
                 Intent intent = new Intent(BeforeConfigEsptouchActivity.this, GuideToSetEspWifiActivity.class);
                 intent.putExtra("isApConnect", true);
                 intent.putExtra("ssid", mApSSId);
@@ -305,6 +297,10 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
         if (mTimer!=null){
             mTimer.cancel();
             mTimer = null;
+        }
+        if(timerCheckSSID!=null){
+            timerCheckSSID.cancel();
+            timerCheckSSID = null;
         }
     }
 }
