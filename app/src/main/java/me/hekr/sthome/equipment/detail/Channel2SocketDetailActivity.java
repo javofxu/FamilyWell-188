@@ -61,7 +61,7 @@ public class Channel2SocketDetailActivity extends AppCompatActivity {
     private ImageView operation_img;
     private ImageView operation_img2;
     private ECAlertDialog alertDialog;
-
+    private String newname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,13 +126,11 @@ public class Channel2SocketDetailActivity extends AppCompatActivity {
         edt_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 ECListDialog ecListDialog = new ECListDialog(Channel2SocketDetailActivity.this,getResources().getStringArray(R.array.DeivceOperation));
                 ecListDialog.setTitle(getResources().getString(R.string.manage));
                 ecListDialog.setOnDialogItemClickListener(new ECListDialog.OnDialogItemClickListener() {
                     @Override
                     public void onDialogItemClick(Dialog d, int position) {
-
                         switch (position){
                             case 0:
                                 SendCommand.Command = SendCommand.REPLACE_EQUIPMENT;
@@ -169,17 +167,13 @@ public class Channel2SocketDetailActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         EditText text = (EditText) alertDialog.getContent().findViewById(R.id.tet);
-                                        String newname = text.getText().toString().trim();
-
+                                        newname = text.getText().toString().trim();
                                         if(!TextUtils.isEmpty(newname)){
-
                                             try {
                                                 String encode = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_ENCODE,"GBK");
                                                 if(newname.getBytes(encode).length<=15){
                                                     if(!EmojiFilter.containsEmoji(newname)) {
                                                         alertDialog.setDismissFalse(true);
-                                                        eq_name.setText(newname);
-                                                        updateName(newname);
                                                         String ds = CoderUtils.getAscii(newname);
                                                         String dsCRC = ByteUtil.CRCmaker(ds);
                                                         SendCommand.Command = SendCommand.MODIFY_EQUIPMENT_NAME;
@@ -225,10 +219,8 @@ public class Channel2SocketDetailActivity extends AppCompatActivity {
         });
         root       = (LinearLayout)findViewById(R.id.root);
         //沉浸式设置支持API19
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            int top = UnitTools.getStatusBarHeight(this);
-            root.setPadding(0,top,0,0);
-        }
+        int top = UnitTools.getStatusBarHeight(this);
+        root.setPadding(0,top,0,0);
         operation_img = (ImageView)findViewById(R.id.operation);
         operation_img2 = (ImageView)findViewById(R.id.operation2);
         showStatus = (TextView) findViewById(R.id.showStatus);
@@ -250,13 +242,14 @@ public class Channel2SocketDetailActivity extends AppCompatActivity {
         }
         doStatusShow(device.getState());
     }
+
     private void updateName(String edit) {
         if( !device.getEquipmentName().equals(edit)){
-
             device.setEquipmentName(edit);
             ED = new EquipDAO(this);
             try {
                 ED.updateName(device);
+                eq_name.setText(edit);
             }catch (Exception e){
                 Toast.makeText(this,getResources().getString(R.string.name_is_repeat),Toast.LENGTH_SHORT).show();
             }
@@ -397,6 +390,7 @@ public class Channel2SocketDetailActivity extends AppCompatActivity {
     public  void onEventMainThread(STEvent event){
         if(event.getEvent() == SendCommand.MODIFY_EQUIPMENT_NAME){
             SendCommand.clearCommnad();
+            updateName(newname);
             Toast.makeText(Channel2SocketDetailActivity.this,getResources().getString(R.string.update_name_success),Toast.LENGTH_SHORT).show();
         }else if(event.getEvent() == SendCommand.DELETE_EQUIPMENT_DETAIL){
             SendCommand.clearCommnad();

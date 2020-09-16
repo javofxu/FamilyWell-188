@@ -68,8 +68,8 @@ public class TempControlEditTimerActivity extends TopbarSuperActivity {
     private SceneDAO sceneDAO;
     private SysmodelDAO sysmodelDAO;
     private SendSceneData sendSceneData;
-    private SendSceneGroupData sendSceneGroupData;
     private ECAlertDialog ecAlertDialog;
+
     @Override
     protected void onCreateInit() {
         initData();
@@ -88,17 +88,7 @@ public class TempControlEditTimerActivity extends TopbarSuperActivity {
 
             }
         };
-        sendSceneGroupData = new SendSceneGroupData(this) {
-            @Override
-            protected void sendEquipmentDataFailed() {
 
-            }
-
-            @Override
-            protected void sendEquipmentDataSuccess() {
-
-            }
-        };
         EventBus.getDefault().register(this);
         sceneDAO = new SceneDAO(this);
         eqid = getIntent().getStringExtra("eqid");

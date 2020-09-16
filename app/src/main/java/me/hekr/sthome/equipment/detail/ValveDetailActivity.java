@@ -65,6 +65,7 @@ public class ValveDetailActivity extends AppCompatActivity {
     private ImageView back_img;
     private TextView  edt_txt,eq_name;
     private ECAlertDialog alertDialog;
+    private String newname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -169,7 +170,7 @@ public class ValveDetailActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         EditText text = (EditText) alertDialog.getContent().findViewById(R.id.tet);
-                                        String newname = text.getText().toString().trim();
+                                        newname = text.getText().toString().trim();
 
                                         if(!TextUtils.isEmpty(newname)){
 
@@ -178,8 +179,6 @@ public class ValveDetailActivity extends AppCompatActivity {
                                                 if(newname.getBytes(encode).length<=15){
                                                     if(!EmojiFilter.containsEmoji(newname)) {
                                                         alertDialog.setDismissFalse(true);
-                                                        eq_name.setText(newname);
-                                                        updateName(newname);
                                                         String ds = CoderUtils.getAscii(newname);
                                                         String dsCRC = ByteUtil.CRCmaker(ds);
                                                         SendCommand.Command = SendCommand.MODIFY_EQUIPMENT_NAME;
@@ -255,11 +254,11 @@ public class ValveDetailActivity extends AppCompatActivity {
     }
     private void updateName(String edit) {
         if( !device.getEquipmentName().equals(edit)){
-
             device.setEquipmentName(edit);
             ED = new EquipDAO(this);
             try {
                 ED.updateName(device);
+                eq_name.setText(edit);
             }catch (Exception e){
                 Toast.makeText(this,getResources().getString(R.string.name_is_repeat),Toast.LENGTH_SHORT).show();
             }
@@ -346,6 +345,7 @@ public class ValveDetailActivity extends AppCompatActivity {
     public  void onEventMainThread(STEvent event){
         if(event.getEvent() == SendCommand.MODIFY_EQUIPMENT_NAME){
             SendCommand.clearCommnad();
+            updateName(newname);
             Toast.makeText(ValveDetailActivity.this,getResources().getString(R.string.update_name_success),Toast.LENGTH_SHORT).show();
         }else if(event.getEvent() == SendCommand.DELETE_EQUIPMENT_DETAIL){
             SendCommand.clearCommnad();

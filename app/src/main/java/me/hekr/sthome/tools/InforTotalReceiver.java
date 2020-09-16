@@ -1,16 +1,11 @@
 package me.hekr.sthome.tools;
 
-import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.Build;
-import android.os.Vibrator;
-import android.text.TextUtils;
 
 import com.litesuits.android.log.Log;
 
@@ -18,29 +13,21 @@ import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.hekr.sthome.DragFolderwidget.ApplicationInfo;
+import me.hekr.sthome.R;
+import me.hekr.sthome.autoudp.ControllerWifi;
 import me.hekr.sthome.debugWindow.ViewWindow;
-import me.hekr.sthome.equipment.AboutActivity;
 import me.hekr.sthome.event.AlertEvent;
 import me.hekr.sthome.event.DataSwitchRefreshEvent;
 import me.hekr.sthome.event.STEvent;
 import me.hekr.sthome.event.TokenTimeoutEvent;
-import me.hekr.sthome.MyApplication;
-import me.hekr.sthome.R;
-import me.hekr.sthome.autoudp.ControllerWifi;
-import me.hekr.sthome.commonBaseView.ECAlertDialog;
 import me.hekr.sthome.http.SiterConstantsUtil;
 import me.hekr.sthome.model.ResolveData;
 import me.hekr.sthome.model.modelbean.DataSwitchSubBean;
-import me.hekr.sthome.model.modelbean.EquipmentBean;
-import me.hekr.sthome.model.modelbean.MyDeviceBean;
 import me.hekr.sthome.model.modeldb.DeviceDAO;
 import me.hekr.sthome.model.modeldb.EquipDAO;
-import me.hekr.sthome.model.modeldb.SceneDAO;
 import me.hekr.sthome.service.NetWorkUtils;
 import me.hekr.sthome.service.SiterService;
 
@@ -65,8 +52,6 @@ public abstract class InforTotalReceiver extends BroadcastReceiver {
         if(intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)){
             int d = NetWorkUtils.getNetWorkType(context);
             Log.i(TAG,"网络环境切换成:"+d);
-
-
             STEvent stEvent = new STEvent();
             stEvent.setServiceevent(7);
             stEvent.setNettype(d);
@@ -81,26 +66,21 @@ public abstract class InforTotalReceiver extends BroadcastReceiver {
         }
         else if(intent.getAction().equals(SiterConstantsUtil.ActionStrUtil.ACTION_WS_DATA_RECEIVE)){
             msg =intent.getStringExtra(SiterConstantsUtil.HEKR_WS_PAYLOAD);
-
             try {
                 json = new JSONObject(msg);
                 String action  = json.getString("action");
                 params = json.getJSONObject("params");
                 String devTids = params.getString("devTid");
                 //若是内网则不需要解析当前网关收到的外网数据包，减轻数据接收负担
-                if(ControllerWifi.getInstance().wifiTag && ConnectionPojo.getInstance().deviceTid.equals(devTids)
-                        && !"devLogin".equals(action) && !"devLogout".equals(action)){
+                if(ControllerWifi.getInstance().wifiTag && ConnectionPojo.getInstance().deviceTid.equals(devTids) && !"devLogin".equals(action)){
                     return;
                 }
-
                 if("devSend".equals(json.getString("action"))){
                     ViewWindow.showView(context,msg,R.color.black);
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }else if(intent.getAction().equals(SiterService.UDP_BROADCAST)){
 
             msg =intent.getStringExtra("message");

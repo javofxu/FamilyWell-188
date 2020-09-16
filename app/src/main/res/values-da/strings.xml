@@ -551,4 +551,15 @@
    <string name="success_download">Last suksess</string>
    <string name="network_hz">Apparatet understøtter kun 2.4GHz Wi Fi.</string>
    <string name="restart_gateway">Start venligst gateway og omfordel netværket</string>
+    <string name="ap_connect">AP Connect</string>
+    <string name="ap_config_title">Press and hold the button for more than three seconds in the gateway one button distribution mode (fast flashing blue light about 2 times per second)</string>
+   <string name="ap_title_msg">Please confirm that the gateway blue light flashes slowly (about once every 2 seconds) and then click next</string>
+    <string name="wait_connect_wifi">Connecting Wi Fi, please wait...</string>
+    <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
+    <string name="connect_device_success">Mobile phone connected to device successfully</string>
+   <string name="information_success">Successfully transferred information to device</string>
+   <string name="hand_connect_wifi">Forbind din telefon Wi Fi til ’ESP_XXX‘og retur til app</string>
+   <string name="goto_set_wifi">Opsætning af Wi Fi</string>
+   <string name="device_long_time_ap">Enheden har været i AP- distributionstilstand i lang tid. Start venligst enheden og prøv distribution igen</string>
+   <string name="current_ssid_is_not_correct">Den nuværende WiFi er ikke %1$s, sæt manuelt og vend tilbage til app</string>
 </resources>

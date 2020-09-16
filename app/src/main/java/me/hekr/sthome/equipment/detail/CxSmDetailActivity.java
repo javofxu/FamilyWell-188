@@ -89,6 +89,8 @@ public class CxSmDetailActivity extends AppCompatActivity implements MultiDirect
     private SystemTintManager tintManager;
     private ECListDialog ecListDialog;
     private ArrayList<String> itemslist = new ArrayList<String>();
+    private String newname;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,7 +178,7 @@ public class CxSmDetailActivity extends AppCompatActivity implements MultiDirect
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         EditText text = (EditText) alertDialog.getContent().findViewById(R.id.tet);
-                                        String newname = text.getText().toString().trim();
+                                        newname = text.getText().toString().trim();
 
                                         if(!TextUtils.isEmpty(newname)){
 
@@ -185,8 +187,6 @@ public class CxSmDetailActivity extends AppCompatActivity implements MultiDirect
                                                 if(newname.getBytes(encode).length<=15){
                                                     if(!EmojiFilter.containsEmoji(newname)) {
                                                         alertDialog.setDismissFalse(true);
-                                                        eq_name.setText(newname);
-                                                        updateName(newname);
                                                         String ds = CoderUtils.getAscii(newname);
                                                         String dsCRC = ByteUtil.CRCmaker(ds);
                                                         SendCommand.Command = SendCommand.MODIFY_EQUIPMENT_NAME;
@@ -312,6 +312,7 @@ public class CxSmDetailActivity extends AppCompatActivity implements MultiDirect
             ED = new EquipDAO(this);
             try {
                 ED.updateName(device);
+                eq_name.setText(edit);
             }catch (Exception e){
                 Toast.makeText(CxSmDetailActivity.this,getResources().getString(R.string.name_is_repeat),Toast.LENGTH_SHORT).show();
             }
@@ -448,6 +449,7 @@ public class CxSmDetailActivity extends AppCompatActivity implements MultiDirect
     public  void onEventMainThread(STEvent event){
         if(event.getEvent() == SendCommand.MODIFY_EQUIPMENT_NAME){
             SendCommand.clearCommnad();
+            updateName(newname);
             Toast.makeText(CxSmDetailActivity.this,getResources().getString(R.string.update_name_success),Toast.LENGTH_SHORT).show();
         }else if(event.getEvent() == SendCommand.DELETE_EQUIPMENT_DETAIL){
             SendCommand.clearCommnad();

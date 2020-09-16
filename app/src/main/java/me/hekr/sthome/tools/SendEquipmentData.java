@@ -3,6 +3,7 @@ package me.hekr.sthome.tools;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.xiaomi.mipush.sdk.Constants;
 
@@ -16,6 +17,7 @@ import me.hekr.sthome.R;
 import me.hekr.sthome.autoudp.ControllerWifi;
 import me.hekr.sthome.crc.CoderUtils;
 import me.hekr.sthome.debugWindow.ViewWindow;
+import me.hekr.sthome.service.NetWorkUtils;
 import me.hekr.sthome.service.SiterwellUtil;
 
 /**
@@ -29,7 +31,6 @@ public abstract class SendEquipmentData {
 
     public SendEquipmentData(Context context){
         this.context =context;
-//        wifiTag = myApplication.isWifiTag();
         sc = new SendCommand(context);
     }
 
@@ -38,37 +39,35 @@ public abstract class SendEquipmentData {
      * @param groupCode
      */
     private void sendAction(final  String groupCode){
+        boolean status = NetWorkUtils.isNetworkAvailable(context);
+        if (!status){
+            Toast.makeText(context, context.getString(R.string.net_error), Toast.LENGTH_SHORT).show();
+            return;
+        }
         ControllerWifi controllerWifi = ControllerWifi.getInstance();
         wifiTag = controllerWifi.wifiTag;
         Log.i(TAG,"====send tag=== "+wifiTag);
         if(wifiTag){
-
             if(ConnectionPojo.getInstance().encryption){
                 Log.i(TAG,"Udp before encryption:"+groupCode);
-                 byte[] encode = ByteUtil.getAllEncryption(groupCode);
+                byte[] encode = ByteUtil.getAllEncryption(groupCode);
                 new SiterwellUtil(context).sendData(encode);
             }else {
                 new SiterwellUtil(context).sendData(groupCode);
             }
-
         }else {
-
             try {
-
                 Hekr.getHekrClient().sendMessage(new JSONObject(groupCode), new HekrMsgCallback() {
                     @Override
                     public void onReceived(String msg) {
-
                     }
 
                     @Override
                     public void onTimeout() {
-
                     }
 
                     @Override
                     public void onError(int errorCode, String message) {
-
                     }
                 }, ConnectionPojo.getInstance().domain);
             } catch (JSONException e) {
@@ -76,14 +75,12 @@ public abstract class SendEquipmentData {
             }
         }
         if(isDebugMode()){
-
             MyApplication.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     ViewWindow.showView(context,groupCode, R.color.redgreen);
                 }
             });
-
         }
     }
     /**

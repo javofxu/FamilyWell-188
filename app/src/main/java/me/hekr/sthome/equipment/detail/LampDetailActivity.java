@@ -69,6 +69,8 @@ public class LampDetailActivity extends TopbarSuperActivity {
             R.drawable.s3
     };
 
+    private String edit;
+
     @Override
     protected void onCreateInit() {
         initData();
@@ -134,14 +136,13 @@ public class LampDetailActivity extends TopbarSuperActivity {
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String edit = getTopBarView().getEditTitle().getText().toString().trim();
+                edit = getTopBarView().getEditTitle().getText().toString().trim();
                 if(!TextUtils.isEmpty(edit)){
                     try {
                         String encode = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_ENCODE,"GBK");
                         if(edit.getBytes(encode).length<=15){
                             if(!EmojiFilter.containsEmoji(edit)) {
                                 getTopBarView().setEditTitle(edit);
-                                updateName(edit);
                                 String ds = CoderUtils.getAscii(edit);
                                 String dsCRC= ByteUtil.CRCmaker(ds);
                                 SendCommand.Command = SendCommand.MODIFY_EQUIPMENT_NAME;
@@ -535,7 +536,6 @@ public class LampDetailActivity extends TopbarSuperActivity {
     }
     private void updateName(String edit) {
         if( !device.getEquipmentName().equals(edit)){
-
             device.setEquipmentName(edit);
             ED = new EquipDAO(this);
             try {
@@ -624,6 +624,7 @@ public class LampDetailActivity extends TopbarSuperActivity {
     public  void onEventMainThread(STEvent event){
         if(event.getEvent() == SendCommand.MODIFY_EQUIPMENT_NAME){
             SendCommand.clearCommnad();
+            updateName(edit);
             Toast.makeText(LampDetailActivity.this,getResources().getString(R.string.update_name_success),Toast.LENGTH_SHORT).show();
         }else if(event.getEvent() == SendCommand.EQUIPMENT_CONTROL){
 
