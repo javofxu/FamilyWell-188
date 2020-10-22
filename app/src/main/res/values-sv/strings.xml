@@ -566,4 +566,6 @@
    <string name="device_long_time_ap">Enheten har varit i AP distributionsläge under lång tid. Starta om enheten och prova distributionen igen.</string>
    <string name="current_ssid_is_not_correct">Den nuvarande WiFi är inte %1$s, ställ in manuellt och återgå till app</string>
     <string name="camera">Camera</string>
+    <string name="user_agreement_hint">User agreement</string>
+   <string name="privacy_policy_hint">Privacy policy</string>
 </resources>

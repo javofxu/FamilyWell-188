@@ -566,4 +566,6 @@
    <string name="device_long_time_ap">Zařízení je již dlouho v distribučním režimu AP. Prosím, restartujte zařízení a zkuste znovu distribuci.</string>
    <string name="current_ssid_is_not_correct">Aktuální WiFi není %1$s, prosím ručně nastavit a vrátit se do aplikace</string>
     <string name="camera">Camera</string>
+    <string name="user_agreement_hint">User agreement</string>
+   <string name="privacy_policy_hint">Privacy policy</string>
 </resources>

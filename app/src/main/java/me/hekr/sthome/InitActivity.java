@@ -47,21 +47,19 @@ import me.hekr.sthome.tools.ECPreferences;
 /**
  * Created by TracyHenry on 2018/5/9.
  */
-
 public class InitActivity extends AppCompatActivity {
-private final static String TAG = "InitActivity";
-private ImageView imageView1;
-private boolean empty;
-private boolean flag = false;
-private ZLoadingView zLoadingView;
+    private final static String TAG = "InitActivity";
+    private boolean empty;
+    private boolean flag = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_init);
         StatusBarUtil.setStatusBarDarkTheme(this,true);
-        imageView1 = (ImageView)findViewById(R.id.imageView1);
-        zLoadingView = (ZLoadingView)findViewById(R.id.loadingView_1);
+        ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+        ZLoadingView zLoadingView = (ZLoadingView) findViewById(R.id.loadingView_1);
         propetyAnim2(imageView1);
         boolean flag = getIntent().getBooleanExtra("login_flag",false);
 
@@ -71,19 +69,15 @@ private ZLoadingView zLoadingView;
             EventBus.getDefault().post(new AutoSyncEvent());
         }
         zLoadingView.setLoadingBuilder(Z_TYPE.SINGLE_CIRCLE);
-
     }
 
     private String getUsername(){
-
         SharedPreferences sharedPreferences = ECPreferences.getSharedPreferences();
         ECPreferenceSettings flag = ECPreferenceSettings.SETTINGS_USERNAME;
-        String autoflag = sharedPreferences.getString(flag.getId(), (String) flag.getDefaultValue());
-        return autoflag;
+        return sharedPreferences.getString(flag.getId(), (String) flag.getDefaultValue());
     }
 
     private String getPassword(){
-
         SharedPreferences sharedPreferences = ECPreferences.getSharedPreferences();
         ECPreferenceSettings flag = ECPreferenceSettings.SETTINGS_PASSWORD;
         String autoflag = sharedPreferences.getString(flag.getId(), (String) flag.getDefaultValue());
@@ -91,7 +85,6 @@ private ZLoadingView zLoadingView;
     }
 
     private void login(){
-
        Log.i(TAG,"自动登录");
         Hekr.getHekrUser().login(getUsername(), getPassword(), new HekrCallback() {
             @Override
@@ -100,13 +93,10 @@ private ZLoadingView zLoadingView;
                 UserBean userBean = new UserBean(getUsername(), getPassword(), CacheUtil.getUserToken(), CacheUtil.getString(Constants.REFRESH_TOKEN,""));
                 HekrUserAction.getInstance(InitActivity.this).setUserCache(userBean);
                 EventBus.getDefault().post(new AutoSyncEvent());
-
-
             }
 
             @Override
             public void onError(int errorCode, String message) {
-
                 try {
                     JSONObject d = JSON.parseObject(message);
                     int code = d.getInteger("code");
@@ -129,8 +119,6 @@ private ZLoadingView zLoadingView;
                     Log.i(TAG,"自动登录失败");
                     EventBus.getDefault().post(new AutoSyncEvent());
                 }
-
-
             }
         });
     }
@@ -140,7 +128,6 @@ private ZLoadingView zLoadingView;
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-
                     try {
                         empty  = (boolean)msg.obj;
                         String ds = CCPAppManager.getClientUser().getDescription();
@@ -193,7 +180,7 @@ private ZLoadingView zLoadingView;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)         //订阅事件AlertEvent
-    public  void onEventMainThread(AutoSyncCompleteEvent event){
+    public void onEventMainThread(AutoSyncCompleteEvent event){
         Message message = Message.obtain();
         message.what = 1;
         message.obj = event.isFlag_devices_empty();
@@ -201,22 +188,18 @@ private ZLoadingView zLoadingView;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)       //退出登录事件（refreshtoken过期）
-    public  void onEventMainThread(final LogoutEvent event){
-
-                HekrUserAction.getInstance(this).userLogout();
-                CCPAppManager.setClientUser(null);
-                ControllerWifi.getInstance().wifiTag = false;
-
-                try {
-                    ECPreferences.savePreference(ECPreferenceSettings.SETTINGS_HUAWEI_TOKEN, "", true);
-                } catch (InvalidClassException e) {
-                    e.printStackTrace();
-                }
-                Intent intent = new Intent(this,LoginActivity.class);
-                startActivity(intent);
-                finish();
-
-
+    public void onEventMainThread(final LogoutEvent event){
+        HekrUserAction.getInstance(this).userLogout();
+        CCPAppManager.setClientUser(null);
+        ControllerWifi.getInstance().wifiTag = false;
+        try {
+            ECPreferences.savePreference(ECPreferenceSettings.SETTINGS_HUAWEI_TOKEN, "", true);
+        } catch (InvalidClassException e) {
+            e.printStackTrace();
+        }
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     /**
@@ -234,16 +217,12 @@ private ZLoadingView zLoadingView;
         super.onResume();
         if(!flag){
             flag =true;
-            handler.sendEmptyMessageDelayed(2,10000);
+            handler.sendEmptyMessageDelayed(2,3000);
         }else{
             Intent intent = new Intent(InitActivity.this, MainActivity.class);
             intent.putExtra("empty",empty);
             startActivity(intent);
             finish();
         }
-
     }
-
-
-
 }

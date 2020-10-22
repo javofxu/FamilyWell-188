@@ -566,4 +566,6 @@
    <string name="device_long_time_ap">设备长时间处于AP配网模式，请重启设备后重试配网</string>
    <string name="current_ssid_is_not_correct">当前WIFI不是%1$s,请手动设置后返回APP</string>
    <string name="camera">摄像头</string>
+    <string name="user_agreement_hint">用户协议</string>
+   <string name="privacy_policy_hint">隐私政策</string>
 </resources>

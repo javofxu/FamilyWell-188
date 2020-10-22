@@ -21,6 +21,7 @@
                 android:layout_height="wrap_content"
                 app:item_accessoryType = "arrow"
                 app:item_showDivider="true"
+                app:item_detailText = ""
                 app:item_titleText="@string/recent_device" />
             <me.hekr.sthome.commonBaseView.SettingItem
                 android:id="@+id/modifypwd"
@@ -28,6 +29,7 @@
                 android:layout_height="wrap_content"
                 app:item_accessoryType = "arrow"
                 app:item_showDivider="true"
+                app:item_detailText = ""
                 app:item_titleText="@string/modify_password" />
             <me.hekr.sthome.commonBaseView.SettingItem
                 android:id="@+id/configration"
@@ -35,6 +37,7 @@
                 android:layout_height="wrap_content"
                 app:item_accessoryType = "arrow"
                 app:item_showDivider="true"
+                app:item_detailText = ""
                 app:item_titleText="@string/net_configuration" />
             <me.hekr.sthome.commonBaseView.SettingItem
                 android:id="@+id/gps_setting"
@@ -42,6 +45,7 @@
                 android:layout_height="wrap_content"
                 app:item_accessoryType = "arrow"
                 app:item_showDivider="true"
+                app:item_detailText = ""
                 app:item_titleText="@string/gps_setting" />
             <me.hekr.sthome.commonBaseView.SettingItem
                 android:id="@+id/emergency"
@@ -49,6 +53,7 @@
                 android:layout_height="wrap_content"
                 app:item_accessoryType = "arrow"
                 app:item_showDivider="true"
+                app:item_detailText = ""
                 app:item_titleText="@string/emergency_number" />
             <me.hekr.sthome.commonBaseView.SettingItem
                 android:id="@+id/wificonfig"
@@ -56,6 +61,7 @@
                 android:layout_height="wrap_content"
                 app:item_accessoryType = "arrow"
                 app:item_showDivider="true"
+                app:item_detailText = ""
                 app:item_titleText="@string/wifi_config" />
             <me.hekr.sthome.commonBaseView.SettingItem
                 android:id="@+id/instruction"
@@ -63,6 +69,7 @@
                 android:layout_height="wrap_content"
                 app:item_accessoryType = "arrow"
                 app:item_showDivider="true"
+                app:item_detailText = ""
                 app:item_titleText="@string/instrution" />
             <me.hekr.sthome.commonBaseView.SettingItem
                 android:id="@+id/about"
@@ -70,6 +77,7 @@
                 android:layout_height="wrap_content"
                 app:item_accessoryType = "arrow"
                 app:item_showDivider="false"
+                app:item_detailText = ""
                 app:item_titleText="@string/about" />
             <RelativeLayout
                 android:layout_width="match_parent"

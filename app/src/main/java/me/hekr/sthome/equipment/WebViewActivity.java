@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import me.hekr.sthome.R;
 import me.hekr.sthome.common.TopbarSuperActivity;
@@ -17,12 +18,21 @@ import me.hekr.sthome.common.TopbarSuperActivity;
  */
 public class WebViewActivity extends TopbarSuperActivity {
 
+    private int mUrlType;
+    private String mTitleName;
     private String mInstructionUrl;
     private WebView mWebView;
 
     @Override
     protected void onCreateInit() {
-        String mTitleName = getIntent().getStringExtra("instructions_name");
+        mUrlType = getIntent().getIntExtra("instructions_type", 0);
+        if (mUrlType == 1){
+            mTitleName = getString(R.string.user_agreement_hint);
+        }else if (mUrlType == 2){
+            mTitleName = getString(R.string.privacy_policy_hint);
+        }else {
+            mTitleName = getIntent().getStringExtra("instructions_name");
+        }
         mInstructionUrl = getIntent().getStringExtra("instructions_urls");
         getTopBarView().setTopBarStatus(1, 1, mTitleName, null, new View.OnClickListener() {
             @Override
@@ -45,11 +55,16 @@ public class WebViewActivity extends TopbarSuperActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setBuiltInZoomControls(true);
-        webSettings.setSupportZoom(true);
-        webSettings.setAllowFileAccess(true);
-        webSettings.setAllowFileAccessFromFileURLs(true);
-        webSettings.setAllowUniversalAccessFromFileURLs(true);
         mWebView.setInitialScale(25);
-        mWebView.loadUrl("file:///android_asset/index.html?" + mInstructionUrl);
+        if (mUrlType == 1 || mUrlType == 2){
+            mWebView.setWebViewClient(new WebViewClient());
+            mWebView.loadUrl(mInstructionUrl);
+        }else {
+            webSettings.setSupportZoom(true);
+            webSettings.setAllowFileAccess(true);
+            webSettings.setAllowFileAccessFromFileURLs(true);
+            webSettings.setAllowUniversalAccessFromFileURLs(true);
+            mWebView.loadUrl("file:///android_asset/index.html?" + mInstructionUrl);
+        }
     }
 }
