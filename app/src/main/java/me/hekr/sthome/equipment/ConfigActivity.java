@@ -1,10 +1,8 @@
 package me.hekr.sthome.equipment;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -20,7 +18,6 @@ import org.json.JSONException;
 
 import java.io.InvalidClassException;
 
-
 import me.hekr.sdk.Hekr;
 import me.hekr.sdk.inter.HekrCallback;
 import me.hekr.sdk.utils.CacheUtil;
@@ -30,18 +27,11 @@ import me.hekr.sthome.autoudp.ControllerWifi;
 import me.hekr.sthome.common.CCPAppManager;
 import me.hekr.sthome.common.TopbarSuperActivity;
 import me.hekr.sthome.commonBaseView.ECAlertDialog;
-import me.hekr.sthome.commonBaseView.ECListDialog;
 import me.hekr.sthome.commonBaseView.SettingItem;
-
-import me.hekr.sthome.commonBaseView.ToastTools;
 import me.hekr.sthome.configuration.activity.BeforeConfigEsptouchActivity;
-import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
 import me.hekr.sthome.model.modelbean.MyDeviceBean;
 import me.hekr.sthome.model.modeldb.DeviceDAO;
-import me.hekr.sthome.push.logger.Log;
-import me.hekr.sthome.service.SiterService;
-import me.hekr.sthome.tools.Config;
 import me.hekr.sthome.tools.ECPreferenceSettings;
 import me.hekr.sthome.tools.ECPreferences;
 import me.hekr.sthome.tools.SiterSDK;
@@ -49,7 +39,6 @@ import me.hekr.sthome.tools.SystemUtil;
 import me.hekr.sthome.tools.UnitTools;
 import me.hekr.sthome.updateApp.UpdateAppAuto;
 import me.hekr.sthome.xmipc.ActivityGuideDeviceAdd;
-import me.hekr.sthome.xmipc.ActivityGuideDeviceWifiConfig;
 
 /**
  * Created by xjj on 2016/12/20.
@@ -71,19 +60,15 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
         return R.layout.activity_config2;
     }
 
-
-
     private String getHuaweiToken(){
-
         SharedPreferences sharedPreferences = ECPreferences.getSharedPreferences();
         ECPreferenceSettings flag = ECPreferenceSettings.SETTINGS_HUAWEI_TOKEN;
-        String autoflag = sharedPreferences.getString(flag.getId(), (String) flag.getDefaultValue());
-        return autoflag;
+        return sharedPreferences.getString(flag.getId(), (String) flag.getDefaultValue());
     }
 
     public void setUpViews() {
         DDO = new DeviceDAO(this);
-        findViewById(R.id.btnAE).setOnClickListener(this);//go out
+        findViewById(R.id.logout).setOnClickListener(this);//go out
         findViewById(R.id.configration).setOnClickListener(this);//hardare online
         wificonfig = (SettingItem)findViewById(R.id.wificonfig);
         wifitag = (SettingItem)findViewById(R.id.wifitag);
@@ -125,22 +110,18 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
 
 
     private void refresh(){
-        String name = "";
-            try{
-                MyDeviceBean d = DDO.findByChoice(1);
-                if("报警器".equals(d.getDeviceName())){
-                    name = getResources().getString(R.string.my_home);
-
-                }else{
-                    name = d.getDeviceName();
-                }
-
-                wifitag.setDetailText( name +"("+ d.getDevTid().substring(d.getDevTid().length()-4)+")");
+        String name;
+        try{
+            MyDeviceBean d = DDO.findByChoice(1);
+            if("报警器".equals(d.getDeviceName())){
+                name = getResources().getString(R.string.my_home);
+            }else{
+                name = d.getDeviceName();
             }
-            catch (Exception e){
-                wifitag.setDetailText(getResources().getString(R.string.please_choose_device));
-            }
-
+            wifitag.setDetailText( name +"("+ d.getDevTid().substring(d.getDevTid().length()-4)+")");
+        } catch (Exception e){
+            wifitag.setDetailText(getResources().getString(R.string.please_choose_device));
+        }
     }
 
 
@@ -157,8 +138,7 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.btnAE://logout;
-
+            case R.id.logout://logout;
                 ECAlertDialog elc = ECAlertDialog.buildAlert(this,getResources().getString(R.string.sure_to_logout), getResources().getString(R.string.cancel), getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -176,8 +156,6 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
                     }
                 });
                 elc.show();
-
-
                 break;
             case R.id.configration:
                 startActivity(new Intent(ConfigActivity.this,  BeforeConfigEsptouchActivity.class));
@@ -202,39 +180,10 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
                 startActivity(new Intent(ConfigActivity.this,SettingGpsEnableActivity.class));
                 break;
             case R.id.instruction:
-
-
-                UnitTools unitTools =new UnitTools(this);
-
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-
-                try {
-                    String url = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_INSTRUCTION,"");
-                    org.json.JSONObject jsonConfig = new org.json.JSONObject(url);
-                    org.json.JSONObject json2 = jsonConfig.getJSONObject("url");
-                    if(json2.has(unitTools.readLanguage())){
-                        String url_last = json2.getString(unitTools.readLanguage());
-                        Uri content_url = Uri.parse(url_last);
-                        intent.setData(content_url);
-                        startActivity(intent);
-                    }else {
-                       String url_last = json2.getString("default");
-                        Uri content_url = Uri.parse(url_last);
-                        intent.setData(content_url);
-                        startActivity(intent);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                break;
-            default:
+                startActivity(new Intent(ConfigActivity.this, InstructionActivity.class));
                 break;
         }
     }
-
-
 
     private void openCameraAlert(){
         Intent intent2 = new Intent(ConfigActivity.this,ActivityGuideDeviceAdd.class);
@@ -257,19 +206,15 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
        if ("huawei".equals(SystemUtil.getDeviceBrand().toLowerCase()) || "honor".equals(SystemUtil.getDeviceBrand().toLowerCase())) {
            String token = getHuaweiToken();
            if (!TextUtils.isEmpty(token)) {
-
                HekrUserAction.getInstance(ConfigActivity.this).unPushTagBind(token, 2, null);
-
            }
        }
    }
 
    private void unbindXiaoMi(){
        if ("xiaomi".equals(SystemUtil.getDeviceBrand().toLowerCase())) {
-
            String clientid = MiPushClient.getRegId(ConfigActivity.this);
            HekrUserAction.getInstance(ConfigActivity.this).unPushTagBind(clientid, 1, null);
-
        }
    }
 
@@ -280,8 +225,6 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case LOGOUT_SUCCESS:
-
-
                     Hekr.getHekrUser().logout(new HekrCallback() {
                         @Override
                         public void onSuccess() {
@@ -323,16 +266,8 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
 
                         }
                     });
-
-
                     break;
             }
-
         }
-
     };
-
-
-
-
 }

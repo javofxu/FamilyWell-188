@@ -565,4 +565,5 @@
    <string name="goto_set_wifi">Vzpostavi Wi Fi</string>
    <string name="device_long_time_ap">Naprava je že dolgo v načinu distribucije AP. Prosim, ponovno zaženite napravo in poskusite distribucijo.</string>
    <string name="current_ssid_is_not_correct">Trenutni WiFi ni %1$s, prosim nastavite ročno in se vrnite na aplikacijo</string>
+   <string name="camera">Camera</string>
 </resources>

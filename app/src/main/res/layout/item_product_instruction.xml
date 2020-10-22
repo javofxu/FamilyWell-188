@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:background="@drawable/list_item_selector">
+        <ImageView
+            android:id="@+id/iv_instruction_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@mipmap/gps"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/tv_instruction_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/iv_instruction_icon"
+            android:layout_toStartOf="@+id/iv_instruction_right"
+            android:textSize="16sp"
+            android:textColor="@color/text_title"
+            android:text="@string/emergency_number"/>
+        <ImageView
+            android:id="@+id/iv_instruction_right"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/arrow"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</LinearLayout>
