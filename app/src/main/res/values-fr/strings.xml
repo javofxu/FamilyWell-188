@@ -565,4 +565,5 @@
    <string name="goto_set_wifi">Paramétrer Wi-Fi</string>
    <string name="device_long_time_ap">Le périphérique est en mode de réseau AP pendant de longues périodes, s’ il vous plaît redémarrez le périphérique et réessayez le réseau de distribution</string>
    <string name="current_ssid_is_not_correct">Le Wifi actuel n ’est pas un %1$s, veuillez paramétrer manuellement puis revenir à app</string>
+    <string name="camera">Camera</string>
 </resources>

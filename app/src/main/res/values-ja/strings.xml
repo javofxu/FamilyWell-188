@@ -565,4 +565,5 @@
    <string name="goto_set_wifi">Wi-Fiの設定</string>
    <string name="device_long_time_ap">設備は長い時間APネットワークモードにあります。設備を再起動してからネットワークを再構築してください</string>
    <string name="current_ssid_is_not_correct">現在WIFIは%1$sではありません。手動で設定してAPPに戻ってください。</string>
+    <string name="camera">Camera</string>
 </resources>
