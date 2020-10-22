@@ -566,4 +566,6 @@
    <string name="device_long_time_ap">Laite on ollut AP- jakelutilassa jo pitkään. Käynnistä laite uudelleen ja yritä uudelleen jakelua.</string>
    <string name="current_ssid_is_not_correct">Nykyinen WiFi ei ole %1$s, aseta se käsin ja palaa sovellukseen</string>
     <string name="camera">Camera</string>
+    <string name="user_agreement_hint">User agreement</string>
+   <string name="privacy_policy_hint">Privacy policy</string>
 </resources>

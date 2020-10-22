@@ -27,28 +27,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InvalidClassException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import me.hekr.sdk.Hekr;
 import me.hekr.sdk.inter.HekrMsgCallback;
 import me.hekr.sdk.utils.CacheUtil;
 import me.hekr.sthome.MyApplication;
 import me.hekr.sthome.R;
+import me.hekr.sthome.common.ConfigureUtil;
 import me.hekr.sthome.common.TopbarSuperActivity;
 import me.hekr.sthome.commonBaseView.ECAlertDialog;
 import me.hekr.sthome.commonBaseView.ECListDialog;
 import me.hekr.sthome.commonBaseView.LoadingProceedDialog;
 import me.hekr.sthome.commonBaseView.SettingItem;
-import me.hekr.sthome.crc.CoderUtils;
 import me.hekr.sthome.debugWindow.ViewWindow;
 import me.hekr.sthome.event.LogoutEvent;
 import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
 import me.hekr.sthome.http.bean.DeviceBean;
 import me.hekr.sthome.http.bean.FirmwareBean;
-import me.hekr.sthome.main.MainActivity;
 import me.hekr.sthome.model.modeldb.DeviceDAO;
 import me.hekr.sthome.tools.Config;
 import me.hekr.sthome.tools.ConnectionPojo;
@@ -65,7 +62,7 @@ import me.hekr.sthome.updateApp.UpdateService;
  */
 public class AboutActivity extends TopbarSuperActivity implements View.OnClickListener{
     private final String TAG  = "AboutActivity";
-    private SettingItem version_txt,app_txt,sale;
+    private SettingItem version_txt;
     private TextView siter;
     private LinearLayout downing_txt;
     private TextView intro_txt;
@@ -78,11 +75,12 @@ public class AboutActivity extends TopbarSuperActivity implements View.OnClickLi
     private ECAlertDialog ecAlertDialog;
     public LoadingProceedDialog loadingProceedDialog;
     private  String dd = "";
+
     @Override
     protected void onCreateInit() {
         EventBus.getDefault().register(this);
         initGuider();
-        initview();
+        initView();
     }
 
     @Override
@@ -99,7 +97,7 @@ public class AboutActivity extends TopbarSuperActivity implements View.OnClickLi
         },null);
     }
 
-    private void initview(){
+    private void initView(){
         logoimage = (ImageView)findViewById(R.id.imageView1);
         bar         = (ProgressBar)findViewById(R.id.jindu);
         downing_txt = (LinearLayout)findViewById(R.id.downing);
@@ -109,9 +107,11 @@ public class AboutActivity extends TopbarSuperActivity implements View.OnClickLi
             downing_txt.setVisibility(View.GONE);
         }
         siter       = (TextView)findViewById(R.id.guanwang);
-        sale        = (SettingItem)findViewById(R.id.sale);
-        app_txt     = (SettingItem)findViewById(R.id.app_version);
-        updateAppAuto = new UpdateAppAuto(this,app_txt,true);
+        SettingItem sale = (SettingItem) findViewById(R.id.sale);
+        SettingItem app_txt = (SettingItem) findViewById(R.id.app_version);
+        SettingItem agreement = (SettingItem) findViewById(R.id.user_agreement);
+        SettingItem privacy = (SettingItem) findViewById(R.id.privacy_policy);
+        updateAppAuto = new UpdateAppAuto(this, app_txt,true);
         version_txt = (SettingItem)findViewById(R.id.gateway_version);
         intro_txt =   (TextView)findViewById(R.id.intro);
         String verName = Config.getVerName(this, getPackageName());
@@ -131,6 +131,8 @@ public class AboutActivity extends TopbarSuperActivity implements View.OnClickLi
             e.printStackTrace();
         }
         sale.setOnClickListener(this);
+        agreement.setOnClickListener(this);
+        privacy.setOnClickListener(this);
         try {
             if(!TextUtils.isEmpty(ConnectionPojo.getInstance().deviceTid)){
                 HekrUserAction.getInstance(this).getDevices(0,80,new HekrUser.GetDevicesListener() {
@@ -162,8 +164,6 @@ public class AboutActivity extends TopbarSuperActivity implements View.OnClickLi
             e.printStackTrace();
         }
 
-
-
         updateAppAuto.getUpdateInfo();
 
         intro_txt.setText(getResources().getString(R.string.about_app));
@@ -171,7 +171,7 @@ public class AboutActivity extends TopbarSuperActivity implements View.OnClickLi
             @Override
             public boolean onLongClick(View view) {
 
-             if(isDebugMode()==true){
+             if(isDebugMode()){
                  try {
                      ECPreferences.savePreference(ECPreferenceSettings.SETTINGS_DEBUG, false, true);
                  } catch (InvalidClassException e) {
@@ -205,12 +205,8 @@ public class AboutActivity extends TopbarSuperActivity implements View.OnClickLi
                      showToast("调试模式开启");
                      ViewWindow.showView(AboutActivity.this,"调试模式开启",R.color.blue);
                  }
-
              }
-
-
-
-                return false;
+             return false;
             }
         });
     }
@@ -335,7 +331,27 @@ public class AboutActivity extends TopbarSuperActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        openPhoneAlert();
+        switch (view.getId()){
+            case R.id.user_agreement:
+                String url = ConfigureUtil.getUserAgreement(this);
+                onStartActivity(1, url);
+                break;
+            case R.id.privacy_policy:
+                String url2 = ConfigureUtil.getPrivacyPolicy(this);
+                onStartActivity(2, url2);
+                break;
+            case R.id.sale:
+                openPhoneAlert();
+                break;
+        }
+    }
+
+    private void onStartActivity(int type, String url){
+        Intent intent = new Intent();
+        intent.setClass(AboutActivity.this, WebViewActivity.class);
+        intent.putExtra("instructions_type", type);
+        intent.putExtra("instructions_urls", url);
+        startActivity(intent);
     }
 
     /**

@@ -566,4 +566,6 @@
    <string name="device_long_time_ap">Het apparaat is al lang in AP-distributiemodus. Start het apparaat opnieuw op en probeer de distributie opnieuw.</string>
    <string name="current_ssid_is_not_correct">De huidige WiFi is niet %1$s, gelieve handmatig in te stellen en terug te keren naar app</string>
     <string name="camera">Camera</string>
+    <string name="user_agreement_hint">User agreement</string>
+   <string name="privacy_policy_hint">Privacy policy</string>
 </resources>

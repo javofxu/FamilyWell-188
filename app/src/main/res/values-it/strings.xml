@@ -566,4 +566,6 @@
    <string name="device_long_time_ap">Il dispositivo è stato in modalità di distribuzione AP da molto tempo. Si prega di riavviare il dispositivo e provare la distribuzione di nuovo</string>
    <string name="current_ssid_is_not_correct">Il WiFi corrente non è %1$s, si prega di impostare manualmente e tornare all ’app</string>
    <string name="camera">Camera</string>
+    <string name="user_agreement_hint">User agreement</string>
+   <string name="privacy_policy_hint">Privacy policy</string>
 </resources>

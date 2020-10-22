@@ -566,4 +566,6 @@
    <string name="device_long_time_ap">El dispositivo está en modo de red AP por mucho tiempo.</string>
    <string name="current_ssid_is_not_correct">Ahora WiFi no es %1$s, por favor, programe manualmente y regrese a App.</string>
     <string name="camera">Camera</string>
+    <string name="user_agreement_hint">User agreement</string>
+   <string name="privacy_policy_hint">Privacy policy</string>
 </resources>
