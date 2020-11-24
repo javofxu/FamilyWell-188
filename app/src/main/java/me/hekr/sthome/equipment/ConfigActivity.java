@@ -83,7 +83,7 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
 
     public void setUpViews() {
         DDO = new DeviceDAO(this);
-        findViewById(R.id.btnAE).setOnClickListener(this);//go out
+        findViewById(R.id.logout).setOnClickListener(this);//go out
         findViewById(R.id.configration).setOnClickListener(this);//hardare online
         wificonfig = (SettingItem)findViewById(R.id.wificonfig);
         wifitag = (SettingItem)findViewById(R.id.wifitag);
@@ -157,7 +157,7 @@ public class ConfigActivity extends TopbarSuperActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.btnAE://logout;
+            case R.id.logout://logout;
 
                 ECAlertDialog elc = ECAlertDialog.buildAlert(this,getResources().getString(R.string.sure_to_logout), getResources().getString(R.string.cancel), getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override

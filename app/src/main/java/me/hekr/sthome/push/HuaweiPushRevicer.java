@@ -19,9 +19,11 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.InvalidClassException;
 
+import me.hekr.sdk.utils.CacheUtil;
 import me.hekr.sthome.event.STEvent;
 import me.hekr.sthome.tools.ECPreferenceSettings;
 import me.hekr.sthome.tools.ECPreferences;
+import me.hekr.sthome.tools.SiterSDK;
 
 /**
  * 应用需要创建一个子类继承com.huawei.hms.support.api.push.PushReceiver，
@@ -43,8 +45,8 @@ public class HuaweiPushRevicer extends PushReceiver {
     	String belongId = extras.getString("belongId");
         Log.i(TAG, "belongId为:" + belongId);
         Log.i(TAG, "Token为:" + token);
-
-        if(TextUtils.isEmpty(FirebaseInstanceId.getInstance().getToken())){
+        String de  = CacheUtil.getString(SiterSDK.SETTINGS_CONFIG_REGION,"");
+        if(TextUtils.isEmpty(FirebaseInstanceId.getInstance().getToken())||de.contains("hekr.me")){
             STEvent stEvent = new STEvent();
             stEvent.setRefreshevent(12);
             stEvent.setFcm_token(token);

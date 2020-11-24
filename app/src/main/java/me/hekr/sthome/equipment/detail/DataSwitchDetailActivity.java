@@ -103,7 +103,7 @@ public class DataSwitchDetailActivity extends TopbarSuperActivity implements Mul
     private boolean flag_set = false;
     private Timer timer_set;
     private UpdateCommandTask timertask;
-
+    private String newname;
 
     @Override
     protected void onCreateInit() {
@@ -250,11 +250,9 @@ public class DataSwitchDetailActivity extends TopbarSuperActivity implements Mul
             public void onClick(View v) {
                 if(drawer!=null && drawer.isOpened()){
                     drawer.animateClose();
-
                 }else {
                     finish();
                 }
-
             }
         }, new View.OnClickListener() {
             @Override
@@ -301,7 +299,7 @@ public class DataSwitchDetailActivity extends TopbarSuperActivity implements Mul
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         EditText text = (EditText) alertDialog.getContent().findViewById(R.id.tet);
-                                        String newname = text.getText().toString().trim();
+                                        newname = text.getText().toString().trim();
 
                                         if(!TextUtils.isEmpty(newname)){
 
@@ -311,7 +309,6 @@ public class DataSwitchDetailActivity extends TopbarSuperActivity implements Mul
                                                     if(!EmojiFilter.containsEmoji(newname)) {
                                                         alertDialog.setDismissFalse(true);
                                                         getTopBarView().setTextTitle(newname);
-                                                        updateName(newname);
                                                         String ds = CoderUtils.getAscii(newname);
                                                         String dsCRC = ByteUtil.CRCmaker(ds);
                                                         SendCommand.Command = SendCommand.MODIFY_EQUIPMENT_NAME;
@@ -438,6 +435,7 @@ public class DataSwitchDetailActivity extends TopbarSuperActivity implements Mul
     public  void onEventMainThread(STEvent event){
         if(event.getEvent() == SendCommand.MODIFY_EQUIPMENT_NAME){
             SendCommand.clearCommnad();
+            updateName(newname);
             Toast.makeText(DataSwitchDetailActivity.this,getResources().getString(R.string.update_name_success),Toast.LENGTH_SHORT).show();
         }else if(event.getEvent() == SendCommand.DELETE_EQUIPMENT_DETAIL){
             SendCommand.clearCommnad();
@@ -480,7 +478,6 @@ public class DataSwitchDetailActivity extends TopbarSuperActivity implements Mul
     public  void onEventMainThread(DataSwitchRefreshEvent event){
         if(event.getDeviceid().equals(ConnectionPojo.getInstance().deviceTid)
                 && event.getEqid().equals(device.getEqid())){
-
             list = dataSwitchSubDAO.findAllSubDevice(device.getEqid(),device.getDeviceid());
             dataSwitchAdapter.refresh(list);
         }
@@ -513,8 +510,6 @@ public class DataSwitchDetailActivity extends TopbarSuperActivity implements Mul
         StatusBarUtil.setStatusBarDarkTheme(this, false);
         doStatusShow(device.getState());
     }
-
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

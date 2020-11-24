@@ -18,6 +18,7 @@ public class UDPSendData implements Runnable {
     private DatagramSocket ds;
     private DatagramPacket dp;
     private byte[] bytes;
+
     public UDPSendData(DatagramSocket ds, InetAddress hostip, String code){
         this.ds = ds;
         this.hostip = hostip;
@@ -25,7 +26,7 @@ public class UDPSendData implements Runnable {
         bytes = code.getBytes();
     }
 
-    public UDPSendData(DatagramSocket ds, InetAddress hostip, byte[] code){
+    UDPSendData(DatagramSocket ds, InetAddress hostip, byte[] code){
         this.ds = ds;
         this.hostip = hostip;
         bytes = code;
@@ -33,17 +34,17 @@ public class UDPSendData implements Runnable {
 
     @Override
     public void run() {
-        dp = new DatagramPacket(bytes,bytes.length,hostip,PORT);
+        dp = new DatagramPacket(bytes, bytes.length, hostip, PORT);
         try {
             Log.i(TAG," send data start");
             ds.send(dp);
-            Log.i(TAG," send data "+ hostip.toString() +"==="+new String(bytes));
+            Log.i(TAG," send data "+ hostip.toString() +"===" + new String(bytes));
         } catch (IOException e) {
             e.printStackTrace();
-            Log.i(TAG," send data failed IOException");
+            Log.e(TAG," send data failed IOException");
         }catch (NullPointerException e){
             e.printStackTrace();
-            Log.i(TAG," send data failed NullPointerException");
+            Log.e(TAG," send data failed NullPointerException");
         }
     }
 }

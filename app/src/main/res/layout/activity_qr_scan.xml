@@ -7,8 +7,7 @@
     <RelativeLayout
         android:id="@+id/captureViewLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layoutTop" >
+        android:layout_height="match_parent" >
 
         <SurfaceView
             android:id="@+id/capture_preview"

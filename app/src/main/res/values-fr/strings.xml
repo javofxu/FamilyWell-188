@@ -550,4 +550,18 @@
    <string name="look">Regarder</string>
    <string name="success_download">Téléchargement réussi</string>
    <string name="restart_gateway">Redémarrez le portail et reconfigurez le réseau.</string>
+    <string name="ap_connect">AP Connect</string>
+    <string name="ap_config_title">Press and hold the button for more than three seconds in the gateway one button distribution mode (fast flashing blue light about 2 times per second)</string>
+   <string name="ap_title_msg">Please confirm that the gateway blue light flashes slowly (about once every 2 seconds) and then click next</string>
+    <string name="wait_connect_wifi">Connecting Wi Fi, please wait…</string>
+    <string name="not_find_wifi">\"No Wi Fi found at the beginning of \'ESP\' \"</string>
+    <string name="connect_device_success">Mobile phone connected to device successfully</string>
+   <string name="information_success">Successfully transferred information to device</string>
+   <string name="hand_connect_wifi">Connectez le téléphone Wi-Fi à l ’ESP_XXX‘et renvoie l‘app</string>
+   <string name="goto_set_wifi">Paramétrer Wi-Fi</string>
+   <string name="device_long_time_ap">Le périphérique est en mode de réseau AP pendant de longues périodes, s’ il vous plaît redémarrez le périphérique et réessayez le réseau de distribution</string>
+   <string name="current_ssid_is_not_correct">Le Wifi actuel n ’est pas un %1$s, veuillez paramétrer manuellement puis revenir à app</string>
+    <string name="camera">Camera</string>
+    <string name="user_agreement_hint">User agreement</string>
+   <string name="privacy_policy_hint">Privacy policy</string>
 </resources>
