@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
 
     defaultConfig {
@@ -12,7 +12,7 @@ android {
 
         minSdkVersion 21
         applicationId "com.siterwell.lifebox"
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1177
         versionName "1.177"
 

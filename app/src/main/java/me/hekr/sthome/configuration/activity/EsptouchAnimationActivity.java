@@ -289,11 +289,8 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             String deviceName = (String) jsonObject.get("rev");
             Log.i(TAG, "handleMessage: " + deviceName);
             ConnectionPojo.getInstance().deviceTid = deviceName;
-            boolean isConnect = mWifiAdmin.addNetwork(apSsid, apPassword, 2);
-            if (isConnect){
-                Log.i(TAG, "handleMessage: 连接成功");
-                onSearchBindKey();
-            }
+            mWifiAdmin.addNetwork(apSsid, apPassword, 2);
+            onSearchBindKey();
         } catch (JSONException e) {
             e.printStackTrace();
         }

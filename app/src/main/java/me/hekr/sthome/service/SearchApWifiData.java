@@ -36,7 +36,7 @@ public class SearchApWifiData {
 
             try {
                 Log.i(TAG," re - seatch  ===="+ conut);
-                if(!TextUtils.isEmpty(ControllerWifi.getInstance().deviceTid)){
+                if(!TextUtils.isEmpty(ControllerWifi.getInstance().deviceTid) && !TextUtils.isEmpty(ControllerWifi.getInstance().bind)){
                     if(timer==null){
                         conut = 0;
                     }else{

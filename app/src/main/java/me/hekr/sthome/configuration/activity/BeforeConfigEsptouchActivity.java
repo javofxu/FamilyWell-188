@@ -196,7 +196,7 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
                 CheckSSIDTask mTask = new CheckSSIDTask();
                 timerCheckSSID.schedule(mTask, 0, 1000);
             }else {
-                showFinal(R.string.wait_connect_wifi);
+                showFinal(R.string.goto_set_wifi);
             }
 
 
@@ -211,7 +211,12 @@ public class BeforeConfigEsptouchActivity extends TopbarSuperActivity implements
                 ecAlertDialog =  ECAlertDialog.buildAlert(BeforeConfigEsptouchActivity.this, str, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        Intent intent = new Intent(BeforeConfigEsptouchActivity.this, GuideToSetEspWifiActivity.class);
+                        intent.putExtra("isApConnect", true);
+                        intent.putExtra("ssid", mApSSId);
+                        intent.putExtra("psw", mApPwd);
+                        startActivity(intent);
+                        finish();
                     }
                 });
                 ecAlertDialog.show();
