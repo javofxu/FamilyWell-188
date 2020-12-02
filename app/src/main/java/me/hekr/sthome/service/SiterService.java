@@ -109,6 +109,7 @@ public class SiterService extends Service{
     private IMessageFilter filter;
     private MyDeviceBean choiceddevice;
     private boolean isApConnect = false;
+    private  SeartchWifiDataForConfig seartchWifiData;
 
     @Nullable
     @Override
@@ -844,7 +845,7 @@ public class SiterService extends Service{
                            startUdp();
                        }
                    };
-                   SeartchWifiDataForConfig seartchWifiData = new SeartchWifiDataForConfig(taskCallback);
+                    seartchWifiData = new SeartchWifiDataForConfig(taskCallback);
                    seartchWifiData.startReSend();
                    break;
                case 6:
@@ -984,6 +985,11 @@ public class SiterService extends Service{
                    };
                    SearchApWifiData mSearch = new SearchApWifiData(mTaskCallback);
                    mSearch.startReSend();
+                   break;
+               case  10:
+                   if(seartchWifiData!=null){
+                       seartchWifiData.cancelTimter();
+                   }
                    break;
            }
     }

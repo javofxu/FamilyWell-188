@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -57,6 +58,7 @@ import me.hekr.sthome.model.modelbean.SysModelBean;
 import me.hekr.sthome.model.modeldb.DeviceDAO;
 import me.hekr.sthome.model.modeldb.SceneDAO;
 import me.hekr.sthome.model.modeldb.SysmodelDAO;
+import me.hekr.sthome.model.newstyle.NewGroup2Activity;
 import me.hekr.sthome.service.TcpClientThread;
 import me.hekr.sthome.tools.ConnectionPojo;
 import me.hekr.sthome.tools.SendOtherData;
@@ -75,7 +77,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     private int count = 0;
     private final int SPEED1 = 2;
     private final int SPEED2 = 20;
-    private final int SPEED3 = 20000;
+    private final int SPEED3 = 30000;
     private int Now_speed;
     private String apSsid;
     private String apPassword;
@@ -95,7 +97,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     private SendOtherData sendOtherData;
     private String choosetoDeviceid;
     private String gatewaytype;
-    private int result_udpbind = -1;
     private int count_of_bind = 0;
     private TextView fail_reason_view;
     private DecimalFormat mFormat;
@@ -144,6 +145,9 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
         getTopBarView().setTopBarStatus(1, 1, getResources().getString(R.string.net_configuration), null, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                STEvent stEvent2 = new STEvent();
+                stEvent2.setServiceevent(10);
+                EventBus.getDefault().post(stEvent2);
                 finish();
             }
         }, null);
@@ -529,7 +533,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                         stEvent.setServiceevent(8);
                         EventBus.getDefault().post(stEvent);
                         try {
-                            Thread.sleep(10000);
+                            Thread.sleep(20000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -538,24 +542,24 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
                         stEvent2.setServiceevent(5);
                         EventBus.getDefault().post(stEvent2);
 
-                        while (result_udpbind<0){
-
-                            try {
-                                Thread.sleep(1);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        if(result_udpbind >0){
-                            sendOtherData.timeCheck();
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            sendOtherData.timeZoneCheck(DateUtil.getCurrentTimeZone());
-                        }
+//                        while (result_udpbind<0){
+//
+//                            try {
+//                                Thread.sleep(1);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//
+//                        if(result_udpbind >0){
+//                            sendOtherData.timeCheck();
+//                            try {
+//                                Thread.sleep(1000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                            sendOtherData.timeZoneCheck(DateUtil.getCurrentTimeZone());
+//                        }
                     }
                 }
                 return resultList;
@@ -572,16 +576,16 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             IEsptouchResult firstResult = result.get(0);
             if (!firstResult.isCancelled()) {
                 if(firstResult.isSuc()){
-                    final ControllerWifi controllerWifi = ControllerWifi.getInstance();
-                    Log.i(TAG, "device tid="+controllerWifi.deviceTid+" +bind key="+controllerWifi.bind);
-                    if(result_udpbind==1){
-                        flag = 7;
-                        return;
-                    }else if(result_udpbind == 0){
-                        flag = 6;
-                        return;
-                    }
-                    handler.sendEmptyMessage(4);
+//                    final ControllerWifi controllerWifi = ControllerWifi.getInstance();
+//                    Log.i(TAG, "device tid="+controllerWifi.deviceTid+" +bind key="+controllerWifi.bind);
+//                    if(result_udpbind==1){
+//                        flag = 7;
+//                        return;
+//                    }else if(result_udpbind == 0){
+//                        flag = 6;
+//                        return;
+//                    }
+//                    handler.sendEmptyMessage(4);
                 }else {
                     flag = 5;
                 }
@@ -591,9 +595,9 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
 
     @Subscribe          //订阅事件FirstEvent
     public  void onEventMainThread(UdpConfigEvent event){
-        result_udpbind = event.getFlag_result();
+       int result_udpbind = event.getFlag_result();
         Log.i(TAG,"result_udpbind:"+result_udpbind);
-        if(isApConnect){
+       // if(isApConnect){
             if(result_udpbind==1){
                 flag = 7;
                 handler.sendEmptyMessage(2);
@@ -603,7 +607,7 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             }else if(result_udpbind ==2){
                 sendTimeInfo();
             }
-        }
+       // }
     }
 
     private void bindSuccess(DeviceBean deviceBean){
@@ -767,7 +771,6 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
     protected void onDestroy() {
         super.onDestroy();
         count_of_bind = 0;
-        result_udpbind = 0;
         ControllerWifi.getInstance().ap_config_ing = false;
         EventBus.getDefault().unregister(this);
         cancelTask();
@@ -785,5 +788,17 @@ public class EsptouchAnimationActivity extends TopbarSuperActivity implements Vi
             task3.cancel(true);
             task3 = null;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            STEvent stEvent2 = new STEvent();
+            stEvent2.setServiceevent(10);
+            EventBus.getDefault().post(stEvent2);
+            return super.onKeyDown(keyCode, event);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

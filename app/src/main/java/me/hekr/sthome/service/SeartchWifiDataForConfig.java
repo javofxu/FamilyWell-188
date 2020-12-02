@@ -72,6 +72,22 @@ public class SeartchWifiDataForConfig {
 
     }
 
+    public void cancelTimter(){
+        Log.i(TAG,"udp停止重发");
+        if(timer!=null){
+            timer.cancel();
+            timer = null;
+        }
+
+        if(task!=null){
+            task.cancel();
+            task = null;
+        }
+
+        conut = 0;
+
+    }
+
     public  interface MyTaskCallback  {
         void operationFailed();
 
