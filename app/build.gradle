@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
 
     defaultConfig {
@@ -12,9 +12,9 @@ android {
 
         applicationId "com.siterwell.housegard"
         minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1100
-        versionName "1.100"
+        targetSdkVersion 29
+        versionCode 1110
+        versionName "1.110"
 
         manifestPlaceholders = [
                 GETUI_APP_ID : "zFyE9LJ2yu6aExwbXmzDU2",
