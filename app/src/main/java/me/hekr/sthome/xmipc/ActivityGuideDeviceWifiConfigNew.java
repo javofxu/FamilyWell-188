@@ -25,6 +25,8 @@ import com.lib.funsdk.support.utils.DeviceWifiManager;
 import com.lib.funsdk.support.utils.MyUtils;
 import com.lib.funsdk.support.utils.StringUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ import java.util.List;
 import me.hekr.sthome.R;
 import me.hekr.sthome.common.CCPAppManager;
 import me.hekr.sthome.common.TopbarSuperActivity;
+import me.hekr.sthome.event.VideoPagerUpdateEvent;
 import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
 import me.hekr.sthome.main.MainActivity;
@@ -273,6 +276,8 @@ public class ActivityGuideDeviceWifiConfigNew extends TopbarSuperActivity implem
 				ClientUser clientUser = CCPAppManager.getClientUser();
 				clientUser.setMonitor(list.toString());
 				CCPAppManager.setClientUser(clientUser);
+				VideoPagerUpdateEvent videoPagerUpdateEvent =new VideoPagerUpdateEvent();
+				EventBus.getDefault().post(videoPagerUpdateEvent);
 				Toast.makeText(ActivityGuideDeviceWifiConfigNew.this,devname+getResources().getString(R.string.add_success),Toast.LENGTH_LONG).show();
 				hideProgressDialog();
 				Intent intent = new Intent(ActivityGuideDeviceWifiConfigNew.this, MainActivity.class);

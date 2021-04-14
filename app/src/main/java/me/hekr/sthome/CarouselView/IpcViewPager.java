@@ -44,6 +44,7 @@ public class IpcViewPager extends RelativeLayout {
 
     private List<FrameLayout> ipcPagers = new ArrayList<>();
     private List<MonitorBean> infos = new ArrayList<>();
+    private IpcPagerAdapter ipcPagerAdapter;
 
     public IpcViewPager(Context context) {
         super(context);
@@ -97,7 +98,8 @@ public class IpcViewPager extends RelativeLayout {
             textIpcName.setText("");
 
             ipcViewPager = rootView.findViewById(R.id.viewpager_ipc);
-            ipcViewPager.setAdapter(new IpcPagerAdapter());
+            ipcPagerAdapter = new IpcPagerAdapter();
+            ipcViewPager.setAdapter(ipcPagerAdapter);
             ipcViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -131,6 +133,63 @@ public class IpcViewPager extends RelativeLayout {
 
     public void updateView() {
         layoutDevices.updateDeviceList();
+    }
+
+    public void updateVideo(){
+        infos.clear();
+        ipcPagers.clear();
+
+        // Added device list page at last one
+        MonitorBean monitorBean = new MonitorBean();
+        monitorBean.setName(DEV_LIST);
+        monitorBean.setDevid(DEV_LIST);
+        infos.add(monitorBean);
+
+        layoutDevices = ViewFactory.getDeviceListView(activity);
+        ipcPagers.add(layoutDevices.getRoot());
+        List<MonitorBean> list = CCPAppManager.getClientUser().getMonitorList();
+        if(list.size()>0){
+            infos.addAll(list);
+
+            for (int i = 0; i < list.size(); i++) {
+                ipcPagers.add(ViewFactory.getImageView(getContext(),list.get(i).getDevid()));
+            }
+
+        }else{
+            monitorBean = new MonitorBean();
+            monitorBean.setName(getResources().getString(R.string.no_monitor_hint));
+            monitorBean.setDevid("");
+            infos.add(monitorBean);
+            ipcPagers.add(ViewFactory.getImageView2(getContext()));
+        }
+
+        ipcPagerAdapter = new IpcPagerAdapter();
+        ipcViewPager.setAdapter(ipcPagerAdapter);
+        ipcViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                final MonitorBean monitor = infos.get(position);
+                if (monitor.getDevid().equals(DEV_LIST)) {
+                    textIpcName.setText("");
+                } else {
+                    textIpcName.setText(monitor.getName());
+                }
+
+                setIndicator(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        textIpcName.setText("");
+        ipcViewPager.setCurrentItem(0);
+        initIndicator();
     }
 
     private void initIndicator() {

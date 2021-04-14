@@ -30,7 +30,7 @@
     <dimen name="home_middleImg_padding">20dp</dimen>
     <dimen name="home_historyList_height">110dp</dimen>
     <dimen name="home_middle_MarginLeft">30dp</dimen>
-    <dimen name="home_middle_MarginTop">30dp</dimen>
+    <dimen name="home_middle_MarginTop">20dp</dimen>
     <dimen name="home_middle_icon_size">60dp</dimen>
     <dimen name="home_middle_text_width">40dp</dimen>
     <dimen name="home_middle_icon_radius">30dp</dimen>

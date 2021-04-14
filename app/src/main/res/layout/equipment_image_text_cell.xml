@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
@@ -11,6 +11,7 @@
         android:id="@+id/cellImageView"
         android:layout_width="@dimen/equipmentList_item_image_width"
         android:layout_height="@dimen/equipmentList_item_image_width"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/e1"/>
     <TextView
         android:id="@+id/cellTextView"
@@ -18,6 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
         android:textSize="@dimen/equipmentList_item_text_size"
         android:textColor="@color/black"/>
 </LinearLayout>

@@ -32,6 +32,7 @@ import com.lib.sdk.bean.DefaultConfigBean;
 import com.lib.sdk.bean.HandleConfigData;
 import com.lib.sdk.struct.H264_DVR_FILE_DATA;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import me.hekr.sthome.commonBaseView.ResetLoadingView.ColorArcProgressBar;
+import me.hekr.sthome.event.VideoPagerUpdateEvent;
 import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
 import me.hekr.sthome.R;
@@ -158,7 +160,8 @@ public class ActivityGuideSetingInfo extends TopbarIpcSuperActivity implements V
                                          clientUser.setMonitor(list.toString());
                                          CCPAppManager.setClientUser(clientUser);
                                          lists = CCPAppManager.getClientUser().getMonitorList();
-
+                                         VideoPagerUpdateEvent videoPagerUpdateEvent =new VideoPagerUpdateEvent();
+                                         EventBus.getDefault().post(videoPagerUpdateEvent);
                                          Intent intent = new Intent(ActivityGuideSetingInfo.this, ActivityGuideDeviceCamera.class);
                                          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                          startActivity(intent);

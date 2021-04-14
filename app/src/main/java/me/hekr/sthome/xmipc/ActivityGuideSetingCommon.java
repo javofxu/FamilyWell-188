@@ -22,6 +22,8 @@ import com.lib.funsdk.support.widget.TimeTextView;
 import com.lib.sdk.bean.JsonConfig;
 import com.lib.sdk.struct.H264_DVR_FILE_DATA;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -33,6 +35,7 @@ import me.hekr.sthome.R;
 import me.hekr.sthome.common.CCPAppManager;
 import me.hekr.sthome.common.TopbarIpcSuperActivity;
 import me.hekr.sthome.commonBaseView.ECAlertDialog;
+import me.hekr.sthome.event.VideoPagerUpdateEvent;
 import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
 import me.hekr.sthome.model.modelbean.ClientUser;
@@ -217,6 +220,8 @@ public class ActivityGuideSetingCommon extends TopbarIpcSuperActivity implements
                                                  ClientUser clientUser = CCPAppManager.getClientUser();
                                                  clientUser.setMonitor(list.toString());
                                                  CCPAppManager.setClientUser(clientUser);
+                                                 VideoPagerUpdateEvent videoPagerUpdateEvent =new VideoPagerUpdateEvent();
+                                                 EventBus.getDefault().post(videoPagerUpdateEvent);
                                                  lists = CCPAppManager.getClientUser().getMonitorList();
                                                  devname = newname;
                                                  textView_name.setText(newname);

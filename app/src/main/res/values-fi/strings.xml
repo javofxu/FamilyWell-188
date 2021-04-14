@@ -562,4 +562,5 @@
    <string name="goto_set_wifi">Wi Fi- yhteyden luominen</string>
    <string name="device_long_time_ap">Laite on ollut AP- jakelutilassa jo pitkään. Käynnistä laite uudelleen ja yritä uudelleen jakelua.</string>
    <string name="current_ssid_is_not_correct">Nykyinen WiFi ei ole %1$s, aseta se käsin ja palaa sovellukseen</string>
+   <string name="no_equipment">Ei varusteita</string>
 </resources>

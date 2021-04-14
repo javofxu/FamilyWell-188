@@ -61,6 +61,7 @@ import me.hekr.sthome.event.InitGPSEvent;
 import me.hekr.sthome.event.LogoutEvent;
 import me.hekr.sthome.event.STEvent;
 import me.hekr.sthome.event.ThcheckEvent;
+import me.hekr.sthome.event.VideoPagerUpdateEvent;
 import me.hekr.sthome.history.GatewayLogoutHistoryAdapter;
 import me.hekr.sthome.history.HistoryAdapter;
 import me.hekr.sthome.http.HekrUser;
@@ -609,6 +610,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener,
     public  void onEventMainThread(InitGPSEvent event){
         InitLocation();
         initGps();
+    }
+
+    @Subscribe
+    public  void onEventMainThread(VideoPagerUpdateEvent event){
+        ipcViewPager.updateVideo();
     }
 
 

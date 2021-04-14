@@ -8,7 +8,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ import me.hekr.sthome.equipment.detail.Channel2SocketDetailActivity;
 import me.hekr.sthome.equipment.detail.CoDetailActivity;
 import me.hekr.sthome.equipment.detail.CurtainDetailActivity;
 import me.hekr.sthome.equipment.detail.CxSmDetailActivity;
+import me.hekr.sthome.equipment.detail.DataSwitchDetailActivity;
 import me.hekr.sthome.equipment.detail.DimmingModuleDetailActivity;
 import me.hekr.sthome.equipment.detail.DoorDetailActivity;
 import me.hekr.sthome.equipment.detail.GasDetailActivity;
@@ -30,6 +33,7 @@ import me.hekr.sthome.equipment.detail.GuardDetailActivity;
 import me.hekr.sthome.equipment.detail.LampDetailActivity;
 import me.hekr.sthome.equipment.detail.LockDetailActivity;
 import me.hekr.sthome.equipment.detail.ModeButtonDetailActivity;
+import me.hekr.sthome.equipment.detail.OutDoorWhitleDetailActivity;
 import me.hekr.sthome.equipment.detail.PirDetailActivity;
 import me.hekr.sthome.equipment.detail.SmDetailActivity;
 import me.hekr.sthome.equipment.detail.SocketDetailActivity;
@@ -39,7 +43,9 @@ import me.hekr.sthome.equipment.detail.TempControlDetail2Activity;
 import me.hekr.sthome.equipment.detail.ThermalDetailActivity;
 import me.hekr.sthome.equipment.detail.ValveDetailActivity;
 import me.hekr.sthome.equipment.detail.WaterDetailActivity;
+import me.hekr.sthome.main.DeviceFragment;
 import me.hekr.sthome.main.MainActivity;
+import me.hekr.sthome.model.modelbean.DataSwitchType;
 import me.hekr.sthome.model.modelbean.EquipmentBean;
 import me.hekr.sthome.model.modeldb.EquipDAO;
 import me.hekr.sthome.model.modeldb.PackDAO;
@@ -55,8 +61,9 @@ public class LayoutDeviceList extends FrameLayout implements EquipmentRecyclerAd
     private MainActivity activity;
 
     private FrameLayout root;
-    private RecyclerView recyclerView;
+    private RecyclerViewEmptySupport recyclerView;
     private EquipmentRecyclerAdapter adapter;
+    private View emptyView;
 
     public LayoutDeviceList(Context context) {
         super(context);
@@ -83,11 +90,15 @@ public class LayoutDeviceList extends FrameLayout implements EquipmentRecyclerAd
         LogUtil.d(TAG, "[RYAN] getDeviceListView > list size = " + list.size());
 
         recyclerView = root.findViewById(R.id.rv_device_list);
+        emptyView = root.findViewById(R.id.empty);
+        TextView textView = (TextView) emptyView.findViewById(R.id.textempty);
+        textView.setText(getResources().getText(R.string.no_equipment));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         adapter = new EquipmentRecyclerAdapter(getContext(), list, this);
         recyclerView.setAdapter(adapter);
+        recyclerView.setEmptyView(emptyView);
     }
 
     public void updateDeviceList() {
@@ -324,7 +335,7 @@ public class LayoutDeviceList extends FrameLayout implements EquipmentRecyclerAd
             }else if(NameSolve.VALVE.equals(NameSolve.getEqType(list.get(i).getEquipmentDesc()))){   //socket
                 list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.d15));
                 if (list.get(i).getState() != null && list.get(i).getState().length() == 8) {
-                    String ddd = list.get(i).getState().substring(6, 8);
+                    String ddd = list.get(i).getState().substring(4, 6);
                     if ("01".equals(ddd)) {
 //                    holder.s.setText("闭合");
                         list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e15));
@@ -358,16 +369,22 @@ public class LayoutDeviceList extends FrameLayout implements EquipmentRecyclerAd
                 if (list.get(i).getState() != null && list.get(i).getState().length() == 8) {
 
                     String ddd = list.get(i).getState().substring(4, 6);
-                    if ("12".equals(ddd)) {
+                    if ("11".equals(ddd)) {
+                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y8));
+                    }else if ("12".equals(ddd)) {
+                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y8));
+                    }else if ("13".equals(ddd)) {
                         list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y8));
                     } else if ("17".equals(ddd)) {
                         list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e8));
-                    } else if ("19".equals(ddd)) {
+                    } else if ("18".equals(ddd)) {
+                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e8));
+                    }else if ("19".equals(ddd)) {
                         list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e8));
                     }else if ("15".equals(ddd)) {
                         list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y8));
                     }else if ("1B".equals(ddd)) {
-                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.g8));
+                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e8));
                     }else if("AA".equals(ddd)){
                         int quantity = Integer.parseInt(list.get(i).getState().substring(2, 4), 16);
                         if (quantity <= 15) {
@@ -438,7 +455,7 @@ public class LayoutDeviceList extends FrameLayout implements EquipmentRecyclerAd
                             || "02".equals(list.get(i).getState().substring(4, 6))
                             || "04".equals(list.get(i).getState().substring(4, 6))
                             || "08".equals(list.get(i).getState().substring(4, 6))
-                            ) {
+                    ) {
                         //                    holder.s.setText("故障");
                         if(quantity <= 15){
                             list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y16));
@@ -474,13 +491,12 @@ public class LayoutDeviceList extends FrameLayout implements EquipmentRecyclerAd
                 list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.d14));
                 if (list.get(i).getState() != null && list.get(i).getState().length() == 8) {
                     int quantity = Integer.parseInt(list.get(i).getState().substring(2, 4),16);
-                    int isOffLine = Integer.parseInt(list.get(i).getState().substring(4, 6),16);
-                    int num = (((byte)((0x20) & isOffLine))==0 ? 0 : 1);
-                    int sta =  ((0x1F) & isOffLine);
-                    float setting_temp = ((float) sta)+(num == 0 ? 0f : 0.5f);
-                    if(setting_temp>30.0f){
-                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.d14));
-                    }else {
+                    String status1 = list.get(i).getState().substring(4,6);
+                    byte ds = (byte)Integer.parseInt(status1,16);
+                    int sta =  ((0x1F) & ds);
+                    int xiaoshu = (((byte)((0x20) & ds))==0?0:1);
+                    float setting_temp = ((float) sta)+(xiaoshu==0?0f:0.5f);
+                    if(setting_temp<=30.0f){
                         if(quantity <= 15){
                             list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y14));
                         }else {
@@ -504,8 +520,63 @@ public class LayoutDeviceList extends FrameLayout implements EquipmentRecyclerAd
 
 
                 }
-            }
+            }else if(NameSolve.OUTDOOR_SIREN.equals(NameSolve.getEqType(list.get(i).getEquipmentDesc()))){  //end
+                list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.d22));
+                if (list.get(i).getState() != null && list.get(i).getState().length() == 8) {
+                    int quantity = Integer.parseInt(list.get(i).getState().substring(2, 4),16);
+                    if ("A0".equals(list.get(i).getState().substring(4, 6))) {
+                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e22));
+                    }else if ("A1".equals(list.get(i).getState().substring(4, 6))) {
+                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y22));
+                    } else if ("AA".equals(list.get(i).getState().substring(4, 6))) {
+                        if(quantity <= 15){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y22));
+                        }else{
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.g22));
+                        }
+                    }
+                }
+            }else if(NameSolve.DATA_SWITCH.equals(NameSolve.getEqType(list.get(i).getEquipmentDesc()))){  //end
+                list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.d23));
+                if (list.get(i).getState() != null && list.get(i).getState().length() == 10) {
+                    String quantity1 = list.get(i).getState().substring(2,4);
+                    int statusa = Integer.parseInt(list.get(i).getState().substring(9,10),16);
+                    int qqqq = Integer.parseInt(quantity1,16);
+                    if(statusa == 0){
+                        if( qqqq <= 15 ){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y23));
+                        }else{
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.g23));
+                        }
 
+                    }else if(statusa == 15){
+                        list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.d23));
+                    }else{
+
+                        if( DataSwitchType.getType(statusa) == DataSwitchType.STATUS_FIRE_ALARMER_WARN){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e23));
+                        }else if( DataSwitchType.getType(statusa) == DataSwitchType.STATUS_FIRE_ALARMER_LOW_VOLTAGE){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.y23));
+                        }else if( DataSwitchType.getType(statusa) == DataSwitchType.STATUS_FIRE_ALARMER_NORMAL){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.g23));
+                        }else if( DataSwitchType.getType(statusa) == DataSwitchType.STATUS_GAS_ALARMER_WARN){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e23));
+                        }else if( DataSwitchType.getType(statusa) == DataSwitchType.STATUS_GAS_ALARMER_NORMAL){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.g23));
+                        }else if( DataSwitchType.getType(statusa) == DataSwitchType.STATUS_WATER_ALARMER_WARN){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.e23));
+                        }else if( DataSwitchType.getType(statusa) == DataSwitchType.STATUS_WATER_ALARMER_NORMAL){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.g23));
+                        }else if( DataSwitchType.getType(statusa) == DataSwitchType.STATUS_DEVICE_DELETE){
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.g23));
+                        }
+                        else {
+                            list.get(i).setIcon(BitmapFactory.decodeResource(getResources(), R.drawable.d23));
+                        }
+
+                    }
+                }
+            }
             ApplicationInfo info = list.get(i);
             list2.add(info);
         }
@@ -572,6 +643,10 @@ public class LayoutDeviceList extends FrameLayout implements EquipmentRecyclerAd
             detail = new Intent(activity, TempControlDetail2Activity.class);
         }else if(NameSolve.DIMMING_MODULE.equals(type)) {  //door guard
             detail = new Intent(activity, DimmingModuleDetailActivity.class);
+        }else if(NameSolve.OUTDOOR_SIREN.equals(NameSolve.getEqType(device.getEquipmentDesc()))) {  //door guard
+            detail = new Intent(activity, OutDoorWhitleDetailActivity.class);
+        }else if(NameSolve.DATA_SWITCH.equals(NameSolve.getEqType(device.getEquipmentDesc()))) {  //door guard
+            detail = new Intent(activity, DataSwitchDetailActivity.class);
         }
 
         if (detail != null) {

@@ -69,6 +69,8 @@ import com.lib.funsdk.support.widget.FunVideoView;
 import com.lib.sdk.struct.H264_DVR_FILE_DATA;
 import com.xmgl.vrsoft.VRSoftDefine;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -82,6 +84,7 @@ import me.hekr.sthome.commonBaseView.ECAlertDialog;
 import me.hekr.sthome.commonBaseView.ECAlertDialog_ipc;
 import me.hekr.sthome.commonBaseView.ECListDialog;
 import me.hekr.sthome.commonBaseView.SuberPager;
+import me.hekr.sthome.event.VideoPagerUpdateEvent;
 import me.hekr.sthome.model.modelbean.MonitorBean;
 import me.hekr.sthome.service.NetWorkUtils;
 
@@ -162,11 +165,12 @@ public class ActivityGuideDeviceCamera
 	private ImageView imageButton_switchbutton;
 	private FishEyeSettingPannel fishEyeSettingPannel;
 	private MediaPlayer mMediaPlayer;
+	private int LockUpdateVideoView = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_device_camera);
-
+		LockUpdateVideoView = 0;
 		initPermission();
 		String dvid = getIntent().getStringExtra("FUN_DEVICE_ID");
 		String dvname = getIntent().getStringExtra("FUN_DEVICE_NAME");
@@ -381,7 +385,7 @@ public class ActivityGuideDeviceCamera
 
 	@Override
 	protected void onDestroy() {
-
+		LockUpdateVideoView = 0;
 		stopMedia();
 
 		FunSupport.getInstance().removeOnFunDeviceOptListener(this);
@@ -760,6 +764,12 @@ public class ActivityGuideDeviceCamera
 
 		final String path = mFunVideoView.autocaptureImage(FunPath.getAutoCapturePath(mFunDevice.getDevSn()));	//图片异步保存
 		Log.i(TAG,"存储位置为:"+path);
+		if(LockUpdateVideoView==0){
+			LockUpdateVideoView = 1;
+			VideoPagerUpdateEvent videoPagerUpdateEvent = new VideoPagerUpdateEvent();
+			EventBus.getDefault().post(videoPagerUpdateEvent);
+		}
+
 	}
 
 

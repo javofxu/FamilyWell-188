@@ -19,12 +19,15 @@ import com.lib.funsdk.support.OnFunDeviceWiFiConfigListener;
 import com.lib.funsdk.support.models.FunDevice;
 import com.zbar.lib.ScanCaptureAct;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import me.hekr.sthome.commonBaseView.ECAlertDialog;
+import me.hekr.sthome.event.VideoPagerUpdateEvent;
 import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
 import me.hekr.sthome.http.HekrCodeUtil;
@@ -225,6 +228,8 @@ public class ActivityGuideDeviceWifiConfig extends TopbarSuperActivity implement
 				ClientUser clientUser = CCPAppManager.getClientUser();
 				clientUser.setMonitor(list.toString());
 				CCPAppManager.setClientUser(clientUser);
+				VideoPagerUpdateEvent videoPagerUpdateEvent =new VideoPagerUpdateEvent();
+				EventBus.getDefault().post(videoPagerUpdateEvent);
 				Toast.makeText(ActivityGuideDeviceWifiConfig.this,devname+getResources().getString(R.string.add_success),Toast.LENGTH_LONG).show();
 				hideProgressDialog();
 				hideSoftKeyboard();

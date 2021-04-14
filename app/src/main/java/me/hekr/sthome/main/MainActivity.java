@@ -58,6 +58,7 @@ import me.hekr.sthome.event.AutoSyncCompleteEvent;
 import me.hekr.sthome.event.InitGPSEvent;
 import me.hekr.sthome.event.LogoutEvent;
 import me.hekr.sthome.event.STEvent;
+import me.hekr.sthome.event.VideoPagerUpdateEvent;
 import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
 import me.hekr.sthome.http.bean.DeviceBean;
@@ -1095,6 +1096,8 @@ public class MainActivity extends AppCompatActivity implements DeviceFragment.Se
                             }
 
                         }else {
+                            VideoPagerUpdateEvent videoPagerUpdateEvent = new VideoPagerUpdateEvent();
+                            EventBus.getDefault().post(videoPagerUpdateEvent);
                             if(ecAlertDialog_2!=null && ecAlertDialog_2.isShowing()){
                                 ecAlertDialog_2.dismiss();
                                 ecAlertDialog_2 = null;

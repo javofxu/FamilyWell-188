@@ -25,7 +25,7 @@
     <dimen name="home_middleImg_padding">20dp</dimen>
     <dimen name="home_historyList_height">110dp</dimen>
  <dimen name="home_middle_MarginLeft">80dp</dimen>
- <dimen name="home_middle_MarginTop">80dp</dimen>
+ <dimen name="home_middle_MarginTop">70dp</dimen>
  <dimen name="home_middle_icon_size">100dp</dimen>
  <dimen name="home_middle_text_width">60dp</dimen>
  <dimen name="home_middle_icon_radius">50dp</dimen>

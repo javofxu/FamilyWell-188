@@ -6,6 +6,7 @@
     android:orientation="vertical">
 <RelativeLayout
     android:layout_width="match_parent"
+    android:layout_marginTop="50dp"
     android:layout_height="30dp">>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,14 +14,15 @@
         android:layout_centerInParent="true"
         android:id="@+id/gps_content"
         android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/gps"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="@string/location_ing"
+            android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:id="@+id/gps"/>
+            android:text="@string/location_ing"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </RelativeLayout>

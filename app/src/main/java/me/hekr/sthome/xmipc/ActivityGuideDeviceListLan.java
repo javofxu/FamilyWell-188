@@ -24,6 +24,8 @@ import com.lib.funsdk.support.models.FunDevice;
 import com.lib.funsdk.support.models.FunLoginType;
 import com.lib.sdk.struct.H264_DVR_FILE_DATA;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,8 @@ import me.hekr.sthome.R;
 import me.hekr.sthome.common.CCPAppManager;
 import me.hekr.sthome.common.TopbarIpcSuperActivity;
 import me.hekr.sthome.commonBaseView.ECAlertDialog;
+import me.hekr.sthome.event.AlertEvent;
+import me.hekr.sthome.event.VideoPagerUpdateEvent;
 import me.hekr.sthome.http.HekrCodeUtil;
 import me.hekr.sthome.http.HekrUser;
 import me.hekr.sthome.http.HekrUserAction;
@@ -396,6 +400,8 @@ public class ActivityGuideDeviceListLan extends TopbarIpcSuperActivity implement
 				ClientUser clientUser = CCPAppManager.getClientUser();
 				clientUser.setMonitor(list.toString());
 				CCPAppManager.setClientUser(clientUser);
+				VideoPagerUpdateEvent videoPagerUpdateEvent =new VideoPagerUpdateEvent();
+				EventBus.getDefault().post(videoPagerUpdateEvent);
 				Toast.makeText(ActivityGuideDeviceListLan.this,devname+getResources().getString(R.string.add_success),Toast.LENGTH_LONG).show();
 				hideWaitDialog();
 				Intent intent = new Intent(ActivityGuideDeviceListLan.this, MainActivity.class);

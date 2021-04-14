@@ -10,18 +10,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/totl"
-        android:background="@color/white">
+        android:background="@mipmap/mainbackground">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/top_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_half_height"
-            android:background="@mipmap/mainbackground"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbar_height">
+                android:layout_height="@dimen/toolbar_height"
+                android:id="@+id/tobarr"
+                android:layout_alignParentTop="true">
 
                 <RadioButton
                     android:id="@+id/title_home"
@@ -48,18 +49,26 @@
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tobarr"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/housegard_logo" />
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager_weather"
                 android:layout_width="match_parent"
+                android:layout_below="@id/tobarr"
                 android:layout_height="@dimen/home_weather_height" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <RelativeLayout
             android:id="@+id/layout_ipc_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:layout_below="@id/top_view">
 
             <android.support.v4.view.ViewPager

@@ -562,4 +562,5 @@
    <string name="goto_set_wifi">Set up Wi-Fi</string>
    <string name="device_long_time_ap">The device has been in AP distribution mode for a long time. Please restart the device and try the distribution again</string>
    <string name="current_ssid_is_not_correct">The current WiFi is not %1$s, please manually set and return to app</string>
+   <string name="no_equipment">No equipment</string>
 </resources>
