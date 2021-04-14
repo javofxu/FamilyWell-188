@@ -12,7 +12,7 @@
         <clip>
             <shape>
                 
-                <solid android:color="@color/bg_seekbar" />
+                <solid android:color="@color/text_color_selected" />
 
                 <corners android:radius="3dp" />
             </shape>

@@ -339,6 +339,10 @@ public class MainActivity extends AppCompatActivity implements DeviceFragment.Se
         }
     }
 
+    public void jumpToDevice() {
+        viewPager.setCurrentItem(2,false);
+    }
+
     @Override
     public void setdrag(boolean flag) {
         if(viewPager!=null) viewPager.setScanScroll(flag);
@@ -631,7 +635,7 @@ public class MainActivity extends AppCompatActivity implements DeviceFragment.Se
             }
             if(currIndex==0){
                 ((HomeFragment)fragments.get(0)).refreshSysmode();
-
+                ((HomeFragment)fragments.get(0)).refreshDeviceView();
             }else if(currIndex == 1){
                 ((SceneFragment)fragments.get(1)).refresh();
                 ((HomeFragment)fragments.get(0)).refreshSysmode();
@@ -639,9 +643,15 @@ public class MainActivity extends AppCompatActivity implements DeviceFragment.Se
                 ((DeviceFragment)fragments.get(2)).refresh();
             }
 
-        }else if(event.getRefreshevent()==5 && currIndex == 2){
-            if(!SiterService.isTimer_of_sync_en())
-            ((DeviceFragment)fragments.get(2)).refresh();
+        }else if(event.getRefreshevent()==5){
+            if(!SiterService.isTimer_of_sync_en()){
+                if(currIndex==0){
+                    ((HomeFragment)fragments.get(0)).refreshDeviceView();
+                }else if(currIndex==2){
+                    ((DeviceFragment)fragments.get(2)).refresh();
+                }
+            }
+
         }else if(event.getRefreshevent()==6){
             if(mProgressDialog!=null && mProgressDialog.isShowing()){
                 mProgressDialog.dismiss();

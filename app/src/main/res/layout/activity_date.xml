@@ -52,8 +52,7 @@
 
             <me.hekr.sthome.commonBaseView.WeekDayView
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@color/text_color_selected" />
+                android:layout_height="30dp" />
             <me.hekr.sthome.commonBaseView.MonthDateView
                 android:id="@+id/monthDateView"
                 android:layout_width="fill_parent"

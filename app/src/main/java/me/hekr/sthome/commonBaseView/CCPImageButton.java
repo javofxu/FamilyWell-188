@@ -46,7 +46,7 @@ public class CCPImageButton extends FrameLayout {
 		mTextView.setFocusableInTouchMode(false);
 		mTextView.setBackgroundResource(R.drawable.control_sub_txt_bg);
 		mTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,10f);
-		ColorStateList colorStateList = context.getResources().getColorStateList(R.color.monitor_control_panel_bg);
+		ColorStateList colorStateList = context.getResources().getColorStateList(R.color.text_color_selected);
 		mTextView.setTextColor(colorStateList);
 		addView(mTextView);
 	}

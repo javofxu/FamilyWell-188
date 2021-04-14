@@ -29,7 +29,7 @@
     <color name="text_title">#ff5f5f5f</color>
     <color name="text_color">#717171</color>
     <color name="text_color_hint">#cdcdcd</color>
-    <color name="text_color_selected">#33a7ff</color>
+    <color name="text_color_selected">#D51224</color>
     <color name="edit_color">#33a7ff</color>
     <color name="num_color">#9ca2a6</color>
     <color name="top_edit_bg">#f2f2f5</color>

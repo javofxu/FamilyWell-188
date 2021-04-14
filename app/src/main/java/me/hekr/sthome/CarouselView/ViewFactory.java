@@ -22,7 +22,9 @@ import java.io.File;
 
 import me.hekr.sthome.R;
 import me.hekr.sthome.commonBaseView.FuncSDKImage;
+import me.hekr.sthome.commonBaseView.LayoutDeviceList;
 import me.hekr.sthome.commonBaseView.Weatherlinearlayout;
+import me.hekr.sthome.main.MainActivity;
 import me.hekr.sthome.model.modelbean.EquipmentBean;
 import me.hekr.sthome.model.modelbean.WeatherInfoBean;
 import me.hekr.sthome.tools.NameSolve;
@@ -63,6 +65,10 @@ public class ViewFactory {
 		imageView.setImageResourceNoMark(R.drawable.u3);
 		imageView.setVisibility(View.VISIBLE);
 		return imageView;
+	}
+
+	public static LayoutDeviceList getDeviceListView(MainActivity activity) {
+        return new LayoutDeviceList(activity);
 	}
 
 

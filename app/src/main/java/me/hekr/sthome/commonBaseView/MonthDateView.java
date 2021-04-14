@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class MonthDateView extends View {
 	private List<Integer> daysHasThingList;
 	public MonthDateView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		daysHasThingList = new ArrayList<Integer>();
 		mDisplayMetrics = getResources().getDisplayMetrics();
 		Calendar calendar = Calendar.getInstance();
 		mPaint = new Paint();
