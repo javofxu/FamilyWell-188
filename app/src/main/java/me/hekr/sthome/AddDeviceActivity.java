@@ -140,16 +140,16 @@ public class AddDeviceActivity extends TopbarSuperActivity {
         String lan = tools.readLanguage();
         textView.setText(getResources().getString(R.string.add_device_hint));
 
-        if("zh".equals(lan)){
-            icon.setImageResource(R.drawable.adevice_zh);
-        }else if("de".equals(lan)){
-            icon.setImageResource(R.drawable.adevice_de);
-        }else if("fr".equals(lan)){
-            icon.setImageResource(R.drawable.adevice_fr);
-        }else if("es".equals(lan)){
-            icon.setImageResource(R.drawable.adevice_es);
+        if("da".equals(lan)){
+            icon.setImageResource(R.drawable.adddevice_da);
+        }else if("fi".equals(lan)){
+            icon.setImageResource(R.drawable.adddevice_fi);
+        }else if("nb".equals(lan)){
+            icon.setImageResource(R.drawable.adddevice_nb);
+        }else if("sv".equals(lan)){
+            icon.setImageResource(R.drawable.adddevice_sv);
         }else {
-            icon.setImageResource(R.drawable.adevice_en);
+            icon.setImageResource(R.drawable.adddevice_en);
         }
     }
 
