@@ -13,8 +13,8 @@ android {
         applicationId "com.siterwell.housegard"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1120
-        versionName "1.120"
+        versionCode 1130
+        versionName "1.130"
 
         manifestPlaceholders = [
                 GETUI_APP_ID : "zFyE9LJ2yu6aExwbXmzDU2",
